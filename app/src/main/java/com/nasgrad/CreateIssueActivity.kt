@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.nasgrad.nasGradApp.R
+import kotlinx.android.synthetic.main.activity_create_issue.*
 
 class CreateIssueActivity : AppCompatActivity() {
 
@@ -14,7 +15,17 @@ class CreateIssueActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_issue)
 
-        setFragment(R.id.mainContent, AddImageFragment())
+        setFragment(R.id.mainContent, PreviewIssueFragment())
+
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun setFragment(layoutId: Int, fragment: Fragment) {

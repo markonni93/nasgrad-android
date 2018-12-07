@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NasGradApp</string>
     <string name="title_activity_create_issue">CreateIssue</string>
+    <string name="email">jkpzelenilosrbija@srbija.rs</string>
 
     <string name="create_issue_page_indicator">%1$d/4</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -17,8 +18,8 @@
     <string name="screen_title_add_image">Dodaj sliku</string>
     <string name="btn_create_issue">Kreiraj</string>
     <string name="default_issue_title">Naslov problema</string>
-    <string name="back_button_text">Nazad</string><string name = "issue_type_default_text">Tip problema</string><string
-    name = "lorem_ipsum_paragraph">Sed egestas nunc nec urna rhoncus lobortis. Donec nec aliquet neque. Aliquam et accumsan dolor. Fusce mollis justo eget dapibus ultrices. Cras ut orci tortor. Sed eu odio molestie ante eleifend sollicitudin id ut eros. Cras eget quam nisi.</string>
+    <string name="back_button_text">Nazad</string><string name = "issue_type_default_text">Tip problema</string>
+    <string name = "lorem_ipsum_paragraph">Sed egestas nunc nec urna rhoncus lobortis. Donec nec aliquet neque. Aliquam et accumsan dolor. Fusce mollis justo eget dapibus ultrices. Cras ut orci tortor. Sed eu odio molestie ante eleifend sollicitudin id ut eros. Cras eget quam nisi.</string><string name = "report_issue_btn">Prijavi Problem</string>
 
 >>>>>>> develop
 </resources>

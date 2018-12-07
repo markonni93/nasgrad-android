@@ -18,12 +18,11 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun openEmailClint() {
-        val intent = Intent(Intent.ACTION_VIEW)
-        val data = Uri.parse("mailto:${resources.getString(R.string.email)}?subject=Prijavi Problem&body=OpisProblem");
+        val intent = Intent(Intent.ACTION_SENDTO)
+        val data = Uri.parse("mailto:${resources.getString(R.string.email)}?subject=prijava problema&body=OpisProblem")
         intent.data = data
         startActivity(intent)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

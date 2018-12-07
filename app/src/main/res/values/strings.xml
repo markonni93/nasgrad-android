@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">NasGradApp</string>
     <string name="title_activity_create_issue">CreateIssue</string>
+    <string-array name="spinners_array">
+        <item>EDIT?</item>
+        <item>Neispravan Problem</item>
+        <item>Neprikladan Sadržaj</item>
+    </string-array>
+    
 </resources>

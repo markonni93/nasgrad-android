@@ -13,8 +13,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:fontFamily="casual"
-        android:text="Title Issue"
+        android:text="@string/default_issue_title"
         android:textAlignment="center"
         android:textSize="18sp"
         android:typeface="normal"
@@ -41,13 +40,11 @@
             android:layout_height="wrap_content">
 
             <ImageView
-
                 android:id="@+id/issuePicture"
                 android:layout_width="250dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:contentDescription="issueReported"
                 android:src="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -67,7 +64,7 @@
                 android:id="@+id/adressLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="Adresa"
                 android:textSize="18sp"
@@ -78,9 +75,9 @@
                 android:id="@+id/textView4"
                 android:layout_width="0dp"
                 android:layout_height="300dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
                 android:text="Opis Problema"
                 android:textSize="24sp"
@@ -114,8 +111,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/issuePicture"
                 app:layout_constraintTop_toTopOf="@+id/issuePicture" />
-
-
+            
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
@@ -127,9 +123,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimaryDark"
-        android:fontFamily="sans-serif"
         android:padding="4dp"
-        android:text="Prijavi Problem"
+        android:text="@string/report_issue_btn"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

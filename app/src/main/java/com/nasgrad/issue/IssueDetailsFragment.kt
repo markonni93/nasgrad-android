@@ -2,56 +2,72 @@ package com.nasgrad.issue
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import com.nasgrad.CreateIssueActivity
 import com.nasgrad.adapter.TypesSpinnerAdapter
 import com.nasgrad.model.Category
 import com.nasgrad.model.Type
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_issue_details.*
+import timber.log.Timber
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-
-class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener {
-
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         (activity as CreateIssueActivity).supportActionBar?.title = getString(R.string.issue_details_title)
-
+        (activity as CreateIssueActivity).enableHomeButton(false)
         return inflater.inflate(R.layout.fragment_issue_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initTypesSpinner()
-        setPageIndicator(2)
+
+        ibArrowLeft.visibility = View.VISIBLE
+        tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 2)
+
+        ibArrowLeft.setOnClickListener(this)
+        ibArrowRight.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View) {
+        val viewId = view.id
+        when (viewId) {
+            ibArrowLeft.id -> {
+                Timber.d("black click")
+                (activity as CreateIssueActivity).openPreviousFragment()
+            }
+            ibArrowRight.id -> {
+                // update issue
+                val issue = (activity as CreateIssueActivity).issue
+                issue.title = tvIssueTitle.text.toString()
+
+                val type = spinnerTypes.selectedItem as Type
+                issue.issueType = type.name
+
+                val list = mutableListOf<String>()
+                type.categories?.forEach { list.add(it?.name!!) }
+                issue.categories = list
+
+                issue.description = etIssueDescription.text.toString()
+
+                Timber.d("Issue: $issue")
+                (activity as CreateIssueActivity).setFragment(R.id.mainContent, PreviewIssueFragment())
+            }
+        }
     }
 
     private fun initTypesSpinner() {
         val firstCategories = arrayListOf<Category>()
         firstCategories.add(Category("1", "Kategorija 1", "Opis 1", "email1@gmail.com"))
         firstCategories.add(Category("2", "Kategorija 2", "Opis 2", "email2@gmail.com"))
+        firstCategories.add(Category("22", "Kategorija 22", "Opis 22", "email22@gmail.com"))
 
         val secondCategories = arrayListOf<Category>()
         secondCategories.add(Category("3", "Kategorija 3", "Opis 3", "email3@gmail.com"))
@@ -71,54 +87,44 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         spinnerTypes.onItemSelectedListener = this
     }
 
-    private fun setPageIndicator(pageId: Int) {
-        tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), pageId)
-    }
-
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Timber.d("onNothingSelected")
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val selectedType = parent?.getItemAtPosition(position) as Type
-        Log.d("CreateIssueActivity", "Selected type " + selectedType.name)
+        Timber.d("onItemSelected $selectedType")
 
         val categories = selectedType.categories
-        if (categories != null && categories.isNotEmpty()) {
-
-            if (categories[0] != null) {
-                tvFirstCategory.visibility = View.VISIBLE
-                tvFirstCategory.text = categories[0]?.name
-            } else {
-                tvFirstCategory.visibility = View.GONE
-            }
-
-            if (categories[1] != null) {
-                tvFirstCategory.visibility = View.VISIBLE
-                tvFirstCategory.text = categories[1]?.name
-            } else {
-                tvFirstCategory.visibility = View.GONE
+        if (categories != null) {
+            when {
+                categories.size == 1 -> {
+                    tvFirstCategory.visibility = View.VISIBLE
+                    tvFirstCategory.text = categories[0]?.name
+                    tvSecondCategory.visibility = View.GONE
+                    tvThirdCategory.visibility = View.GONE
+                }
+                categories.size == 2 -> {
+                    tvFirstCategory.visibility = View.VISIBLE
+                    tvFirstCategory.text = categories[0]?.name
+                    tvSecondCategory.visibility = View.VISIBLE
+                    tvSecondCategory.text = categories[1]?.name
+                    tvThirdCategory.visibility = View.GONE
+                }
+                categories.size >= 3 -> {
+                    tvFirstCategory.visibility = View.VISIBLE
+                    tvFirstCategory.text = categories[0]?.name
+                    tvSecondCategory.visibility = View.VISIBLE
+                    tvSecondCategory.text = categories[1]?.name
+                    tvThirdCategory.visibility = View.VISIBLE
+                    tvThirdCategory.text = categories[2]?.name
+                }
+                else -> {
+                    tvFirstCategory.visibility = View.GONE
+                    tvSecondCategory.visibility = View.GONE
+                    tvThirdCategory.visibility = View.GONE
+                }
             }
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment IssueDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                IssueDetailsFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
     }
 }

@@ -1,7 +1,8 @@
-package com.nasgrad
+package com.nasgrad.issue
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -9,11 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nasgrad.nasGradApp.R
+import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_add_image.*
 import net.alhazmy13.mediapicker.Image.ImagePicker
-import android.graphics.BitmapFactory
-import android.R.attr.path
-import android.support.v7.app.AppCompatActivity
 
 
 class AddImageFragment : Fragment(), View.OnClickListener {
@@ -22,21 +21,33 @@ class AddImageFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_add_image, container, false)
-
-        (activity as AppCompatActivity).supportActionBar!!.title = getString(R.string.screen_title_add_image)
-
+        (activity as CreateIssueActivity).setActionBarTitle(getString(R.string.issue_picture_title))
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        addImageButton.setOnClickListener(this)
+        ibArrowRight.setOnClickListener(this)
+
+        ibArrowLeft.visibility = View.GONE
+        tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 1)
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        addImageButton.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
         val viewId = view.id
         when (viewId) {
             addImageButton.id -> pickImage()
+            ibArrowRight.id -> {
+                // update issue
+                // (activity as CreateIssueActivity).issue?.photo =
+                val fragment = IssueDetailsFragment()
+                (activity as CreateIssueActivity).setFragment(R.id.mainContent, fragment)
+            }
         }
     }
 
@@ -71,4 +82,5 @@ class AddImageFragment : Fragment(), View.OnClickListener {
             addImageButton.setImageBitmap(BitmapFactory.decodeFile(path?.get(0)))
         }
     }
+
 }

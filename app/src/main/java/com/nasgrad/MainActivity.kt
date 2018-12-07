@@ -7,14 +7,18 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
+import com.nasgrad.issue.CreateIssueActivity
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     companion object {
         const val ITEM_ID = "ITEM_ID"
     }
+
+
 
     override fun onItemClicked(itemId: String) {
         Toast.makeText(this, "Item clicked $itemId ", Toast.LENGTH_SHORT).show()
@@ -28,6 +32,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Timber.plant(Timber.DebugTree())
 
         fab.setOnClickListener {
             startActivity(Intent(this@MainActivity, CreateIssueActivity::class.java))

@@ -1,126 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android = "http://schemas.android.com/apk/res/android"
-    xmlns:app = "http://schemas.android.com/apk/res-auto"
-    xmlns:tools = "http://schemas.android.com/tools"
-    android:layout_width = "match_parent"
-    android:layout_height = "match_parent"
-    tools:context = "com.nasgrad.CreateIssueActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nasgrad.issue.CreateIssueActivity">
 
     <ScrollView
-        android:id = "@+id/scrollView"
-        android:layout_width = "395dp"
-        android:layout_height = "548dp"
-        app:layout_constraintStart_toStartOf = "parent"
-        android:layout_marginStart = "8dp"
-        android:layout_marginEnd = "8dp"
-        app:layout_constraintEnd_toEndOf = "parent"
-        android:layout_marginTop = "8dp"
-        app:layout_constraintTop_toBottomOf = "@+id/issue_title">
+        android:id="@+id/scrollView"
+        android:layout_width="395dp"
+        android:layout_height="548dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/issue_title">
 
         <android.support.constraint.ConstraintLayout
-            android:id = "@+id/scrollViewContent"
-            android:layout_width = "match_parent"
-            android:layout_height = "wrap_content">
-            
+            android:id="@+id/scrollViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <ImageView
-                android:id = "@+id/imagePreview"
-                android:src = "@color/colorAccent"
-                android:layout_width = "300dp"
-                android:layout_height = "300dp"
-                android:background = "@color/colorAccent"
-                app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintStart_toStartOf = "parent"/>
-            
+                android:id="@+id/imagePreview"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:background="@color/colorAccent"
+                android:src="@color/colorAccent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
-                android:id = "@+id/typePreview"
-                android:text = "@string/issue_type_default_text"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                app:layout_constraintTop_toBottomOf = "@+id/imagePreview"
-                app:layout_constraintStart_toStartOf = "parent"
-                android:layout_marginStart = "16dp"
-                android:layout_marginTop = "16dp"
-                android:textSize = "18sp"/>
-            
+                android:id="@+id/typePreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/issue_type_default_text"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
+
             <TextView
                 android:id="@+id/categoryPreview"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="Kategorije"
-                app:layout_constraintTop_toBottomOf = "@+id/typePreview"
-                app:layout_constraintStart_toStartOf = "parent"
-                android:layout_marginStart = "16dp"
-                android:layout_marginTop = "16dp"
-                android:textSize = "18sp"/>
-            
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/typePreview" />
+
             <TextView
                 android:id="@+id/addressPreview"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="Adresa"
-                app:layout_constraintTop_toBottomOf = "@+id/categoryPreview"
-                app:layout_constraintStart_toStartOf = "parent"
-                android:layout_marginStart = "16dp"
-                android:layout_marginTop = "16dp"
-                android:textSize = "18sp"/>
-            
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryPreview" />
+
             <ImageButton
-                android:id = "@+id/btnMapPreview"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                app:layout_constraintStart_toEndOf = "@+id/addressPreview"
-                app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintTop_toTopOf = "@+id/addressPreview"
-                app:layout_constraintBottom_toBottomOf = "@+id/addressPreview"
-                android:layout_marginStart = "8dp"
-                android:layout_marginEnd = "8dp"
-                android:src="@drawable/ic_map"/>
-            
+                android:id="@+id/btnMapPreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_map"
+                app:layout_constraintBottom_toBottomOf="@+id/addressPreview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/addressPreview"
+                app:layout_constraintTop_toTopOf="@+id/addressPreview" />
+
             <TextView
                 android:id="@+id/descriptionPreview"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                tools:text="@string/lorem_ipsum_paragraph"
-                app:layout_constraintTop_toBottomOf = "@+id/btnMapPreview"
-                app:layout_constraintStart_toStartOf = "parent"
-                android:layout_marginStart = "16dp"
-                android:layout_marginTop = "16dp"
-                android:textSize = "18sp"/>
-            
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMapPreview"
+                tools:text="@string/lorem_ipsum_paragraph" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
     <TextView
-        android:id = "@+id/issue_title"
-        android:text = "@string/default_issue_title"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_marginTop = "16dp"
-        app:layout_constraintTop_toTopOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        android:layout_marginStart = "16dp"
-        android:textSize = "30sp"/>
+        android:id="@+id/issue_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/default_issue_title"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id = "@+id/button"
-        android:text = "@string/btn_create_issue"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        app:layout_constraintEnd_toEndOf = "parent"
-        android:layout_marginEnd = "16dp"
-        android:layout_marginBottom = "16dp"
-        app:layout_constraintBottom_toBottomOf = "parent"/>
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btn_create_issue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id = "@+id/back_button_preview_screen"
-        android:text = "@string/back_button_text"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        app:layout_constraintStart_toStartOf = "parent"
-        android:layout_marginStart = "16dp"
-        android:layout_marginBottom = "16dp"
-        app:layout_constraintBottom_toBottomOf = "parent"/>
+        android:id="@+id/back_button_preview_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/back_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

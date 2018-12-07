@@ -1,17 +1,43 @@
 package com.nasgrad
 
+import android.content.Intent
 import android.os.Bundle
+
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.nasgrad.nasGradApp.R
+import kotlinx.android.synthetic.main.activity_create_issue.*
 
 
 class CreateIssueActivity : AppCompatActivity() {
 
+    private val fragmentManager = supportFragmentManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_issue_details)
+        setContentView(R.layout.activity_create_issue)
 
-        setActionBarTitle(getString(R.string.issue_details_title))
+        setFragment(R.id.mainContent, PreviewIssueFragment())
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        setActionBarTitle(getString(R.string.issue_picture_title))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    private fun setFragment(layoutId: Int, fragment: Fragment) {
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(layoutId, fragment)
+        transaction.commit()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun setActionBarTitle(title: String) {

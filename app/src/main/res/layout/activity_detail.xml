@@ -17,7 +17,7 @@
         android:fontFamily="sans-serif"
         android:maxLines="2"
         android:padding="2dp"
-        android:text="Naslov Problema"
+        android:text="@string/default_issue_title"
         android:textAlignment="center"
         android:textSize="18sp"
         android:typeface="normal"
@@ -51,6 +51,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:contentDescription="issueReported"
+
                 android:src="@color/colorAccent"
                 android:background="@drawable/img_shape"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +74,7 @@
                 android:id="@+id/adressLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="Adresa: "
                 android:textSize="18sp"
@@ -122,7 +123,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/issuePicture"
                 app:layout_constraintTop_toTopOf="@+id/issuePicture" />
-
+            
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

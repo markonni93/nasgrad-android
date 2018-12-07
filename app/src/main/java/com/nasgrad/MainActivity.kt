@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         rvIssueList.layoutManager = layoutManager
 
         val issueAdapter = IssueAdapter(this, CaneModel.Cane, this)
-//        Glide.with(this).load("https://picsum.photos/100/100/?random").into(ivIssueImage)
-//        layoutManager.addView(ivIssueImage)
         rvIssueList.adapter = issueAdapter
     }
 

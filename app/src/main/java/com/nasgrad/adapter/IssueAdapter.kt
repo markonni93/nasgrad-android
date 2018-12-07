@@ -23,8 +23,8 @@ class IssueAdapter(val context: Context, val issue: List<Model>, var listener: O
     }
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
-        val canes = issue[position]
-        holder.setIssue(canes, "Kartografija")
+        val title = issue[position]
+        holder.setIssue(title, "Cistoca", "Putari")
         holder.bindIssue(issue[position].id ,listener)
     }
 
@@ -36,12 +36,15 @@ class IssueAdapter(val context: Context, val issue: List<Model>, var listener: O
             }
         }
 
-        fun setIssue(issue: Model?, category: String) {
+        fun setIssue(issue: Model?, category: String = "", secondCategory: String = "") {
             itemView.tvIssueTitle.text = issue?.id
             itemView.tvCategory.text = category
-            if (itemView.tvSecondCategory.text.isEmpty()) {
-                itemView.tvSecondCategory.visibility = View.INVISIBLE
-            }
+            itemView.tvSecondCategory.text = secondCategory
+
+            if (itemView.tvCategory.text.isEmpty()) itemView.tvCategory.visibility = View.INVISIBLE
+
+            if (itemView.tvSecondCategory.text.isEmpty()) itemView.tvSecondCategory.visibility = View.INVISIBLE
+
             Glide.with(context).load("https://picsum.photos/100/100/?random").into(itemView.ivIssueImage)
         }
     }

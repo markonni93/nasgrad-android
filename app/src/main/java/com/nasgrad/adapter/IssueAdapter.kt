@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.nasgrad.api.model.Issue
-import com.nasgrad.model.IssueResponse
+import com.nasgrad.api.model.IssueResponse
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.issue_list_item.view.*
 

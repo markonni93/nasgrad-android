@@ -8,7 +8,7 @@ import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
 import com.nasgrad.api.model.Issue
-import com.nasgrad.model.IssueResponse
+import com.nasgrad.api.model.IssueResponse
 import com.nasgrad.nasGradApp.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -74,14 +74,13 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         val issueAdapter = if (issueResponse != null) {
             IssueAdapter(this, issueResponse, this)
         } else {
-            IssueAdapter(this, IssueResponse(7, mockListOfIssues()), this)
-
+            IssueAdapter(this, IssueResponse(mockListOfIssues()), this)
         }
         rvIssueList.adapter = issueAdapter
     }
 
     private fun mockedSetDataToAdapter() {
-        rvIssueList.adapter = IssueAdapter(this, IssueResponse(7, mockListOfIssues()), this)
+        rvIssueList.adapter = IssueAdapter(this, IssueResponse(mockListOfIssues()), this)
     }
 
     private fun mockListOfIssues(): ArrayList<Issue> {

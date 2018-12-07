@@ -1,6 +1,6 @@
 package com.nasgrad
 
-import com.nasgrad.model.IssueResponse
+import com.nasgrad.api.model.IssueResponse
 import retrofit2.http.GET
 import io.reactivex.Observable
 import retrofit2.Response

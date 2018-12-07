@@ -1,7 +1,8 @@
 package com.nasgrad
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.nasgrad.nasGradApp.R
 
 class MainActivity : AppCompatActivity() {
 

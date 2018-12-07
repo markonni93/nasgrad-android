@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NasGradApp</string>
+    <string name="title_activity_create_issue">CreateIssue</string>
 </resources>

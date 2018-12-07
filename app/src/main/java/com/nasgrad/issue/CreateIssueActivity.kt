@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
+import com.nasgrad.utils.Helper
+import com.nasgrad.utils.SharedPreferencesHelper
 import kotlinx.android.synthetic.main.activity_create_issue.*
 
 
@@ -25,7 +27,10 @@ class CreateIssueActivity : AppCompatActivity() {
 
         setFragment(R.id.mainContent, AddImageFragment())
 
-        issue = Issue("123", "345", null, null, null, null, null)
+        val sharedPreferences = SharedPreferencesHelper(this)
+        val issueId = Helper.randomGUID()
+        val ownerId = sharedPreferences.getStringValue(Helper.USER_ID_KEY,"")
+        issue = Issue(issueId, ownerId, null, null, null, null, null)
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -46,7 +46,6 @@
         app:layout_goneMarginLeft="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ibArrowRight"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ibArrowLeft"
         app:layout_constraintTop_toTopOf="parent" />
 

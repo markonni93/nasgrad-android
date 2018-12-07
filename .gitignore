@@ -1,11 +1,30 @@
-*.iml
-.gradle
-/local.properties
 /.idea/caches/build_file_checksums.ser
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
 .DS_Store
-/build
 /captures
 .externalNativeBuild
+
+
+# Android/IntelliJ
+build/
+.idea/
+.gradle
+local.properties
+*.iml
+
+# Signing files
+.signing/
+
+# Keystore files
+*.jks
+
+# Debug generated files
+captures/
+
+# External native build folder
+.externalNativeBuild
+
+# Log Files
+*.log

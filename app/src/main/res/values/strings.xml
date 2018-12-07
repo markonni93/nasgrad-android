@@ -16,4 +16,5 @@
     <string name="back_button_text">Nazad</string><string name = "issue_type_default_text">Tip problema</string>
     <string name = "lorem_ipsum_paragraph">Sed egestas nunc nec urna rhoncus lobortis. Donec nec aliquet neque. Aliquam et accumsan dolor. Fusce mollis justo eget dapibus ultrices. Cras ut orci tortor. Sed eu odio molestie ante eleifend sollicitudin id ut eros. Cras eget quam nisi.</string><string name = "report_issue_btn">Prijavi Problem</string>
 
+	<string name = "base_api_url" translatable="false">http://68.183.223.223:8080/api</string>
 </resources>

@@ -10,7 +10,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
-        <activity android:name="com.nasgrad.MainActivity">
+        <activity android:name="com.nasgrad.CreateIssueActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,7 +19,7 @@
         </activity>
 
         <activity
-                android:name="com.nasgrad.CreateIssueActivity"
+                android:name="com.nasgrad.MainActivity"
                 android:label="@string/title_activity_create_issue"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>

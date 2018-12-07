@@ -30,36 +30,75 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 app1:layout_constraintBottom_toBottomOf="parent"
-                android:id="@+id/imageView"/>
+                android:id="@+id/ivIssueImage"/>
 
         <TextView
                 android:id="@+id/tvIssueTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:hint="Issue Title"
+                android:hint="Rupa ispred Levi9"
                 android:textColor="#000000"
-                android:textSize="32sp"
+                android:textSize="20sp"
                 android:textAllCaps="false"
-                app1:layout_constraintStart_toEndOf="@+id/imageView"
-                app1:layout_constraintTop_toTopOf="@+id/imageView"
+                android:maxLines="2"
+                android:lines="2"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                app1:layout_constraintStart_toEndOf="@+id/ivIssueImage"
+                app1:layout_constraintTop_toTopOf="@+id/ivIssueImage"
                 android:layout_marginStart="16dp"
                 app1:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-                android:id="@+id/tvDescription"
-                android:layout_width="200dp"
+                android:id="@+id/tvCategory"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:lines="2"
-                android:ellipsize="end"
-                android:hint="Description"
                 android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:lines="1"
                 android:textSize="16sp"
+                android:hint="Kategorija"
                 app1:layout_constraintTop_toBottomOf="@+id/tvIssueTitle"
-                android:layout_marginTop="16dp"
-                app1:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app1:layout_constraintStart_toStartOf="@+id/tvIssueTitle"
+                app1:layout_constraintBottom_toBottomOf="@+id/ivIssueImage"/>
+
+        <TextView
+                android:id="@+id/tvIssueType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:lines="1"
+                android:textSize="16sp"
+                android:hint="Tip problema" app1:layout_constraintTop_toBottomOf="@+id/tvIssueTitle"
+                app1:layout_constraintBottom_toBottomOf="@+id/ivIssueImage"
+                app1:layout_constraintStart_toEndOf="@+id/tvCategory" app1:layout_constraintVertical_bias="0.518"
+                app1:layout_constraintEnd_toStartOf="@+id/tvCounter"/>
+
+        <TextView
+                android:id="@+id/tvCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="9"
+                android:inputType="number"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextPrimary"
+                app1:layout_constraintTop_toBottomOf="@+id/tvIssueTitle"
+                app1:layout_constraintBottom_toBottomOf="@+id/ivIssueImage"
                 app1:layout_constraintEnd_toEndOf="@+id/tvIssueTitle"/>
+
+        <TextView
+                android:id="@+id/tvSecondCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:lines="1"
+                android:textSize="16sp"
+                android:hint="Druga kategorija"
+                app1:layout_constraintTop_toBottomOf="@+id/tvCategory"
+                app1:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+                app1:layout_constraintStart_toStartOf="@+id/tvCategory" android:layout_marginBottom="8dp"/>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -34,6 +34,8 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
 
         ibArrowLeft.setOnClickListener(this)
         ibArrowRight.setOnClickListener(this)
+
+        tvIssueTitle.text = "Naslov problema"
     }
 
     override fun onClick(view: View) {

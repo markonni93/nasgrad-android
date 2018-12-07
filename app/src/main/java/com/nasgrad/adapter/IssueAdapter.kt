@@ -10,8 +10,9 @@ import com.nasgrad.Model
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.issue_list_item.view.*
 
-class IssueAdapter(val context: Context, val issue: List<Model>) :
+class IssueAdapter(val context: Context, val issue: List<Model>, var listener: OnItemClickListener) :
     RecyclerView.Adapter<IssueAdapter.IssueViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssueViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.issue_list_item, parent, false)
         return IssueViewHolder(view)
@@ -24,11 +25,19 @@ class IssueAdapter(val context: Context, val issue: List<Model>) :
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
         val canes = issue[position]
         holder.setIssue(canes, "Kartografija")
+        holder.bindIssue(issue[position].id ,listener)
     }
 
     inner class IssueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bindIssue(itemId: String, onItemClickListener: OnItemClickListener){
+            itemView.setOnClickListener{
+                onItemClickListener.onItemClicked(itemId)
+            }
+        }
+
         fun setIssue(issue: Model?, category: String) {
-            itemView.tvIssueTitle.text = issue?.cane
+            itemView.tvIssueTitle.text = issue?.id
             itemView.tvCategory.text = category
             if (itemView.tvSecondCategory.text.isEmpty()) {
                 itemView.tvSecondCategory.visibility = View.INVISIBLE

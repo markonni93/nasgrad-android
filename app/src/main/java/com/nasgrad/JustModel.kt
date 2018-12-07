@@ -1,6 +1,6 @@
 package com.nasgrad
 
-data class Model(var cane: String)
+data class Model(var id: String)
 
 object CaneModel {
     var Cane = mutableListOf<Model>(

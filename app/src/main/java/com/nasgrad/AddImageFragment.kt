@@ -13,8 +13,7 @@ import kotlinx.android.synthetic.main.fragment_add_image.*
 import net.alhazmy13.mediapicker.Image.ImagePicker
 import android.graphics.BitmapFactory
 import android.R.attr.path
-
-
+import android.support.v7.app.AppCompatActivity
 
 
 class AddImageFragment : Fragment(), View.OnClickListener {
@@ -22,7 +21,11 @@ class AddImageFragment : Fragment(), View.OnClickListener {
     var path: List<String>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_add_image, container, false)
+        val view = inflater.inflate(R.layout.fragment_add_image, container, false)
+
+        (activity as AppCompatActivity).supportActionBar!!.title = getString(R.string.screen_title_add_image)
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

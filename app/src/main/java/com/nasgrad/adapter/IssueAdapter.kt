@@ -11,7 +11,7 @@ import com.nasgrad.api.model.IssueResponse
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.issue_list_item.view.*
 
-class IssueAdapter(val context: Context, private val issueResponse: IssueResponse, var listener: OnItemClickListener) :
+class IssueAdapter(private val context: Context, private val issues: List<Issue>, var listener: OnItemClickListener) :
     RecyclerView.Adapter<IssueAdapter.IssueViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssueViewHolder {
@@ -20,12 +20,12 @@ class IssueAdapter(val context: Context, private val issueResponse: IssueRespons
     }
 
     override fun getItemCount(): Int {
-        return issueResponse.issues.size
+        return issues.size
     }
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
-        holder.setIssue(issueResponse.issues[position])
-        holder.bindIssue(issueResponse.issues.get(position).id, listener)
+        holder.setIssue(issues[position])
+        holder.bindIssue(issues[position].id, listener)
     }
 
     inner class IssueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,13 +37,15 @@ class IssueAdapter(val context: Context, private val issueResponse: IssueRespons
         }
 
         fun setIssue(issue: Issue) {
-            itemView.tvIssueTitle.text = issue.id
-            itemView.tvCategory.text = issue.categories?.get(0)
-            if (issue.categories?.size!! > 1) {
-                itemView.tvSecondCategory.text = issue.categories[1]
-            } else {
-                itemView.tvSecondCategory.visibility = View.INVISIBLE
-            }
+            itemView.tvIssueTitle.text = issue.title
+//            itemView.tvCategory.text = issue.categories?.get(0)
+            itemView.tvIssueType.text = issue.issueType
+
+//            if (issue.categories?.size!! > 1) {
+//                itemView.tvSecondCategory.text = issue.categories[1]
+//            } else {
+//                itemView.tvSecondCategory.visibility = View.INVISIBLE
+//            }
         }
     }
 }

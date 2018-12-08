@@ -1,115 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
-	xmlns:app = "http://schemas.android.com/apk/res-auto"
-	xmlns:tools = "http://schemas.android.com/tools"
-	android:id = "@+id/constraintLayout"
-	android:layout_width = "match_parent"
-	android:layout_height = "match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.design.widget.TextInputLayout
-	    android:id = "@+id/tilIssueTitle"
-	    android:layout_width = "0dp"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginStart = "16dp"
-	    android:layout_marginTop = "32dp"
-	    android:layout_marginEnd = "16dp"
-	    android:textSize = "20sp"
-	    android:textStyle = "bold"
-	    app:layout_constraintEnd_toEndOf = "parent"
-	    app:layout_constraintStart_toStartOf = "parent"
-	    app:layout_constraintTop_toTopOf = "parent"
-	    tools:text = "Naslov">
-        
+        android:id="@+id/tilIssueTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <android.support.design.widget.TextInputEditText
-	        android:id = "@+id/tvIssueTitle"
-	        android:layout_width = "match_parent"
-	        android:layout_height = "match_parent"
-	        android:hint = "Naslov"
-	        android:textSize = "16sp" />
+            android:id="@+id/tvIssueTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLength="50"
+            android:hint="@string/issue_details_title_input_hint"
+            android:textSize="16sp" />
+
     </android.support.design.widget.TextInputLayout>
-    
 
     <Spinner
-	    android:id = "@+id/spinnerTypes"
-	    style = "@style/Widget.AppCompat.Spinner.Underlined"
-	    android:layout_width = "match_parent"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginStart = "14dp"
-	    android:layout_marginTop = "32dp"
-	    android:layout_marginEnd = "14dp"
-	    android:visibility = "visible"
-	    app:layout_constraintEnd_toEndOf = "parent"
-	    app:layout_constraintStart_toStartOf = "parent"
-	    app:layout_constraintTop_toBottomOf = "@+id/tilIssueTitle" />
+        android:id="@+id/spinnerTypes"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilIssueTitle" />
 
 
     <TextView
-	    android:id = "@+id/tvFirstCategory"
-	    android:layout_width = "wrap_content"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginStart = "16dp"
-	    android:layout_marginTop = "16dp"
-	    android:background = "@drawable/category_label_shape"
-	    android:textSize = "16sp"
-	    android:visibility = "visible"
-	    app:layout_constraintHorizontal_chainStyle = "spread"
-	    app:layout_constraintStart_toStartOf = "parent"
-	    app:layout_constraintTop_toBottomOf = "@+id/spinnerTypes" />
+        android:id="@+id/tvFirstCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/category_label_shape"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTypes" />
 
     <TextView
-	    android:id = "@+id/tvSecondCategory"
-	    android:layout_width = "wrap_content"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginStart = "8dp"
-	    android:background = "@drawable/category_label_shape"
-	    android:textSize = "16sp"
-	    android:visibility = "visible"
-	    app:layout_constraintBaseline_toBaselineOf = "@+id/tvFirstCategory"
-	    app:layout_constraintStart_toEndOf = "@+id/tvFirstCategory" />
+        android:id="@+id/tvSecondCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/category_label_shape"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvFirstCategory"
+        app:layout_constraintStart_toEndOf="@+id/tvFirstCategory" />
 
     <TextView
-	    android:id = "@+id/tvThirdCategory"
-	    android:layout_width = "wrap_content"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginStart = "8dp"
-	    android:background = "@drawable/category_label_shape"
-	    android:textSize = "16sp"
-	    android:visibility = "visible"
-	    app:layout_constraintBaseline_toBaselineOf = "@+id/tvSecondCategory"
-	    app:layout_constraintStart_toEndOf = "@+id/tvSecondCategory"
-	    tools:text = "Title" />
+        android:id="@+id/tvThirdCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/category_label_shape"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvSecondCategory"
+        app:layout_constraintStart_toEndOf="@+id/tvSecondCategory"
+        tools:text="Title" />
 
     <android.support.design.widget.TextInputLayout
-	    android:id = "@+id/tilIssueDescription"
-	    style = "@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-	    android:layout_width = "0dp"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginStart = "16dp"
-	    android:layout_marginTop = "8dp"
-	    android:layout_marginEnd = "16dp"
-	    android:visibility = "visible"
-	    app:layout_constraintEnd_toEndOf = "parent"
-	    app:layout_constraintStart_toStartOf = "parent"
-	    app:layout_constraintTop_toBottomOf = "@+id/tvFirstCategory">
+        android:id="@+id/tilIssueDescription"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFirstCategory">
 
         <android.support.design.widget.TextInputEditText
-	        android:id = "@+id/etIssueDescription"
-	        android:layout_width = "match_parent"
-	        android:layout_height = "match_parent"
-	        android:hint = "Opis"
-	        android:textSize = "16sp" />
+            android:id="@+id/etIssueDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/issue_details_description_input_hint"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:gravity="top"
+            android:lines="4"
+            android:textSize="16sp" />
 
     </android.support.design.widget.TextInputLayout>
 
 
     <include
-	    android:id = "@+id/include"
-	    layout = "@layout/create_issue_bottom_navigation_layout"
-	    android:layout_width = "0dp"
-	    android:layout_height = "wrap_content"
-	    android:visibility = "visible"
-	    app:layout_constraintBottom_toBottomOf = "parent"
-	    app:layout_constraintEnd_toEndOf = "parent"
-	    app:layout_constraintStart_toStartOf = "parent" />
+        android:id="@+id/include"
+        layout="@layout/create_issue_bottom_navigation_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

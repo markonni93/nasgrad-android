@@ -50,7 +50,6 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 // update issue
                 val issue = (activity as CreateIssueActivity).issue
                 issue.title = tvIssueTitle.text.toString()
-
                 issue.description = etIssueDescription.text.toString()
 
                 issue.categories = listOf(
@@ -69,7 +68,6 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     }
 
     private fun initTypesSpinner() {
-
         val issueTypes = ArrayList(Helper.issueTypes.values)
 
         val adapter = TypesSpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, issueTypes)

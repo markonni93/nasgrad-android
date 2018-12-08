@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         fab.setOnClickListener {
             startActivity(Intent(this@MainActivity, CreateIssueActivity::class.java))
         }
-        // create unique user id which is used as issue owner
+
         createUserId()
         setupAdapter()
         showIssues()
@@ -102,12 +102,24 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     private fun mockListOfIssues(): List<Issue> {
         return listOf(
             Issue(
-                "001", "123", "naslov", "opis",
-                "tip", mockListOfCategories(), "kreiran", this.resources.getResourceName(R.string.imageBase64).toString()
+                "001",
+                "123",
+                "naslov",
+                "opis",
+                "tip",
+                mockListOfCategories(),
+                "kreiran",
+                resources.getString(R.string.imageBase64)
             ),
             Issue(
-                "002", "123", "naslov", "opis",
-                "tip", mockListOfCategories(), "kreiran",this.resources.getResourceName(R.string.imageBase64).toString()
+                "002",
+                "123",
+                "naslov",
+                "opis",
+                "tip",
+                mockListOfCategories(),
+                "kreiran",
+                resources.getString(R.string.imageBase64)
             )
         )
     }

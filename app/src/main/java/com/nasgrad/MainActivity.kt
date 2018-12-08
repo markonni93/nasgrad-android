@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     companion object {
         const val ITEM_ID = "ITEM_ID"
+        const val ITEM_TITLE = "ITEM_TITLE"
+        const val ITEM_IMAGE = "ITEM_IMAGE"
+        const val ITEM_TYPE = "ITEM_TYPE"
+        const val ITEM_DESCRIPTION = "ITEM_DESCRIPTION"
     }
 
     val client by lazy {
@@ -38,11 +42,14 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     var disposable: Disposable? = null
 
-    override fun onItemClicked(itemId: String) {
+    override fun onItemClicked(itemId: String, itemTitle: String?, itemType: String?, itemDecs: String?) {
         Toast.makeText(this, "Item clicked $itemId ", Toast.LENGTH_SHORT).show()
 
         val detailsActivityIntent: Intent = Intent(this, DetailActivity::class.java).apply {
             putExtra(ITEM_ID, itemId)
+            putExtra(ITEM_TITLE, itemTitle)
+            putExtra(ITEM_TYPE, itemType)
+            putExtra(ITEM_DESCRIPTION, itemDecs)
         }
         startActivity(detailsActivityIntent)
     }

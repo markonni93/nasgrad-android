@@ -1,18 +1,13 @@
 package com.nasgrad.adapter
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
-import com.nasgrad.nasGradApp.R.id.imagePreview
 import com.nasgrad.utils.Helper
-import kotlinx.android.synthetic.main.fragment_add_image.view.*
-import kotlinx.android.synthetic.main.fragment_preview_issue.view.*
 import kotlinx.android.synthetic.main.issue_list_item.view.*
 
 class IssueAdapter(private val context: Context, private val issues: List<Issue>, var listener: OnItemClickListener) :
@@ -42,7 +37,8 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
 
         fun setIssue(issue: Issue) {
             itemView.tvIssueTitle.text = issue.title
-            itemView.tvIssueType.text = issue.issueType
+            itemView.tvCategory.text = issue.submittedCount.toString()
+            itemView.tvType.text = this@IssueAdapter.context.resources.getString(R.string.tip, Helper.getTypeName(issue.issueType))
 
             if (issue.picturePreview != null) itemView.ivIssueImage.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview))
 

@@ -30,14 +30,13 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         const val ITEM_DESCRIPTION = "ITEM_DESCRIPTION"
     }
 
-    val client by lazy {
+    private val client by lazy {
         ApiClient.create()
     }
 
-    var disposable: Disposable? = null
+    private var disposable: Disposable? = null
 
     override fun onItemClicked(itemId: String, itemTitle: String?, itemType: String?, itemDecs: String?) {
-        Toast.makeText(this, "Item clicked $itemId ", Toast.LENGTH_SHORT).show()
         val detailsActivityIntent: Intent = Intent(this, DetailActivity::class.java).apply {
             putExtra(ITEM_ID, itemId)
             putExtra(ITEM_TITLE, itemTitle)
@@ -74,8 +73,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                         mockedSetDataToAdapter()
                     }
                 },
-                { error ->
-                    Log.e("sonja", error.message)
+                {
                     mockedSetDataToAdapter()
                 }
             )

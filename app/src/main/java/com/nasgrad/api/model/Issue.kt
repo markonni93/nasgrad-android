@@ -14,6 +14,6 @@ data class Issue(
     var location: Location?,
     var state: String?,
     val picturePreview: String?,
-    val submittedCountL: Int?,
+    val submittedCount: Int?,
     var address: String?
 )

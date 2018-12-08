@@ -63,19 +63,19 @@
 			android:layout_height = "wrap_content"
 			android:layout_marginStart = "8dp"
 			android:layout_marginTop = "8dp"
-			android:layout_marginBottom = "8dp"
-			tools:text = "Tip: Rupa na putu"
 			android:textColor = "@color/colorTextPrimary"
 			android:textSize = "14sp"
-			app:layout_constraintBottom_toTopOf = "@+id/tvCategory"
 			app:layout_constraintStart_toEndOf = "@+id/ivIssueImage"
-			app:layout_constraintTop_toBottomOf = "@+id/tvIssueTitle" />
+			app:layout_constraintTop_toBottomOf = "@+id/tvIssueTitle"
+			tools:text = "Tip: Rupa na putu" />
 
 		<TextView
 			android:id = "@+id/tvCategory"
 			android:layout_width = "wrap_content"
 			android:layout_height = "wrap_content"
-			android:layout_marginStart = "8dp"
+			android:layout_marginStart = "16dp"
+			android:layout_marginTop = "8dp"
+			android:layout_marginEnd = "16dp"
 			android:gravity = "start"
 			android:lines = "1"
 			android:maxLines = "1"
@@ -83,13 +83,15 @@
 			android:textColor = "@color/colorTextPrimary"
 			android:textSize = "16sp"
 			app:layout_constraintBottom_toBottomOf = "@+id/ivIssueImage"
-			app:layout_constraintStart_toEndOf = "@+id/ivIssueImage" />
+			app:layout_constraintEnd_toStartOf = "@+id/tvSecondCategory"
+			app:layout_constraintStart_toEndOf = "@+id/ivIssueImage"
+			app:layout_constraintTop_toBottomOf = "@+id/tvType" />
 
 		<TextView
 			android:id = "@+id/tvSecondCategory"
 			android:layout_width = "wrap_content"
 			android:layout_height = "wrap_content"
-			android:layout_marginEnd = "8dp"
+			android:layout_marginEnd = "16dp"
 			android:gravity = "start"
 			android:lines = "1"
 			android:maxLines = "1"
@@ -97,7 +99,7 @@
 			android:textColor = "@color/colorTextPrimary"
 			android:textSize = "16sp"
 			app:layout_constraintBottom_toBottomOf = "@+id/tvCategory"
-			app:layout_constraintEnd_toStartOf = "@+id/tvCounter"
+			app:layout_constraintEnd_toEndOf = "parent"
 			app:layout_constraintTop_toTopOf = "@+id/tvCategory" />
 	   
     </android.support.constraint.ConstraintLayout>

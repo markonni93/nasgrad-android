@@ -31,11 +31,12 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
 
         ibArrowLeft.visibility = View.VISIBLE
         tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 2)
+        val issue = (activity as CreateIssueActivity).issue
+        tvIssueTitle.setText(issue.title)
+        etIssueDescription.setText(issue.description)
 
         ibArrowLeft.setOnClickListener(this)
         ibArrowRight.setOnClickListener(this)
-
-        tvIssueTitle.text = "Naslov problema"
     }
 
     override fun onClick(view: View) {

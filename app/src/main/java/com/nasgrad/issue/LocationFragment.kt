@@ -1,23 +1,17 @@
 package com.nasgrad.issue
 
-import android.content.Context
-import android.content.res.Resources
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-
+import com.nasgrad.model.Type
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
-import kotlinx.android.synthetic.main.fragment_location.*
+import kotlinx.android.synthetic.main.fragment_issue_details.*
 import timber.log.Timber
 
 

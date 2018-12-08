@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.nasgrad.MainActivity.Companion.ITEM_DESCRIPTION
 import com.nasgrad.MainActivity.Companion.ITEM_TITLE
 import com.nasgrad.MainActivity.Companion.ITEM_TYPE
+import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.activity_detail.*
 

@@ -10,9 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.esafirm.imagepicker.features.ImagePicker
+import com.nasgrad.model.Type
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_add_image.*
+import kotlinx.android.synthetic.main.fragment_issue_details.*
 
 
 class AddImageFragment : Fragment(), View.OnClickListener {

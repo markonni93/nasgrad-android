@@ -51,6 +51,8 @@
 		    android:adjustViewBounds="true"
 		    android:textColor="@color/white"
 		    android:textSize="16sp"
+		    android:text="9"
+		    android:gravity="center"
 		    android:textStyle="bold"
 		    app1:layout_constraintEnd_toEndOf="parent"
 		    app1:layout_constraintTop_toTopOf="parent" />

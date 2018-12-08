@@ -3,5 +3,6 @@
     android:id="@+id/tvCategoryName"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    style="@android:style/Widget.TextView"
     android:textSize="16sp"
     android:padding="8dp" />

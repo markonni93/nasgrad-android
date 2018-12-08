@@ -51,7 +51,7 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
                 itemView.list_item_container.setBackgroundColor(context.resources.getColor(R.color.colorPrimaryLight))
             }
             
-            if (issue.picturePreview != null) itemView.ivIssueImage.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview))
+            if (issue.picturePreview != null) itemView.ivIssueImage.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview!!))
 
             val list = issue.categories
 

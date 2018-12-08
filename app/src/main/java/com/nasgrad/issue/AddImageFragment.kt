@@ -8,14 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.esafirm.imagepicker.features.ImagePicker
+import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
+import com.nasgrad.utils.Helper
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_add_image.*
+import timber.log.Timber
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.Bitmap
+
+
 
 
 class AddImageFragment : Fragment(), View.OnClickListener {
 
     private lateinit var images: List<com.esafirm.imagepicker.model.Image>
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_add_image, container, false)
@@ -33,7 +41,6 @@ class AddImageFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         openCameraButton.setOnClickListener(this)
         openGalleryButton.setOnClickListener(this)
         deletePicture.setOnClickListener(this)
@@ -44,7 +51,10 @@ class AddImageFragment : Fragment(), View.OnClickListener {
         when (viewId) {
             ibArrowRight.id -> {
                 // update issue
-                // (activity as CreateIssueActivity).issue?.photo =
+               var issue = (activity as CreateIssueActivity).issue
+                val bitmap = (imagePreview.drawable as BitmapDrawable).bitmap
+                Timber.d("${Helper.encodePicturePreview(bitmap)}")
+                issue.picturePreview = Helper.encodePicturePreview(bitmap)
                 val fragment = IssueDetailsFragment()
                 (activity as CreateIssueActivity).setFragment(R.id.mainContent, fragment)
             }
@@ -61,7 +71,7 @@ class AddImageFragment : Fragment(), View.OnClickListener {
         openGalleryButton.visibility = View.VISIBLE
         openCameraButton.visibility = View.VISIBLE
     }
- 
+
     private fun openCameraMode() {
         com.esafirm.imagepicker.features.ImagePicker.cameraOnly().start(this)
     }

@@ -8,6 +8,7 @@ import com.nasgrad.api.model.IssueType
 import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.collections.HashMap
+import android.R.attr.bitmap
 
 
 class Helper {
@@ -49,15 +50,16 @@ class Helper {
             return UUID.randomUUID().toString()
         }
 
-        fun decodePicturePreview(picturePreview: String): Bitmap {
+        fun decodePicturePreview( picturePreview: String): Bitmap {
             val decodedString = Base64.decode(picturePreview, Base64.DEFAULT)
             return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
         }
 
         fun encodePicturePreview(picturePreview: Bitmap): String {
-            val stream = ByteArrayOutputStream()
-            picturePreview.compress(Bitmap.CompressFormat.JPEG, 90, stream)
-            return stream.toByteArray().toString()
+            val baos = ByteArrayOutputStream()
+            picturePreview.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val imageBytes = baos.toByteArray()
+            return Base64.encodeToString(imageBytes, Base64.DEFAULT)
         }
     }
 }

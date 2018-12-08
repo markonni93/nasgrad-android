@@ -12,6 +12,19 @@ class Helper {
 
         var issueCategories: HashMap<String, IssueCategory> = HashMap()
 
+        fun getCategoriesForType(issueType: IssueType) : MutableList<IssueCategory> {
+            val categoriesToReturn : MutableList<IssueCategory> = mutableListOf()
+            val issueCats = issueType.categories
+
+            for (cat in issueCats) {
+                if (issueCategories.containsKey(cat)) {
+                    val temp : IssueCategory = issueCategories[cat]!!
+                    categoriesToReturn.add(temp)
+                }
+            }
+            return categoriesToReturn
+        }
+
         const val USER_ID_KEY = "user_id"
 
         fun randomGUID(): String {

@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import com.nasgrad.model.Type
+import com.nasgrad.api.model.IssueType
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.types_spinner_item.view.*
 
-class TypesSpinnerAdapter(context: Context, resource: Int, objects: MutableList<Type>) :
-        ArrayAdapter<Type>(context, resource, objects) {
+class TypesSpinnerAdapter(context: Context, resource: Int, objects: ArrayList<IssueType>) :
+        ArrayAdapter<IssueType>(context, resource, objects) {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 

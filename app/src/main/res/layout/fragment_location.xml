@@ -13,7 +13,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Opis..."
+        android:text="Da li je ovo lokacija na kojoj se nalazi problem?
+Ukoliko nije, pomerite mapu tako da pin prikazuje tačnu lokaciju problema."
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"

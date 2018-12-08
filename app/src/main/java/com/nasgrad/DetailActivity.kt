@@ -25,6 +25,8 @@ import java.net.URLEncoder
 
 class DetailActivity : AppCompatActivity(), OnClickListener {
 
+    lateinit var displayedIssue: Issue
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -47,8 +49,13 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
         val viewId = view.id
         when (viewId) {
             reportIssue.id -> openEmailClint()
-            share_btn.id -> shareTwitter("Text to tweet")
+            share_btn.id -> shareTwitter(resources.getString(R.string.tweetText, displayedIssue.title, displayedIssue.id))
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private var map: GoogleMap? = null
@@ -111,7 +118,10 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { result ->
-                if (result != null) setUIDetailsScreen(result)
+                if (result != null) {
+                    displayedIssue = result
+                    setUIDetailsScreen(result)
+                }
             }
     }
 

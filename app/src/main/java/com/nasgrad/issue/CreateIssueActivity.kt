@@ -51,7 +51,6 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
         return true
     }
 
-
     private fun hasPermissions() {
         permissionGranted = EasyPermissions.hasPermissions(
             this, Manifest.permission.ACCESS_FINE_LOCATION,

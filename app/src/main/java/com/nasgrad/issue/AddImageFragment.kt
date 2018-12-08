@@ -61,13 +61,13 @@ class AddImageFragment : Fragment(), View.OnClickListener {
         openGalleryButton.visibility = View.VISIBLE
         openCameraButton.visibility = View.VISIBLE
     }
-
+ 
     private fun openCameraMode() {
         com.esafirm.imagepicker.features.ImagePicker.cameraOnly().start(this)
     }
 
     private fun openGalleryMode() {
-        ImagePicker.create(this).start()
+        ImagePicker.create(this).theme(R.style.AppTheme).start()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

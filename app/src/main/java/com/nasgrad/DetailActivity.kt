@@ -134,7 +134,9 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
 
     private fun setUIDetailsScreen(issue: Issue?) {
         titleDetailsLabel.text = issue?.title
-        if (issue?.picturePreview != null) issuePicture.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview!!))
+        if (issue?.picturePreview != null) {
+            issuePicture.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview!!))
+        }
         issueDetailDescTextView.text = issue?.description
         typeFromPredefinedList.text = Helper.getTypeName(issue?.issueType)
     }

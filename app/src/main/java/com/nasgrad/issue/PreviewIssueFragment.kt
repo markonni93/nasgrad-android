@@ -21,6 +21,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_preview_issue.*
 import timber.log.Timber
+import java.util.*
 
 
 class PreviewIssueFragment : Fragment(), View.OnClickListener {
@@ -100,9 +101,9 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
     private fun saveIssue() {
         val client = ApiClient.create()
 
-        val issue = IssueRequestBody(issue.categories, issue.description, issue.id, issue.issueType, issue.location, issue.ownerId, 1, issue.title)
-        val pictureInfo = PictureInfo("", "")
-        val newItemRequest = NewItemRequest(issue, pictureInfo)
+        val request = IssueRequestBody(issue.categories, issue.description, issue.id, issue.issueType, issue.location, issue.ownerId, 1, issue.title)
+        val pictureInfo = PictureInfo(issue.picturePreview, UUID.randomUUID().toString())
+        val newItemRequest = NewItemRequest(request, pictureInfo)
 
         disposable = client.createNewIssue(newItemRequest)
                 .subscribeOn(Schedulers.io())

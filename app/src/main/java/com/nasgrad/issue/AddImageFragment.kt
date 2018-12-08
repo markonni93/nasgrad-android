@@ -53,7 +53,7 @@ class AddImageFragment : Fragment(), View.OnClickListener {
                 // update issue
                var issue = (activity as CreateIssueActivity).issue
                 val bitmap = (imagePreview.drawable as BitmapDrawable).bitmap
-                Timber.d("${Helper.encodePicturePreview(bitmap)}")
+                //Timber.d("${Helper.encodePicturePreview(bitmap)}")
                 issue.picturePreview = Helper.encodePicturePreview(bitmap)
                 val fragment = IssueDetailsFragment()
                 (activity as CreateIssueActivity).setFragment(R.id.mainContent, fragment)

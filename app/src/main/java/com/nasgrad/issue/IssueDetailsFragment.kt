@@ -42,7 +42,6 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
         val viewId = view.id
         when (viewId) {
             ibArrowLeft.id -> {
-                Timber.d("black click")
                 (activity as CreateIssueActivity).openPreviousFragment()
             }
             ibArrowRight.id -> {
@@ -60,7 +59,7 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 issue.description = etIssueDescription.text.toString()
 
                 Timber.d("Issue: $issue")
-                (activity as CreateIssueActivity).setFragment(R.id.mainContent, PreviewIssueFragment())
+                (activity as CreateIssueActivity).setFragment(R.id.mainContent, LocationFragment())
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.nasgrad.api.model
 
 import android.support.annotation.Keep
-import java.io.Serializable
 
 @Keep
 data class Issue(val id: String,
@@ -10,4 +9,4 @@ data class Issue(val id: String,
                  var description: String?,
                  var issueType: String?,
                  var categories: List<String>?,
-                 var state: String?) : Serializable
+                 var state: String?)

@@ -1,45 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.nasgrad.issue.CreateIssueActivity">
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	tools:context = "com.nasgrad.issue.CreateIssueActivity">
 
-    <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/addImageButton"
-        android:layout_width="260dp"
-        android:layout_height="260dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="170dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_add_a_photo" />
+    <ImageView
+	    android:id = "@+id/imagePreview"
+	    android:layout_width = "300dp"
+	    android:layout_height = "300dp"
+	    android:layout_marginStart = "40dp"
+	    android:layout_marginTop = "48dp"
+	    android:layout_marginEnd = "40dp"
+	    android:background = "@color/ef_grey"
+	    android:scaleType = "fitCenter"
+	    android:visibility = "visible"
+	    app:layout_constraintEnd_toEndOf = "parent"
+	    app:layout_constraintStart_toStartOf = "parent"
+	    app:layout_constraintTop_toTopOf = "parent"
+	    app:srcCompat = "@drawable/ic_image" />
 
     <TextView
-        android:id="@+id/imagePath"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+	    android:id = "@+id/informationLabel"
+	    android:layout_width = "wrap_content"
+	    android:layout_height = "wrap_content"
+	    android:layout_marginStart = "8dp"
+	    android:layout_marginTop = "16dp"
+	    android:layout_marginEnd = "8dp"
+	    android:text = "Klikni da Dodas Sliku"
+	    android:textSize = "18sp"
+	    android:textStyle = "bold"
+	    app:layout_constraintEnd_toEndOf = "parent"
+	    app:layout_constraintStart_toStartOf = "parent"
+	    app:layout_constraintTop_toBottomOf = "@+id/imagePreview" />
+	<ImageButton
+		android:id = "@+id/openCameraButton"
+		android:layout_width = "80dp"
+		android:layout_height = "80dp"
+		android:layout_marginBottom = "24dp"
+		android:background = "@drawable/img_shape"
+		android:scaleType = "fitXY"
+		app:layout_constraintBottom_toBottomOf = "@+id/imagePreview"
+		app:layout_constraintEnd_toEndOf = "@+id/imagePreview"
+		app:layout_constraintStart_toStartOf = "@+id/imagePreview"
+		app:srcCompat = "@drawable/ic_add_a_photo" />
+	<ImageButton
+		android:id = "@+id/openGallaryButton"
+		android:layout_width = "80dp"
+		android:layout_height = "80dp"
+		android:layout_marginTop = "24dp"
+		android:background = "@drawable/img_shape"
+		android:scaleType = "fitXY"
+		app:layout_constraintEnd_toEndOf = "@+id/imagePreview"
+		app:layout_constraintStart_toStartOf = "@+id/imagePreview"
+		app:layout_constraintTop_toTopOf = "@+id/imagePreview"
+		app:srcCompat = "@drawable/ic_collections" />
+	<ImageButton
+		android:id = "@+id/deletePicture"
+		android:layout_width = "63dp"
+		android:layout_height = "61dp"
+		android:layout_marginEnd = "48dp"
+		android:layout_marginBottom = "16dp"
+		android:background = "@drawable/img_shape"
+		android:scaleType = "fitXY"
+		android:visibility = "invisible"
+		app:layout_constraintBottom_toBottomOf = "@+id/imagePreview"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:srcCompat = "@drawable/ic_recycler_bin" />
 
     <include
-        android:id="@+id/include"
-        layout="@layout/create_issue_bottom_navigation_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+	    android:id = "@+id/include"
+	    layout = "@layout/create_issue_bottom_navigation_layout"
+	    android:layout_width = "0dp"
+	    android:layout_height = "wrap_content"
+	    app:layout_constraintBottom_toBottomOf = "parent"
+	    app:layout_constraintEnd_toEndOf = "parent"
+	    app:layout_constraintStart_toStartOf = "parent" />
 
 </android.support.constraint.ConstraintLayout>

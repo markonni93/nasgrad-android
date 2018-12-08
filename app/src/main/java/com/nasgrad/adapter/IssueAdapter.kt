@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.nasgrad.Model
+import com.nasgrad.api.model.Issue
+import com.nasgrad.api.model.IssueResponse
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.issue_list_item.view.*
 
-class IssueAdapter(val context: Context, val issue: List<Model>, var listener: OnItemClickListener) :
+class IssueAdapter(private val context: Context, private val issues: List<Issue>, var listener: OnItemClickListener) :
     RecyclerView.Adapter<IssueAdapter.IssueViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssueViewHolder {
@@ -19,30 +20,32 @@ class IssueAdapter(val context: Context, val issue: List<Model>, var listener: O
     }
 
     override fun getItemCount(): Int {
-        return issue.size
+        return issues.size
     }
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
-        val canes = issue[position]
-        holder.setIssue(canes, "Kartografija")
-        holder.bindIssue(issue[position].id ,listener)
+        holder.setIssue(issues[position])
+        holder.bindIssue(issues[position].id, listener)
     }
 
     inner class IssueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindIssue(itemId: String, onItemClickListener: OnItemClickListener){
-            itemView.setOnClickListener{
+        fun bindIssue(itemId: String, onItemClickListener: OnItemClickListener) {
+            itemView.setOnClickListener {
                 onItemClickListener.onItemClicked(itemId)
             }
         }
 
-        fun setIssue(issue: Model?, category: String) {
-            itemView.tvIssueTitle.text = issue?.id
-            itemView.tvCategory.text = category
-            if (itemView.tvSecondCategory.text.isEmpty()) {
-                itemView.tvSecondCategory.visibility = View.INVISIBLE
-            }
-            Glide.with(context).load("https://picsum.photos/100/100/?random").into(itemView.ivIssueImage)
+        fun setIssue(issue: Issue) {
+            itemView.tvIssueTitle.text = issue.title
+//            itemView.tvCategory.text = issue.categories?.get(0)
+            itemView.tvIssueType.text = issue.issueType
+
+//            if (issue.categories?.size!! > 1) {
+//                itemView.tvSecondCategory.text = issue.categories[1]
+//            } else {
+//                itemView.tvSecondCategory.visibility = View.INVISIBLE
+//            }
         }
     }
 }

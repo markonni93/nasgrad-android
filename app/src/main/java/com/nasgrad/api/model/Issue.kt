@@ -1,6 +1,7 @@
 package com.nasgrad.api.model
 
 import android.support.annotation.Keep
+import io.reactivex.annotations.Nullable
 
 @Keep
 data class Issue(
@@ -10,6 +11,9 @@ data class Issue(
     var description: String?,
     var issueType: String?,
     var categories: List<String>?,
+    var location: Location?,
     var state: String?,
-    val picturePreview: String?
+    val picturePreview: String?,
+    val submittedCountL: Int?,
+    var address: String?
 )

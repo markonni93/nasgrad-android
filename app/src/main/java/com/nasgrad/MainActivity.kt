@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
 import com.nasgrad.api.model.Issue
+import com.nasgrad.api.model.Location
 import com.nasgrad.issue.CreateIssueActivity
 import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
@@ -108,9 +109,12 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 "opis",
                 "tip",
                 mockListOfCategories(),
+                Location("23423", "234234"),
                 "kreiran",
-                resources.getString(R.string.imageBase64)
-            ),
+                resources.getString(R.string.imageBase64),
+                3,
+                "Pavla Papa"
+                ),
             Issue(
                 "002",
                 "123",
@@ -118,9 +122,12 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 "opis",
                 "tip",
                 mockListOfCategories(),
+                Location("234234", "23452345"),
                 "kreiran",
-                resources.getString(R.string.imageBase64)
-            )
+                resources.getString(R.string.imageBase64),
+                2,
+                "Bulevar Oslobodjenja"
+                )
         )
     }
 

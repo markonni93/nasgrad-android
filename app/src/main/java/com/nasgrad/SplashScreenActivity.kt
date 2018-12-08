@@ -33,7 +33,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 { result -> saveTypesToSharedPreferences(result)
                     finish()
                 },
-                { error -> Log.e("sonja types", error.message) }
+                { error -> finish() }
             )
 
         disposable2 = client.getCategories()

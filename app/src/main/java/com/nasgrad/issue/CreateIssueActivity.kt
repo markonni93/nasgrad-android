@@ -15,7 +15,6 @@ import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
 import timber.log.Timber
 
-
 class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
     private val fragmentManager = supportFragmentManager
@@ -39,11 +38,12 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
         // create initial issue
         val sharedPreferences = SharedPreferencesHelper(this)
         val issueId = Helper.randomGUID()
-        val ownerId = sharedPreferences.getStringValue(Helper.USER_ID_KEY,"")
-        issue = Issue(issueId, ownerId, "", null, "", null, null)
+        val ownerId = sharedPreferences.getStringValue(Helper.USER_ID_KEY, "")
+        issue = Issue(issueId, ownerId, null, null, null, null, null, null)
 
         // request location permission
         hasPermissions()
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

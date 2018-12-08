@@ -31,7 +31,7 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
         enableHomeButton(true)
         setActionBarTitle(getString(R.string.issue_picture_title))
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
-        supportActionBar?.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp))
+        supportActionBar?.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back))
 
         setFragment(R.id.mainContent, AddImageFragment())
 
@@ -43,7 +43,6 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
 
         // request location permission
         hasPermissions()
-
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -5,6 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.nasgrad.DetailActivity">
+	
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/detailActivityToolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="?attr/colorPrimary"
+		android:elevation="4dp"
+		style="@style/HeaderBar"
+		android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+		
+		<ImageButton
+			android:id="@+id/share_btn"
+			android:layout_width = "wrap_content"
+			android:layout_height = "match_parent"
+			android:src="@drawable/ic_share"
+			android:background="@android:color/transparent"
+			android:layout_gravity="end" />
+		
+	</android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/titleDetailsLabel"
@@ -19,7 +42,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/detailActivityToolbar" />
 
     <ScrollView
         android:id="@+id/scrollViewDetailsActivity"
@@ -56,13 +79,13 @@
 	            android:layout_height = "wrap_content"
 	            android:layout_marginStart = "24dp"
 	            android:layout_marginTop = "24dp"
-	            android:layout_marginEnd = "8dp"
+	            android:layout_marginEnd = "24dp"
 	            android:ellipsize = "end"
 	            android:singleLine = "true"
 	            android:text = "@string/tip"
 	            android:textColor = "@color/colorTextPrimary"
 	            android:textSize = "18sp"
-	            app:layout_constraintEnd_toStartOf = "@+id/shareBtn"
+	            app:layout_constraintEnd_toEndOf = "parent"
 	            app:layout_constraintStart_toStartOf = "parent"
 	            app:layout_constraintTop_toBottomOf = "@+id/issuePicture" />
 
@@ -122,16 +145,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/issuePicture"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/issuePicture"
-                app:layout_constraintTop_toTopOf="@+id/issuePicture" /><ImageButton
-	        android:id = "@+id/shareBtn"
-	        android:layout_width = "wrap_content"
-	        android:layout_height = "wrap_content"
-	        android:layout_marginEnd = "24dp"
-	        android:background = "@android:color/transparent"
-	        android:src = "@drawable/ic_share"
-	        app:layout_constraintBottom_toBottomOf = "@+id/typeFromPredefinedList"
-	        app:layout_constraintEnd_toEndOf = "parent"
-	        app:layout_constraintTop_toTopOf = "@+id/typeFromPredefinedList" />
+                app:layout_constraintTop_toTopOf="@+id/issuePicture" />
             
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

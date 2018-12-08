@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.View.OnClickListener
@@ -24,11 +25,29 @@ import java.net.URLEncoder
 
 class DetailActivity : AppCompatActivity(), OnClickListener {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detail)
+
+        setSupportActionBar(detailActivityToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        detailActivityToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+        supportActionBar?.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back))
+
+        val itemItemId = intent.getStringExtra(ITEM_ID)
+        showDetailIssue(itemItemId)
+
+        reportIssue.setOnClickListener(this)
+        share_btn.setOnClickListener(this)
+    }
+
     override fun onClick(view: View) {
         val viewId = view.id
         when (viewId) {
             reportIssue.id -> openEmailClint()
-            shareBtn.id -> shareTwitter("Text to tweet")
+            share_btn.id -> shareTwitter("Text to tweet")
         }
     }
 
@@ -85,16 +104,6 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
         val data = Uri.parse("mailto:${resources.getString(R.string.email)}?subject=prijava problema&body=OpisProblem")
         intent.data = data
         startActivity(intent)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-        val itemItemId = intent.getStringExtra(ITEM_ID)
-        showDetailIssue(itemItemId)
-
-        reportIssue.setOnClickListener(this)
-        shareBtn.setOnClickListener(this)
     }
 
     private fun showDetailIssue(itemId: String) {

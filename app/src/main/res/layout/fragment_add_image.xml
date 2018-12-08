@@ -7,20 +7,20 @@
     tools:context="com.nasgrad.issue.CreateIssueActivity">
 
     <ImageView
-        android:id="@+id/imagePreview"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@color/ef_grey"
-        android:scaleType="fitCenter"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_image"
-        tools:ignore="ContentDescription" />
+        android:id = "@+id/imagePreview"
+        android:layout_width = "0dp"
+        android:layout_height = "300dp"
+        android:layout_marginStart = "32dp"
+        android:layout_marginTop = "32dp"
+        android:layout_marginEnd = "32dp"
+        android:background = "@color/ef_grey"
+        android:scaleType = "fitXY"
+        android:visibility = "visible"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        app:srcCompat = "@drawable/ic_image"
+        tools:ignore = "ContentDescription" />
 
     <ImageButton
         android:id="@+id/openCameraButton"

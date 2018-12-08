@@ -23,13 +23,14 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imagePreview"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:background="@color/colorAccent"
-                android:src="@color/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:id = "@+id/imagePreview"
+                android:layout_width = "300dp"
+                android:layout_height = "300dp"
+                android:background = "@color/colorAccent"
+                android:scaleType = "fitXY"
+                android:src = "@color/colorAccent"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent" />
 
             <TextView
                 android:id="@+id/typePreview"

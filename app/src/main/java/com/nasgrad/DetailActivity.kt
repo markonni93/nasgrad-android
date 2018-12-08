@@ -1,19 +1,14 @@
 package com.nasgrad
 
 import android.content.Intent
-<<<<<<< HEAD
-=======
+
 import android.content.pm.PackageManager
->>>>>>> 07ea5d23f74b33b25514e40e37c11a4f6fc5ab13
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.View.OnClickListener
-<<<<<<< HEAD
-=======
 import android.widget.Toast
->>>>>>> 07ea5d23f74b33b25514e40e37c11a4f6fc5ab13
 import com.google.android.gms.maps.GoogleMap
 import com.nasgrad.MainActivity.Companion.ITEM_ID
 import com.nasgrad.api.model.Issue
@@ -23,10 +18,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail.*
-<<<<<<< HEAD
-=======
 import timber.log.Timber
->>>>>>> 07ea5d23f74b33b25514e40e37c11a4f6fc5ab13
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
 

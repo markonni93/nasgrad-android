@@ -60,7 +60,7 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
                 issue.categories?.size == 1 -> {
                     val issueCategory1 = Helper.getCategoryForCategoryId(list!![0])
                     itemView.tvCategory1.text = issueCategory1?.name
-                    itemView.tvCategory1.setBackgroundColor(Color.parseColor(issueCategory1?.color))
+                    itemView.tvCategory1.setBackgroundColor(Color.parseColor(issueCategory1?.color ?: "#FFE0B2"))
 
                     itemView.tvCategory1.visibility = View.VISIBLE
                     itemView.tvCategory2.visibility = View.INVISIBLE
@@ -71,8 +71,8 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
                     val issueCategory2 = Helper.getCategoryForCategoryId(list[1])
                     itemView.tvCategory1.text = issueCategory1?.name
                     itemView.tvCategory2.text = issueCategory2?.name
-                    itemView.tvCategory1.setBackgroundColor(Color.parseColor(issueCategory1?.color))
-                    itemView.tvCategory2.setBackgroundColor(Color.parseColor(issueCategory2?.color))
+                    itemView.tvCategory1.setBackgroundColor(Color.parseColor(issueCategory1?.color ?: "#FFE0B2"))
+                    itemView.tvCategory2.setBackgroundColor(Color.parseColor(issueCategory2?.color ?: "#FFE0B2"))
 
                     itemView.tvCategory1.visibility = View.VISIBLE
                     itemView.tvCategory2.visibility = View.VISIBLE

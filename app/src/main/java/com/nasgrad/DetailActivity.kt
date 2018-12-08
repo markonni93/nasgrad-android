@@ -3,15 +3,18 @@ package com.nasgrad
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.constraint.solver.widgets.Helper
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import com.nasgrad.MainActivity.Companion.ITEM_DESCRIPTION
+import com.nasgrad.MainActivity.Companion.ITEM_IMAGE
 import com.nasgrad.MainActivity.Companion.ITEM_TITLE
 import com.nasgrad.MainActivity.Companion.ITEM_TYPE
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.fragment_add_image.*
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
 
@@ -84,12 +87,7 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
         titleDetailsLabel.text = itemTitle
         typeFromPredefinedList.text = "Tip problema: ${intent.getStringExtra(ITEM_TYPE)}"
         issueDetailDescTextView.text = intent.getStringExtra(ITEM_DESCRIPTION)
-
-        GlideApp.with(this)
-            .load("https://picsum.photos/300/300/?random")
-            .centerCrop()
-            .into(issuePicture)
-
+        issuePicture.setImageBitmap(com.nasgrad.utils.Helper.decodePicturePreview(intent.getStringExtra(ITEM_IMAGE)))
         reportIssue.setOnClickListener(this)
     }
 

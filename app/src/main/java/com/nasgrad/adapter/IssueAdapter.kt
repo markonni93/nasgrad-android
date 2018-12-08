@@ -24,14 +24,15 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
         holder.setIssue(issues[position])
-        holder.bindIssue(issues[position].id, issues[position].title, issues[position].issueType, issues[position].description, listener)
+        val issue = issues[position]
+        holder.bindIssue(issue.id, issue.title, issue.issueType, issue.description, issue.picturePreview, listener)
     }
 
     inner class IssueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindIssue(itemId: String, itemTitle: String?, itemType: String?, itemDesc: String?, onItemClickListener: OnItemClickListener) {
+        fun bindIssue(itemId: String, itemTitle: String?, itemType: String?, itemDesc: String?,itemImage:String?, onItemClickListener: OnItemClickListener) {
             itemView.setOnClickListener {
-                onItemClickListener.onItemClicked(itemId, itemTitle, itemType, itemDesc)
+                onItemClickListener.onItemClicked(itemId, itemTitle, itemType, itemDesc, itemImage)
             }
         }
 

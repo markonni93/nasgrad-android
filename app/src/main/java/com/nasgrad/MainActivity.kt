@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
@@ -36,12 +35,21 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     private var disposable: Disposable? = null
 
-    override fun onItemClicked(itemId: String, itemTitle: String?, itemType: String?, itemDecs: String?) {
+    override fun onItemClicked(
+        itemId: String,
+        itemTitle: String?,
+        itemType: String?,
+        itemDecs: String?,
+        imageItem: String?
+    ) {
+        Toast.makeText(this, "Item clicked $itemId ", Toast.LENGTH_SHORT).show()
+
         val detailsActivityIntent: Intent = Intent(this, DetailActivity::class.java).apply {
             putExtra(ITEM_ID, itemId)
             putExtra(ITEM_TITLE, itemTitle)
             putExtra(ITEM_TYPE, itemType)
             putExtra(ITEM_DESCRIPTION, itemDecs)
+            putExtra(ITEM_IMAGE, imageItem)
         }
         startActivity(detailsActivityIntent)
     }
@@ -67,14 +75,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->
-                    if (result != null) {
+                    if (result != null)
                         setDataToAdapter(result)
-                    } else {
-                        mockedSetDataToAdapter()
-                    }
-                },
-                {
-                    mockedSetDataToAdapter()
                 }
             )
     }
@@ -112,7 +114,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 resources.getString(R.string.imageBase64),
                 3,
                 "Pavla Papa"
-                ),
+            ),
             Issue(
                 "002",
                 "123",
@@ -125,7 +127,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 resources.getString(R.string.imageBase64),
                 2,
                 "Bulevar Oslobodjenja"
-                )
+            )
         )
     }
 

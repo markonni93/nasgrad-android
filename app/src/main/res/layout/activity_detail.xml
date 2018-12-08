@@ -51,20 +51,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
             
             <TextView
-                android:id = "@+id/typeFromPredefinedList"
-                android:layout_width = "match_parent"
-                android:layout_height = "wrap_content"
-                android:layout_marginStart = "24dp"
-                android:layout_marginTop = "24dp"
-                android:layout_marginEnd = "24dp"
-                android:ellipsize = "end"
-                android:singleLine = "true"
-                android:text = "@string/tip"
-                android:textColor = "@color/colorTextPrimary"
-                android:textSize = "18sp"
-                app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/issuePicture" />
+	            android:id = "@+id/typeFromPredefinedList"
+	            android:layout_width = "0dp"
+	            android:layout_height = "wrap_content"
+	            android:layout_marginStart = "24dp"
+	            android:layout_marginTop = "24dp"
+	            android:layout_marginEnd = "8dp"
+	            android:ellipsize = "end"
+	            android:singleLine = "true"
+	            android:text = "@string/tip"
+	            android:textColor = "@color/colorTextPrimary"
+	            android:textSize = "18sp"
+	            app:layout_constraintEnd_toStartOf = "@+id/shareBtn"
+	            app:layout_constraintStart_toStartOf = "parent"
+	            app:layout_constraintTop_toBottomOf = "@+id/issuePicture" />
 
             <TextView
                 android:id = "@+id/addressLabel"
@@ -76,6 +76,7 @@
                 android:text = "@string/adresa"
                 android:textColor = "@color/colorTextPrimary"
                 android:textSize = "18sp"
+	            android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/typeFromPredefinedList" />
@@ -121,14 +122,23 @@
                 app:layout_constraintBottom_toBottomOf="@+id/issuePicture"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/issuePicture"
-                app:layout_constraintTop_toTopOf="@+id/issuePicture" />
+                app:layout_constraintTop_toTopOf="@+id/issuePicture" /><ImageButton
+	        android:id = "@+id/shareBtn"
+	        android:layout_width = "wrap_content"
+	        android:layout_height = "wrap_content"
+	        android:layout_marginEnd = "24dp"
+	        android:background = "@android:color/transparent"
+	        android:src = "@drawable/ic_share"
+	        app:layout_constraintBottom_toBottomOf = "@+id/typeFromPredefinedList"
+	        app:layout_constraintEnd_toEndOf = "parent"
+	        app:layout_constraintTop_toTopOf = "@+id/typeFromPredefinedList" />
             
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
     <Button
         android:id="@+id/reportIssue"
-        android:layout_width="120dp"
+        android:layout_width="200dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -136,19 +146,10 @@
         android:padding="4dp"
         android:background="@drawable/button_shape"
         android:text="Prijavi Problem"
+	    android:textSize="18sp"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 	
-	<Button
-		android:id = "@+id/shareBtn"
-		android:layout_width = "wrap_content"
-		android:layout_height = "wrap_content"
-		android:layout_marginEnd = "8dp"
-		android:layout_marginBottom = "8dp"
-		android:text = "Share"
-		app:layout_constraintBottom_toBottomOf = "parent"
-		app:layout_constraintEnd_toEndOf = "parent" />
-
-</android.support.constraint.ConstraintLayout>
+	</android.support.constraint.ConstraintLayout>

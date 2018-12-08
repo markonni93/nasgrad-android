@@ -1,10 +1,13 @@
 package com.nasgrad.utils
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.util.Base64
 import com.nasgrad.api.model.IssueCategory
 import com.nasgrad.api.model.IssueType
+import com.nasgrad.nasGradApp.R
 import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.collections.HashMap
@@ -61,5 +64,6 @@ class Helper {
             val imageBytes = baos.toByteArray()
             return Base64.encodeToString(imageBytes, Base64.DEFAULT)
         }
+
     }
 }

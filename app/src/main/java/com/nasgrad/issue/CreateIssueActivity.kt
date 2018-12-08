@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
@@ -49,6 +50,7 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
         onBackPressed()
         return true
     }
+
 
     private fun hasPermissions() {
         permissionGranted = EasyPermissions.hasPermissions(

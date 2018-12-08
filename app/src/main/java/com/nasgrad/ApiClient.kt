@@ -35,7 +35,7 @@ interface ApiClient {
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://192.168.43.242:8081/api/")
+                .baseUrl("http://68.183.223.223:8080/api/")
                 .build()
 
             return retrofit.create(ApiClient::class.java)

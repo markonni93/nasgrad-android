@@ -73,6 +73,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:4.7.1"
 
     implementation "com.google.android.gms:play-services-maps:16.0.0"
+    implementation "com.google.android.gms:play-services-location:16.0.0"
 
     //ImagePicker
     final imagePickerVersion = '1.13.1'
@@ -83,4 +84,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:4.8.0"
     kapt "com.github.bumptech.glide:compiler:4.8.0"
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    implementation 'pub.devrel:easypermissions:2.0.0'
 }

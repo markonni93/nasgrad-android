@@ -14,13 +14,9 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:ellipsize="end"
-        android:fontFamily="sans-serif"
         android:maxLines="2"
-        android:padding="2dp"
         android:text="@string/default_issue_title"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:typeface="normal"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,14 +25,12 @@
         android:id="@+id/scrollViewDetailsActivity"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleDetailsLabel"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/titleDetailsLabel">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/detailsActivityWrapper"
@@ -50,14 +44,10 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:contentDescription="issueReported"
-
-                android:src="@color/colorAccent"
                 android:background="@drawable/img_shape"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@color/colorPrimary" />
+                app:layout_constraintTop_toTopOf="parent" />
             
             <TextView
                 android:id = "@+id/typeFromPredefinedList"
@@ -68,7 +58,7 @@
                 android:layout_marginEnd = "24dp"
                 android:ellipsize = "end"
                 android:singleLine = "true"
-                android:text = "Tip:"
+                android:text = "@string/tip"
                 android:textColor = "@color/colorTextPrimary"
                 android:textSize = "18sp"
                 app:layout_constraintEnd_toEndOf = "parent"
@@ -82,32 +72,31 @@
                 android:layout_marginStart = "24dp"
                 android:layout_marginTop = "16dp"
                 android:layout_marginEnd = "24dp"
-                android:text = "Adresa: "
+                android:text = "@string/adresa"
                 android:textColor = "@color/colorTextPrimary"
-                android:textSize = "16sp"
+                android:textSize = "18sp"
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/typeFromPredefinedList" />
             
             <TextView
-                android:id="@+id/issueDetailDescTextView"
-                android:layout_width="0dp"
-                android:layout_height="300dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="64dp"
-                android:text="Opis Problema"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addressLabel"
-                app:layout_constraintVertical_bias="1.0" />
+                android:id = "@+id/issueDetailDescTextView"
+                android:layout_width = "0dp"
+                android:layout_height = "300dp"
+                android:layout_marginStart = "24dp"
+                android:layout_marginTop = "16dp"
+                android:layout_marginEnd = "24dp"
+                android:layout_marginBottom = "64dp"
+                android:text = "@string/lorem_ipsum_paragraph"
+                android:textSize = "18sp"
+                app:layout_constraintBottom_toBottomOf = "parent"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/addressLabel"/>
 
             <ImageButton
                 android:id="@+id/changeToPreviousImage"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -121,6 +110,7 @@
 
             <ImageButton
                 android:id="@+id/changeNextImage"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -142,12 +132,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif"
         android:padding="4dp"
         android:background="@drawable/button_shape"
         android:text="Prijavi Problem"
         android:textColor="@android:color/white"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

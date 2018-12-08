@@ -1,18 +1,21 @@
 package com.nasgrad.issue
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nasgrad.DetailActivity
 import com.nasgrad.nasGradApp.R
-import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
+import kotlinx.android.synthetic.main.fragment_preview_issue.*
 
 
-
-class PreviewIssueFragment : Fragment() {
+class PreviewIssueFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
 //    private var listener: OnFragmentInteractionListener? = null
 
@@ -30,6 +33,37 @@ class PreviewIssueFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar!!.title = getString(R.string.screen_title_issue_summary)
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        ibArrowLeft.visibility = View.VISIBLE
+        tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 4)
+        val issue = (activity as CreateIssueActivity).issue
+        issue_title.text = issue.title
+
+        ibArrowLeft.setOnClickListener(this)
+        ibArrowRight.setOnClickListener(this)
+
+    }
+
+    override fun onClick(view: View) {
+        val viewId = view.id
+        when (viewId) {
+            ibArrowLeft.id -> {
+                (activity as CreateIssueActivity).openPreviousFragment()
+            }
+            ibArrowRight.id -> {
+                // update issue
+                val issue = (activity as CreateIssueActivity).issue
+                val intent = Intent(activity, DetailActivity::class.java)
+                intent.putExtra("ITEM_TITLE", issue.title)
+                intent.putExtra("ITEM_DESCRIPTION", issue.description)
+                startActivity(intent)
+            }
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

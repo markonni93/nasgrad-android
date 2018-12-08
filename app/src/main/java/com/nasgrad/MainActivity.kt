@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
 import com.nasgrad.api.model.Issue
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         const val ITEM_ID = "ITEM_ID"
     }
 
-    val client by lazy {
+    private val client by lazy {
         ApiClient.create()
     }
 
@@ -36,9 +35,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         itemTitle: String?,
         itemType: String?,
         itemDecs: String?,
-        imageItem: String?
-    ) {
-        Toast.makeText(this, "Item clicked $itemId ", Toast.LENGTH_SHORT).show()
+        imageItem: String?) {
 
         val detailsActivityIntent: Intent = Intent(this, DetailActivity::class.java).apply {
             putExtra(ITEM_ID, itemId)
@@ -65,12 +62,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         disposable = client.getAllIssues()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result ->
-                    if (result != null)
-                        setDataToAdapter(result)
-                }
-            )
+            .subscribe { result ->
+                if (result != null)
+                    setDataToAdapter(result)
+            }
     }
 
     private fun setupAdapter() {

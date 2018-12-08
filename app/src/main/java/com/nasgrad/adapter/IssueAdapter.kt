@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
+import com.nasgrad.utils.Helper.Companion.USER_ID_KEY
+import com.nasgrad.utils.SharedPreferencesHelper
 import kotlinx.android.synthetic.main.issue_list_item.view.*
 
 class IssueAdapter(private val context: Context, private val issues: List<Issue>, var listener: OnItemClickListener) :
@@ -42,6 +44,12 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
             itemView.tvIssueTitle.text = issue.title
             itemView.tvCounter.text = issue.submittedCount.toString()
             itemView.tvType.text = this@IssueAdapter.context.resources.getString(R.string.tip, Helper.getTypeName(issue.issueType))
+
+            val ownerId = SharedPreferencesHelper(context).getStringValue(USER_ID_KEY, "0")
+
+            if (issue.ownerId == ownerId) {
+                itemView.list_item_container.setBackgroundColor(context.resources.getColor(R.color.colorPrimaryLight))
+            }
             
             if (issue.picturePreview != null) itemView.ivIssueImage.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview))
 

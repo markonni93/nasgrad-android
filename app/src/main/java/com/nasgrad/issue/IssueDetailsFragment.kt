@@ -35,6 +35,7 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
         tvIssueTitle.setText(issue.title)
         etIssueDescription.setText(issue.description)
 
+
         ibArrowLeft.setOnClickListener(this)
         ibArrowRight.setOnClickListener(this)
     }
@@ -51,6 +52,12 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 issue.title = tvIssueTitle.text.toString()
 
                 issue.description = etIssueDescription.text.toString()
+
+                issue.categories = listOf(
+                    this.tvFirstCategory.text.toString(),
+                    this.tvSecondCategory.text.toString(),
+                    this.tvThirdCategory.text.toString()
+                )
 
                 val type = spinnerTypes.selectedItem as IssueType
                 issue.issueType = type.name

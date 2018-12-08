@@ -81,8 +81,10 @@ class LocationFragment : Fragment(), OnMapReadyCallback, View.OnClickListener, G
                     if (location != null) {
                         currentLocation = LatLng(location.latitude, location.longitude)
                         map?.moveCamera(
-                                CameraUpdateFactory.newLatLngZoom(
-                                        LatLng(currentLocation.latitude, currentLocation.longitude), 15f))
+                            CameraUpdateFactory.newLatLngZoom(
+                                LatLng(currentLocation.latitude, currentLocation.longitude), 15f
+                            )
+                        )
 
                     } else {
                         Timber.d("Location is null")

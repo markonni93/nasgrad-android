@@ -39,7 +39,7 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
         // create initial issue
         val sharedPreferences = SharedPreferencesHelper(this)
         val issueId = Helper.randomGUID()
-        val ownerId = sharedPreferences.getStringValue(Helper.USER_ID_KEY,"")
+        val ownerId = sharedPreferences.getStringValue(Helper.USER_ID_KEY, "")
         issue = Issue(issueId, ownerId, "", null, "", null, null)
 
         // request location permission

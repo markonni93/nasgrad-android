@@ -43,6 +43,8 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
         tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 4)
         val issue = (activity as CreateIssueActivity).issue
         issue_title.text = issue.title
+        typePreview.text = "Tip problema: ${issue.issueType}"
+        categoryPreview.text = "Kategorije: ${issue.categories?.get(0).toString()}, ${issue.categories?.get(1).toString()}, ${issue.categories?.get(2).toString()}"
 
         ibArrowLeft.setOnClickListener(this)
         ibArrowRight.setOnClickListener(this)
@@ -61,6 +63,7 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
                 val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra("ITEM_TITLE", issue.title)
                 intent.putExtra("ITEM_DESCRIPTION", issue.description)
+                intent.putExtra( "ITEM_TYPE", issue.issueType)
                 startActivity(intent)
             }
         }

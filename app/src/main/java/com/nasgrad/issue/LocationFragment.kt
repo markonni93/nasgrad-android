@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.nasgrad.model.Type
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
-import kotlinx.android.synthetic.main.fragment_issue_details.*
 import timber.log.Timber
 
 

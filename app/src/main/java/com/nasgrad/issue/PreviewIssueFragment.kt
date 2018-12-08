@@ -5,17 +5,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nasgrad.nasGradApp.R
-import android.support.v7.app.AppCompatActivity
 import com.nasgrad.DetailActivity
-import com.nasgrad.model.Type
+import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
-import kotlinx.android.synthetic.main.fragment_issue_details.*
 import kotlinx.android.synthetic.main.fragment_preview_issue.*
-import timber.log.Timber
 
 
 class PreviewIssueFragment : Fragment(), View.OnClickListener {

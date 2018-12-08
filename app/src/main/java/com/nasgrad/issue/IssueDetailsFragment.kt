@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import com.nasgrad.adapter.TypesSpinnerAdapter
-import com.nasgrad.model.Category
-import com.nasgrad.model.Type
+import com.nasgrad.api.model.IssueType
 import com.nasgrad.nasGradApp.R
+import com.nasgrad.utils.Helper
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_issue_details.*
 import timber.log.Timber
@@ -50,14 +50,10 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 val issue = (activity as CreateIssueActivity).issue
                 issue.title = tvIssueTitle.text.toString()
 
-                val type = spinnerTypes.selectedItem as Type
-                issue.issueType = type.name
-
-                val list = mutableListOf<String>()
-                type.categories?.forEach { list.add(it?.name!!) }
-                issue.categories = list
-
                 issue.description = etIssueDescription.text.toString()
+
+                val type = spinnerTypes.selectedItem as IssueType
+                issue.issueType = type.name
 
                 Timber.d("Issue: $issue")
                 (activity as CreateIssueActivity).setFragment(R.id.mainContent, LocationFragment())
@@ -66,23 +62,10 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     }
 
     private fun initTypesSpinner() {
-        val firstCategories = arrayListOf<Category>()
-        firstCategories.add(Category("1", "Kategorija 1", "Opis 1", "email1@gmail.com"))
-        firstCategories.add(Category("2", "Kategorija 2", "Opis 2", "email2@gmail.com"))
-        firstCategories.add(Category("22", "Kategorija 22", "Opis 22", "email22@gmail.com"))
 
-        val secondCategories = arrayListOf<Category>()
-        secondCategories.add(Category("3", "Kategorija 3", "Opis 3", "email3@gmail.com"))
-        secondCategories.add(Category("4", "Kategorija 4", "Opis 4", "email4@gmail.com"))
+        val issueTypes = ArrayList(Helper.issueTypes.values)
 
-        val firstType = Type("1", "Tip 1", "Opis 1", firstCategories)
-        val secondType = Type("2", "Tip 2", "Opis 2", secondCategories)
-
-        val types = arrayListOf<Type>()
-        types.add(firstType)
-        types.add(secondType)
-
-        val adapter = TypesSpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, types)
+        val adapter = TypesSpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, issueTypes)
         adapter.setDropDownViewResource(R.layout.types_spinner_item)
 
         spinnerTypes.adapter = adapter
@@ -94,38 +77,37 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val selectedType = parent?.getItemAtPosition(position) as Type
+        val selectedType = parent?.getItemAtPosition(position) as IssueType
         Timber.d("onItemSelected $selectedType")
 
-        val categories = selectedType.categories
-        if (categories != null) {
-            when {
-                categories.size == 1 -> {
-                    tvFirstCategory.visibility = View.VISIBLE
-                    tvFirstCategory.text = categories[0]?.name
-                    tvSecondCategory.visibility = View.GONE
-                    tvThirdCategory.visibility = View.GONE
-                }
-                categories.size == 2 -> {
-                    tvFirstCategory.visibility = View.VISIBLE
-                    tvFirstCategory.text = categories[0]?.name
-                    tvSecondCategory.visibility = View.VISIBLE
-                    tvSecondCategory.text = categories[1]?.name
-                    tvThirdCategory.visibility = View.GONE
-                }
-                categories.size >= 3 -> {
-                    tvFirstCategory.visibility = View.VISIBLE
-                    tvFirstCategory.text = categories[0]?.name
-                    tvSecondCategory.visibility = View.VISIBLE
-                    tvSecondCategory.text = categories[1]?.name
-                    tvThirdCategory.visibility = View.VISIBLE
-                    tvThirdCategory.text = categories[2]?.name
-                }
-                else -> {
-                    tvFirstCategory.visibility = View.GONE
-                    tvSecondCategory.visibility = View.GONE
-                    tvThirdCategory.visibility = View.GONE
-                }
+//        val categories = selectedType.categories
+        val categories = Helper.getCategoriesForType(selectedType)
+        when {
+            categories.size == 1 -> {
+                tvFirstCategory.visibility = View.VISIBLE
+                tvFirstCategory.text = categories[0].name
+                tvSecondCategory.visibility = View.GONE
+                tvThirdCategory.visibility = View.GONE
+            }
+            categories.size == 2 -> {
+                tvFirstCategory.visibility = View.VISIBLE
+                tvFirstCategory.text = categories[0].name
+                tvSecondCategory.visibility = View.VISIBLE
+                tvSecondCategory.text = categories[1].name
+                tvThirdCategory.visibility = View.GONE
+            }
+            categories.size >= 3 -> {
+                tvFirstCategory.visibility = View.VISIBLE
+                tvFirstCategory.text = categories[0].name
+                tvSecondCategory.visibility = View.VISIBLE
+                tvSecondCategory.text = categories[1].name
+                tvThirdCategory.visibility = View.VISIBLE
+                tvThirdCategory.text = categories[2].name
+            }
+            else -> {
+                tvFirstCategory.visibility = View.GONE
+                tvSecondCategory.visibility = View.GONE
+                tvThirdCategory.visibility = View.GONE
             }
         }
     }

@@ -2,7 +2,6 @@ package com.nasgrad.issue
 
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -10,11 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.esafirm.imagepicker.features.ImagePicker
-import com.nasgrad.model.Type
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_add_image.*
-import kotlinx.android.synthetic.main.fragment_issue_details.*
 
 
 class AddImageFragment : Fragment(), View.OnClickListener {
@@ -35,6 +32,7 @@ class AddImageFragment : Fragment(), View.OnClickListener {
         ibArrowLeft.visibility = View.GONE
         tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 1)
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 

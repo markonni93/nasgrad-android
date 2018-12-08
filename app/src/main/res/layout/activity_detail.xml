@@ -58,29 +58,37 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@color/colorPrimary" />
+            
+            <TextView
+                android:id = "@+id/typeFromPredefinedList"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:layout_marginStart = "24dp"
+                android:layout_marginTop = "24dp"
+                android:layout_marginEnd = "24dp"
+                android:ellipsize = "end"
+                android:singleLine = "true"
+                android:text = "Tip:"
+                android:textColor = "@color/colorTextPrimary"
+                android:textSize = "18sp"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/issuePicture" />
 
             <TextView
-                android:id="@+id/typeFromPredefinedList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="Tip(iz predefinisane liste)"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/issuePicture" />
-
-            <TextView
-                android:id="@+id/adressLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="Adresa: "
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/typeFromPredefinedList" />
-
+                android:id = "@+id/addressLabel"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:layout_marginStart = "24dp"
+                android:layout_marginTop = "16dp"
+                android:layout_marginEnd = "24dp"
+                android:text = "Adresa: "
+                android:textColor = "@color/colorTextPrimary"
+                android:textSize = "16sp"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/typeFromPredefinedList" />
+            
             <TextView
                 android:id="@+id/issueDetailDescTextView"
                 android:layout_width="0dp"
@@ -95,7 +103,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/adressLabel"
+                app:layout_constraintTop_toBottomOf="@+id/addressLabel"
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageButton

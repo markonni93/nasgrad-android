@@ -5,9 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.nasgrad.api.model.Issue
-import com.nasgrad.api.model.IssueResponse
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.issue_list_item.view.*
 
@@ -25,14 +23,14 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
         holder.setIssue(issues[position])
-        holder.bindIssue(issues[position].id, listener)
+        holder.bindIssue(issues[position].id, issues[position].title, issues[position].issueType, issues[position].description, listener)
     }
 
     inner class IssueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindIssue(itemId: String, onItemClickListener: OnItemClickListener) {
+        fun bindIssue(itemId: String, itemTitle: String?, itemType: String?, itemDesc: String?, onItemClickListener: OnItemClickListener) {
             itemView.setOnClickListener {
-                onItemClickListener.onItemClicked(itemId)
+                onItemClickListener.onItemClicked(itemId, itemTitle, itemType, itemDesc)
             }
         }
 

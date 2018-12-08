@@ -64,6 +64,7 @@
 			android:layout_marginBottom = "8dp"
 			android:text = "Tip: "
 			android:textSize = "14sp"
+			android:textColor="@color/colorTextPrimary"
 			app1:layout_constraintBottom_toTopOf = "@+id/tvCategory"
 			app1:layout_constraintStart_toEndOf = "@+id/ivIssueImage"
 			app1:layout_constraintTop_toBottomOf = "@+id/tvIssueTitle" />

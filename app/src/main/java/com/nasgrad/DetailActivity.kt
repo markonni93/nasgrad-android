@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.nasgrad.MainActivity.Companion.ITEM_ID
 import com.nasgrad.api.model.Issue
+import com.nasgrad.issue.CreateIssueActivity
 import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -107,10 +108,16 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun openEmailClint() {
-        val intent = Intent(Intent.ACTION_SENDTO)
-        val data = Uri.parse("mailto:${resources.getString(R.string.email)}?subject=prijava problema&body=OpisProblem")
-        intent.data = data
-        startActivity(intent)
+        val recipient = resources.getString(R.string.email)
+        val cc = "nas-grad-app@gmail.com"
+        val subject = Uri.encode(String.format(getString(R.string.email_subject), displayedIssue.title))
+        val body = Uri.encode(String.format(getString(R.string.email_body), displayedIssue.title, displayedIssue.id))
+        val email = String.format(getString(R.string.email_template), recipient, cc, subject, body)
+
+        // send email
+        val emailIntent = Intent(Intent.ACTION_SENDTO)
+        emailIntent.data = Uri.parse(email)
+        this.startActivity(emailIntent)
     }
 
     private fun showDetailIssue(itemId: String) {

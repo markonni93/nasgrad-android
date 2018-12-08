@@ -12,8 +12,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.nasgrad.api.model.Location
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
+import kotlinx.android.synthetic.main.fragment_location.*
 import timber.log.Timber
 import java.io.IOException
 
@@ -25,6 +27,8 @@ class LocationFragment : Fragment(), OnMapReadyCallback, View.OnClickListener, G
     private lateinit var currentLocation: LatLng
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
+    private lateinit var location: Location
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -57,6 +61,8 @@ class LocationFragment : Fragment(), OnMapReadyCallback, View.OnClickListener, G
     override fun onCameraIdle() {
         Timber.d("onCameraIdle")
         val latLng = map?.cameraPosition?.target!!
+        location = Location(latLng.latitude.toString(), latLng.longitude.toString())
+
         val geocoder = Geocoder((activity as CreateIssueActivity))
 
         try {
@@ -65,8 +71,11 @@ class LocationFragment : Fragment(), OnMapReadyCallback, View.OnClickListener, G
                 val locality = addressList[0].getAddressLine(0)
                 val country = addressList[0].countryName
                 if (!locality.isEmpty() && !country.isEmpty()) {
+                    tvAddress.text = locality
                     Timber.d("$locality, $country")
                 }
+            } else {
+                tvAddress.text = "Nepoznata lokacija"
             }
         } catch (e: IOException) {
             e.printStackTrace()
@@ -122,6 +131,10 @@ class LocationFragment : Fragment(), OnMapReadyCallback, View.OnClickListener, G
                 (activity as CreateIssueActivity).openPreviousFragment()
             }
             ibArrowRight.id -> {
+                // save location
+                val issue = (activity as CreateIssueActivity).issue
+                issue.location = location
+                issue.address = tvAddress.text.toString()
                 (activity as CreateIssueActivity).setFragment(R.id.mainContent, PreviewIssueFragment())
             }
         }

@@ -4,9 +4,9 @@ import android.support.annotation.Keep
 
 @Keep
 data class Issue(val id: String,
-                 val ownerId: String?,
-                 val title: String?,
-                 val description: String?,
-                 val issueType: String?,
-                 val categories: List<String>?,
-                 val state: String?)
+                 val ownerId: String,
+                 var title: String?,
+                 var description: String?,
+                 var issueType: String?,
+                 var categories: List<String>?,
+                 var state: String?)

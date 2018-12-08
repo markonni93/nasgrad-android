@@ -4,7 +4,7 @@
 	xmlns:tools = "http://schemas.android.com/tools"
 	android:layout_width = "match_parent"
 	android:layout_height = "match_parent"
-	tools:context = "com.nasgrad.CreateIssueActivity">
+	tools:context = "com.nasgrad.issue.CreateIssueActivity">
 
     <ImageView
 	    android:id = "@+id/imagePreview"
@@ -68,5 +68,14 @@
 		app:layout_constraintBottom_toBottomOf = "@+id/imagePreview"
 		app:layout_constraintEnd_toEndOf = "parent"
 		app:srcCompat = "@drawable/ic_recycler_bin" />
+
+    <include
+	    android:id = "@+id/include"
+	    layout = "@layout/create_issue_bottom_navigation_layout"
+	    android:layout_width = "0dp"
+	    android:layout_height = "wrap_content"
+	    app:layout_constraintBottom_toBottomOf = "parent"
+	    app:layout_constraintEnd_toEndOf = "parent"
+	    app:layout_constraintStart_toStartOf = "parent" />
 
 </android.support.constraint.ConstraintLayout>

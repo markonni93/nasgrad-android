@@ -6,7 +6,6 @@
 /captures
 .externalNativeBuild
 
-
 # Android/IntelliJ
 build/
 .idea/
@@ -28,3 +27,5 @@ captures/
 
 # Log Files
 *.log
+
+*keys.xml

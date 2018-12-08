@@ -17,6 +17,11 @@ class Helper {
 
         var issueCategories: HashMap<String, IssueCategory> = HashMap()
 
+        fun getTypeName(typeId: String?) : String? {
+            val issueType = issueTypes[typeId]
+            return issueType?.name
+        }
+
         fun getCategoriesForType(issueType: IssueType) : MutableList<IssueCategory> {
             val categoriesToReturn : MutableList<IssueCategory> = mutableListOf()
             val issueCats = issueType.categories

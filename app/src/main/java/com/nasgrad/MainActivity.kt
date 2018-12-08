@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
 import com.nasgrad.api.model.Issue
+import com.nasgrad.api.model.Location
 import com.nasgrad.issue.CreateIssueActivity
 import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
@@ -28,20 +29,27 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         const val ITEM_DESCRIPTION = "ITEM_DESCRIPTION"
     }
 
-    val client by lazy {
+    private val client by lazy {
         ApiClient.create()
     }
 
-    var disposable: Disposable? = null
+    private var disposable: Disposable? = null
 
-    override fun onItemClicked(itemId: String, itemTitle: String?, itemType: String?, itemDecs: String?, imageItem:String?) {
+    override fun onItemClicked(
+        itemId: String,
+        itemTitle: String?,
+        itemType: String?,
+        itemDecs: String?,
+        imageItem: String?
+    ) {
         Toast.makeText(this, "Item clicked $itemId ", Toast.LENGTH_SHORT).show()
+
         val detailsActivityIntent: Intent = Intent(this, DetailActivity::class.java).apply {
             putExtra(ITEM_ID, itemId)
             putExtra(ITEM_TITLE, itemTitle)
             putExtra(ITEM_TYPE, itemType)
             putExtra(ITEM_DESCRIPTION, itemDecs)
-            putExtra(ITEM_IMAGE,imageItem)
+            putExtra(ITEM_IMAGE, imageItem)
         }
         startActivity(detailsActivityIntent)
     }
@@ -86,5 +94,47 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     private fun createUserId() {
         val sharedPreferences = SharedPreferencesHelper(this)
         sharedPreferences.setStringValue(Helper.USER_ID_KEY, Helper.randomGUID())
+    }
+
+    private fun mockedSetDataToAdapter() {
+        rvIssueList.adapter = IssueAdapter(this, mockListOfIssues(), this)
+    }
+
+    private fun mockListOfIssues(): List<Issue> {
+        return listOf(
+            Issue(
+                "001",
+                "123",
+                "naslov",
+                "opis",
+                "tip",
+                mockListOfCategories(),
+                Location("23423", "234234"),
+                "kreiran",
+                resources.getString(R.string.imageBase64),
+                3,
+                "Pavla Papa"
+            ),
+            Issue(
+                "002",
+                "123",
+                "naslov",
+                "opis",
+                "tip",
+                mockListOfCategories(),
+                Location("234234", "23452345"),
+                "kreiran",
+                resources.getString(R.string.imageBase64),
+                2,
+                "Bulevar Oslobodjenja"
+            )
+        )
+    }
+
+    private fun mockListOfCategories(): List<String> {
+        return listOf(
+            "Kategorija1",
+            "Kategorija2"
+        )
     }
 }

@@ -38,8 +38,9 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
 
         fun setIssue(issue: Issue) {
             itemView.tvIssueTitle.text = issue.title
-//            itemView.tvCategory.text = issue.categories?.get(0)
             itemView.tvIssueType.text = issue.issueType
+
+//            itemView.tvCategory.text = issue.categories?.get(0)
 
 //            if (issue.categories?.size!! > 1) {
 //                itemView.tvSecondCategory.text = issue.categories[1]

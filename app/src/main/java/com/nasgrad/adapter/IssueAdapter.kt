@@ -3,7 +3,6 @@ package com.nasgrad.adapter
 import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,13 +50,15 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
                 itemView.list_item_container.setBackgroundColor(context.resources.getColor(R.color.colorPrimaryLight))
             }
             
-            if (issue.picturePreview != null) itemView.ivIssueImage.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview!!))
+            if (!issue.picturePreview.isNullOrBlank()) {
+                itemView.ivIssueImage.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview!!))
+            }
 
             val list = issue.categories
 
             when {
                 issue.categories?.size == 1 -> {
-                    val issueCategory1 = Helper.getCategoryNameForCategoryId(list!![0])
+                    val issueCategory1 = Helper.getCategoryForCategoryId(list!![0])
                     itemView.tvCategory1.text = issueCategory1?.name
                     itemView.tvCategory1.setBackgroundColor(Color.parseColor(issueCategory1?.color))
 
@@ -66,8 +67,8 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
                     itemView.tvCategory3.visibility = View.INVISIBLE
                 }
                 issue.categories?.size == 2 -> {
-                    val issueCategory1 = Helper.getCategoryNameForCategoryId(list!![0])
-                    val issueCategory2 = Helper.getCategoryNameForCategoryId(list[1])
+                    val issueCategory1 = Helper.getCategoryForCategoryId(list!![0])
+                    val issueCategory2 = Helper.getCategoryForCategoryId(list[1])
                     itemView.tvCategory1.text = issueCategory1?.name
                     itemView.tvCategory2.text = issueCategory2?.name
                     itemView.tvCategory1.setBackgroundColor(Color.parseColor(issueCategory1?.color))
@@ -78,16 +79,16 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
                     itemView.tvCategory3.visibility = View.INVISIBLE
                 }
                 issue.categories?.size == 3 -> {
-                    val issueCategory1 = Helper.getCategoryNameForCategoryId(list!![0])
-                    val issueCategory2 = Helper.getCategoryNameForCategoryId(list[1])
-                    val issueCategory3 = Helper.getCategoryNameForCategoryId(list[2])
+                    val issueCategory1 = Helper.getCategoryForCategoryId(list!![0])
+                    val issueCategory2 = Helper.getCategoryForCategoryId(list[1])
+                    val issueCategory3 = Helper.getCategoryForCategoryId(list[2])
                     itemView.tvCategory1.text = issueCategory1?.name
                     itemView.tvCategory2.text = issueCategory2?.name
                     itemView.tvCategory3.text = issueCategory3?.name
 
-                    itemView.tvCategory1.setBackgroundColor(Color.parseColor(issueCategory1?.color))
-                    itemView.tvCategory2.setBackgroundColor(Color.parseColor(issueCategory2?.color))
-                    itemView.tvCategory3.setBackgroundColor(Color.parseColor(issueCategory3?.color))
+                    itemView.tvCategory1.setBackgroundColor(Color.parseColor(issueCategory1?.color ?: "#FFE0B2"))
+                    itemView.tvCategory2.setBackgroundColor(Color.parseColor(issueCategory2?.color ?: "#FFE0B2"))
+                    itemView.tvCategory3.setBackgroundColor(Color.parseColor(issueCategory3?.color ?: "#FFE0B2"))
 
                     itemView.tvCategory1.visibility = View.VISIBLE
                     itemView.tvCategory2.visibility = View.VISIBLE

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import com.nasgrad.adapter.TypesSpinnerAdapter
+import com.nasgrad.api.model.IssueCategory
 import com.nasgrad.api.model.IssueType
 import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
@@ -52,7 +53,7 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 issue.title = tvIssueTitle.text.toString()
                 issue.description = etIssueDescription.text.toString()
 
-                issue.categories = listOf(
+                val categoryNames=  listOf(
                     this.tvFirstCategory.text.toString(),
                     this.tvCategory2.text.toString(),
                     this.tvThirdCategory.text.toString()
@@ -60,6 +61,14 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
 
                 val type = spinnerTypes.selectedItem as IssueType
                 issue.issueType = type.name
+
+                val typeCategories = Helper.getCategoriesForType(type)
+                val categoryIds = mutableListOf<String>()
+                typeCategories.forEach { t: IssueCategory? ->
+                    categoryIds.add(t?.id!!)
+                }
+
+                issue.categories = categoryIds
 
                 Timber.d("Issue: $issue")
                 (activity as CreateIssueActivity).setFragment(R.id.mainContent, LocationFragment())

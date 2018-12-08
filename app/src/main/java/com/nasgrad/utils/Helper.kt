@@ -39,11 +39,19 @@ class Helper {
             return categoriesToReturn
         }
 
-        fun getCategoryNameForCategoryId(catId: String) : IssueCategory? {
+        fun getCategoryForCategoryId(catId: String) : IssueCategory? {
             return if (issueCategories.containsKey(catId)) {
                 issueCategories[catId]
             } else {
                 null
+            }
+        }
+
+        fun getCategoryNameForCategoryId(catId: String?) : String? {
+            return if (issueCategories.containsKey(catId)) {
+                issueCategories[catId]!!.name
+            } else {
+                ""
             }
         }
 
@@ -53,9 +61,12 @@ class Helper {
             return UUID.randomUUID().toString()
         }
 
-        fun decodePicturePreview( picturePreview: String): Bitmap {
+        fun decodePicturePreview( picturePreview: String): Bitmap? {
             val decodedString = Base64.decode(picturePreview, Base64.DEFAULT)
-            return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+            if (decodedString != null) {
+                return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+            }
+            return null
         }
 
         fun encodePicturePreview(picturePreview: Bitmap): String {

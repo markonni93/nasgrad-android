@@ -1,5 +1,6 @@
 package com.nasgrad
 
+import android.Manifest
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -19,7 +20,10 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_create_issue.*
 import kotlinx.android.synthetic.main.activity_main.*
+import pub.devrel.easypermissions.EasyPermissions
+import pub.devrel.easypermissions.PermissionRequest
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

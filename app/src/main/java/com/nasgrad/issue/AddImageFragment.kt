@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,6 @@ class AddImageFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_add_image, container, false)
         (activity as CreateIssueActivity).setActionBarTitle(getString(R.string.issue_picture_title))
-        (activity as AppCompatActivity).supportActionBar!!.hide()
         return view
     }
 
@@ -37,7 +35,7 @@ class AddImageFragment : Fragment(), View.OnClickListener {
         super.onActivityCreated(savedInstanceState)
 
         openCameraButton.setOnClickListener(this)
-        openGallaryButton.setOnClickListener(this)
+        openGalleryButton.setOnClickListener(this)
         deletePicture.setOnClickListener(this)
     }
 
@@ -51,7 +49,7 @@ class AddImageFragment : Fragment(), View.OnClickListener {
                 (activity as CreateIssueActivity).setFragment(R.id.mainContent, fragment)
             }
             openCameraButton.id -> openCameraMode()
-            openGallaryButton.id -> openGalleryMode()
+            openGalleryButton.id -> openGalleryMode()
             deletePicture.id -> deletePicture()
 
         }
@@ -60,7 +58,7 @@ class AddImageFragment : Fragment(), View.OnClickListener {
     private fun deletePicture() {
         imagePreview.setImageDrawable(activity?.getDrawable(R.drawable.ic_image))
         deletePicture.visibility = View.GONE
-        openGallaryButton.visibility = View.VISIBLE
+        openGalleryButton.visibility = View.VISIBLE
         openCameraButton.visibility = View.VISIBLE
     }
 
@@ -83,7 +81,7 @@ class AddImageFragment : Fragment(), View.OnClickListener {
     private fun loadImage() {
         imagePreview.setImageBitmap(BitmapFactory.decodeFile(images[0].path))
         deletePicture.visibility = View.VISIBLE
-        openGallaryButton.visibility = View.GONE
+        openGalleryButton.visibility = View.GONE
         openCameraButton.visibility = View.GONE
     }
 

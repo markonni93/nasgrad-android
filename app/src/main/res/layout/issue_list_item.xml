@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-	xmlns:android = "http://schemas.android.com/apk/res/android"
-	xmlns:tools = "http://schemas.android.com/tools"
+<android.support.v7.widget.CardView xmlns:android = "http://schemas.android.com/apk/res/android"
 	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
 	android:id = "@+id/card_view"
 	android:layout_width = "match_parent"
 	android:layout_height = "wrap_content"
@@ -16,18 +15,18 @@
 	    android:layout_height = "wrap_content"
 	    app:layout_editor_absoluteX = "11dp"
 	    app:layout_editor_absoluteY = "13dp">
-
-        <ImageView
-	        android:id = "@+id/ivIssueImage"
-	        android:layout_width = "100dp"
-	        android:layout_height = "100dp"
-	        android:layout_marginStart = "16dp"
-	        android:layout_marginTop = "16dp"
-	        android:layout_marginBottom = "16dp"
-	        android:background = "@color/colorAccent"
-	        app:layout_constraintBottom_toBottomOf = "parent"
-	        app:layout_constraintStart_toStartOf = "parent"
-	        app:layout_constraintTop_toTopOf = "parent" />
+	    
+	    <ImageView
+		    android:id = "@+id/ivIssueImage"
+		    android:layout_width = "100dp"
+		    android:layout_height = "100dp"
+		    android:layout_marginStart = "16dp"
+		    android:layout_marginTop = "16dp"
+		    android:layout_marginBottom = "16dp"
+		    android:background = "@color/colorAccent"
+		    app:layout_constraintBottom_toBottomOf = "parent"
+		    app:layout_constraintStart_toStartOf = "parent"
+		    app:layout_constraintTop_toTopOf = "parent" />
 
         <TextView
 	        android:id = "@+id/tvIssueTitle"
@@ -37,11 +36,11 @@
 	        android:layout_marginEnd = "8dp"
 	        android:ellipsize = "end"
 	        android:maxLines = "2"
-	        tools:text = "Rupa ispred Levi9"
 	        android:textSize = "18sp"
 	        app:layout_constraintEnd_toStartOf = "@+id/tvCounter"
 	        app:layout_constraintStart_toEndOf = "@+id/ivIssueImage"
-	        app:layout_constraintTop_toTopOf = "@+id/ivIssueImage" />
+	        app:layout_constraintTop_toTopOf = "@+id/ivIssueImage"
+	        tools:text = "Rupa ispred Levi9" />
 	    
 	    <TextView
 		    android:id = "@+id/tvCounter"
@@ -50,57 +49,74 @@
 		    android:adjustViewBounds = "true"
 		    android:background = "@drawable/ic_bookmark"
 		    android:gravity = "center"
-		    tools:text = "9"
 		    android:textColor = "@color/white"
 		    android:textSize = "16sp"
 		    android:textStyle = "bold"
 		    app:layout_constraintEnd_toEndOf = "parent"
-		    app:layout_constraintTop_toTopOf = "parent" />
+		    app:layout_constraintTop_toTopOf = "parent"
+		    tools:text = "9" />
 
 		<TextView
 			android:id = "@+id/tvType"
 			android:layout_width = "wrap_content"
 			android:layout_height = "wrap_content"
 			android:layout_marginStart = "8dp"
-			android:layout_marginTop = "8dp"
+			android:layout_marginBottom = "8dp"
 			android:textColor = "@color/colorTextPrimary"
 			android:textSize = "14sp"
+			app:layout_constraintBottom_toTopOf = "@+id/tvCategory1"
 			app:layout_constraintStart_toEndOf = "@+id/ivIssueImage"
-			app:layout_constraintTop_toBottomOf = "@+id/tvIssueTitle"
 			tools:text = "Tip: Rupa na putu" />
 
 		<TextView
-			android:id = "@+id/tvCategory"
+			android:id = "@+id/tvCategory1"
 			android:layout_width = "wrap_content"
 			android:layout_height = "wrap_content"
-			android:layout_marginStart = "16dp"
-			android:layout_marginTop = "8dp"
-			android:layout_marginEnd = "16dp"
-			android:gravity = "start"
-			android:lines = "1"
+			android:layout_marginStart = "8dp"
+			android:background = "@android:color/holo_green_light"
+			android:gravity = "center"
 			android:maxLines = "1"
-			android:text = "Kategorija"
-			android:textColor = "@color/colorTextPrimary"
-			android:textSize = "16sp"
+			android:padding = "4dp"
+			android:text = "Kategorija 1"
+			android:textColor = "@android:color/white"
+			android:textSize = "14sp"
 			app:layout_constraintBottom_toBottomOf = "@+id/ivIssueImage"
-			app:layout_constraintEnd_toStartOf = "@+id/tvSecondCategory"
-			app:layout_constraintStart_toEndOf = "@+id/ivIssueImage"
-			app:layout_constraintTop_toBottomOf = "@+id/tvType" />
+			app:layout_constraintStart_toEndOf = "@+id/ivIssueImage" />
 
 		<TextView
-			android:id = "@+id/tvSecondCategory"
+			android:id = "@+id/tvCategory2"
 			android:layout_width = "wrap_content"
 			android:layout_height = "wrap_content"
-			android:layout_marginEnd = "16dp"
-			android:gravity = "start"
-			android:lines = "1"
+			android:layout_marginStart = "8dp"
+			android:background = "@android:color/holo_green_light"
+			android:gravity = "center"
 			android:maxLines = "1"
-			android:text = "Druga kategorija"
-			android:textColor = "@color/colorTextPrimary"
-			android:textSize = "16sp"
-			app:layout_constraintBottom_toBottomOf = "@+id/tvCategory"
-			app:layout_constraintEnd_toEndOf = "parent"
-			app:layout_constraintTop_toTopOf = "@+id/tvCategory" />
+			android:padding = "4dp"
+			android:text = "Druga"
+			android:textColor = "@android:color/white"
+			android:textSize = "14sp"
+			app:layout_constraintBottom_toBottomOf = "@+id/tvCategory1"
+			app:layout_constraintStart_toEndOf = "@+id/tvCategory1"
+			app:layout_constraintTop_toTopOf = "@+id/tvCategory1"
+			app:layout_constraintVertical_bias = "0.0" />
+	    
+	    <TextView
+		    android:id = "@+id/tvCategory3"
+		    android:layout_width = "wrap_content"
+		    android:layout_height = "wrap_content"
+		    android:layout_alignParentEnd = "true"
+		    android:layout_marginStart = "8dp"
+		    android:background = "@android:color/holo_green_light"
+		    android:gravity = "center"
+		    android:maxLines = "1"
+		    android:padding = "4dp"
+		    android:text = "Treca"
+		    android:textColor = "@android:color/white"
+		    android:textSize = "14sp"
+		    app:layout_constraintBottom_toBottomOf = "@+id/tvCategory2"
+		    app:layout_constraintStart_toEndOf = "@+id/tvCategory2"
+		    app:layout_constraintTop_toTopOf = "@+id/tvCategory2" />
+	 
 	   
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -13,7 +13,8 @@ class SplashScreenActivity : AppCompatActivity() {
     val client by lazy {
         ApiClient.create()
     }
-    var disposable: Disposable? = null
+    var disposable1: Disposable? = null
+    var disposable2: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +23,30 @@ class SplashScreenActivity : AppCompatActivity() {
         startActivity(intent)
 
 
-//        disposable = client.getIssueTypes()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(
-//                { result -> Log.e("sonja", "${result.size}")
-//                    finish()
-//                },
-//                { error -> Log.e("sonja", error.message) }
-//            )
+        disposable1 = client.getTypes()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result -> Log.e("sonja types", "${result[0].name}")
+                    finish()
+                },
+                { error -> Log.e("sonja types", error.message) }
+            )
 
+        disposable2 = client.getCategories()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result -> Log.e("sonja categories", "${result[0].name}")
+                    finish()
+                },
+                { error -> Log.e("sonja categories", error.message) }
+            )
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable1?.dispose()
     }
 }

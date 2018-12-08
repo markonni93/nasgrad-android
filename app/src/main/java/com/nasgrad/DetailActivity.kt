@@ -32,7 +32,7 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
         setContentView(R.layout.activity_detail)
         val itemTitle = intent.getStringExtra(ITEM_TITLE)
         titleDetailsLabel.text = itemTitle
-        typeFromPredefinedList.text = "Tipe: " + intent.getStringExtra(ITEM_TYPE)
+        typeFromPredefinedList.text = "Tip problema: ${intent.getStringExtra(ITEM_TYPE)}"
         issueDetailDescTextView.text = intent.getStringExtra(ITEM_DESCRIPTION)
         Glide.with(this).load("https://picsum.photos/100/100/?random").into(issuePicture)
         reportIssue.setOnClickListener(this)

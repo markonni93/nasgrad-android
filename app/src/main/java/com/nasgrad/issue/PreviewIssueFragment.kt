@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.constraint.solver.widgets.Helper
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -47,6 +48,9 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
         issue_title.text = issue.title
         typePreview.text = "Tip problema: ${issue.issueType}"
         categoryPreview.text = "Kategorije: ${issue.categories?.get(0).toString()}, ${issue.categories?.get(1).toString()}, ${issue.categories?.get(2).toString()}"
+
+        Timber.d("${issue.picturePreview}")
+        if(issue.picturePreview != null) imagePreview.setImageBitmap(com.nasgrad.utils.Helper.decodePicturePreview(issue.picturePreview!!))
 
         ibArrowLeft.setOnClickListener(this)
         ibArrowRight.setOnClickListener(this)

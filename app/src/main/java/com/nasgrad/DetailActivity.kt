@@ -1,17 +1,13 @@
 package com.nasgrad
 
 import android.content.Intent
-import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
 import com.nasgrad.MainActivity.Companion.ITEM_ID
 import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
@@ -20,8 +16,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail.*
-import timber.log.Timber
-import java.io.IOException
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
 
@@ -113,7 +107,7 @@ class DetailActivity : AppCompatActivity(), OnClickListener{
 
     private fun setUIDetailsScreen(issue: Issue?) {
         titleDetailsLabel.text = issue?.title
-        if (issue?.picturePreview != null) issuePicture.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview))
+        if (issue?.picturePreview != null) issuePicture.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview!!))
         issueDetailDescTextView.text = issue?.description
         typeFromPredefinedList.text = issue?.issueType
     }

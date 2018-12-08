@@ -13,7 +13,7 @@ data class Issue(
     var categories: List<String>?,
     var location: Location?,
     var state: String?,
-    val picturePreview: String?,
+    var picturePreview: String?,
     val submittedCount: Int?,
     var address: String?
 )

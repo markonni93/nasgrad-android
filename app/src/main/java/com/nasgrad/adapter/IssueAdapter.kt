@@ -37,9 +37,9 @@ class IssueAdapter(private val context: Context, private val issues: List<Issue>
 
         fun setIssue(issue: Issue) {
             itemView.tvIssueTitle.text = issue.title
-            itemView.tvCategory.text = issue.submittedCount.toString()
+            itemView.tvCounter.text = issue.submittedCount.toString()
             itemView.tvType.text = this@IssueAdapter.context.resources.getString(R.string.tip, Helper.getTypeName(issue.issueType))
-
+            
             if (issue.picturePreview != null) itemView.ivIssueImage.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview))
 
 //            itemView.tvCategory.text = issue.categories?.get(0)

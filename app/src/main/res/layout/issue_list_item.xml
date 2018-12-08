@@ -50,7 +50,6 @@
 		    android:adjustViewBounds = "true"
 		    android:background = "@drawable/ic_bookmark"
 		    android:gravity = "center"
-		    android:padding = "0dp"
 		    tools:text = "9"
 		    android:textColor = "@color/white"
 		    android:textSize = "16sp"

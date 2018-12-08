@@ -23,13 +23,9 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     companion object {
         const val ITEM_ID = "ITEM_ID"
-        const val ITEM_TITLE = "ITEM_TITLE"
-        const val ITEM_IMAGE = "ITEM_IMAGE"
-        const val ITEM_TYPE = "ITEM_TYPE"
-        const val ITEM_DESCRIPTION = "ITEM_DESCRIPTION"
     }
 
-    private val client by lazy {
+    val client by lazy {
         ApiClient.create()
     }
 
@@ -46,10 +42,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
         val detailsActivityIntent: Intent = Intent(this, DetailActivity::class.java).apply {
             putExtra(ITEM_ID, itemId)
-            putExtra(ITEM_TITLE, itemTitle)
-            putExtra(ITEM_TYPE, itemType)
-            putExtra(ITEM_DESCRIPTION, itemDecs)
-            putExtra(ITEM_IMAGE, imageItem)
         }
         startActivity(detailsActivityIntent)
     }

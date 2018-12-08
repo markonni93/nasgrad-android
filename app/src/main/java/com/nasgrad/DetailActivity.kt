@@ -1,24 +1,31 @@
 package com.nasgrad
 
 import android.content.Intent
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
-import android.support.constraint.solver.widgets.Helper
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
-import com.nasgrad.MainActivity.Companion.ITEM_DESCRIPTION
-import com.nasgrad.MainActivity.Companion.ITEM_IMAGE
-import com.nasgrad.MainActivity.Companion.ITEM_TITLE
-import com.nasgrad.MainActivity.Companion.ITEM_TYPE
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.nasgrad.MainActivity.Companion.ITEM_ID
+import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
+import com.nasgrad.utils.Helper
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.fragment_add_image.*
+import timber.log.Timber
+import java.io.IOException
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
 
-class DetailActivity : AppCompatActivity(), OnClickListener {
+class DetailActivity : AppCompatActivity(), OnClickListener{
 
     override fun onClick(view: View) {
         if (view.id == reportIssue.id) {
@@ -27,6 +34,8 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
             openTwitterApp()
         }
     }
+
+    private var map: GoogleMap? = null
 
     private fun openTwitterApp() {
 //        val tweetIntent = Intent(Intent.ACTION_SEND)
@@ -72,6 +81,12 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
+    private var disposable: Disposable? = null
+
+    val client by lazy {
+        ApiClient.create()
+    }
+
     private fun openEmailClint() {
         val intent = Intent(Intent.ACTION_SENDTO)
         val data = Uri.parse("mailto:${resources.getString(R.string.email)}?subject=prijava problema&body=OpisProblem")
@@ -82,13 +97,25 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-
-        val itemTitle = intent.getStringExtra(ITEM_TITLE)
-        titleDetailsLabel.text = itemTitle
-        typeFromPredefinedList.text = "Tip problema: ${intent.getStringExtra(ITEM_TYPE)}"
-        issueDetailDescTextView.text = intent.getStringExtra(ITEM_DESCRIPTION)
-        issuePicture.setImageBitmap(com.nasgrad.utils.Helper.decodePicturePreview(intent.getStringExtra(ITEM_IMAGE)))
+        val itemItemId = intent.getStringExtra(ITEM_ID)
+        showDetailIssue(itemItemId)
         reportIssue.setOnClickListener(this)
+    }
+
+    private fun showDetailIssue(itemId: String) {
+        disposable = client.getIssueItemById(itemId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { result ->
+                if (result != null) setUIDetailsScreen(result)
+            }
+    }
+
+    private fun setUIDetailsScreen(issue: Issue?) {
+        titleDetailsLabel.text = issue?.title
+        if (issue?.picturePreview != null) issuePicture.setImageBitmap(Helper.decodePicturePreview(issue.picturePreview))
+        issueDetailDescTextView.text = issue?.description
+        typeFromPredefinedList.text = issue?.issueType
     }
 
     override fun onBackPressed() {

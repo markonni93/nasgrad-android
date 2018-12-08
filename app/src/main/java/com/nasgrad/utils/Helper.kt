@@ -44,7 +44,6 @@ class Helper {
         fun decodePicturePreview(picturePreview: String): Bitmap {
             val decodedString = Base64.decode(picturePreview, Base64.DEFAULT)
             return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-
         }
 
         fun encodePicturePreview(picturePreview: Bitmap): String {

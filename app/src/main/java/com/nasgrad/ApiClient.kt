@@ -26,10 +26,9 @@ interface ApiClient {
     @GET("category")
     fun getCategories(): Observable<List<IssueCategory>>
 
-    @Multipart
     @POST("/api/newIssue")
     @Headers("Content-Type: application/json")
-    fun createNewIssue(@Part("issue") issue: IssueRequestBody, @Part("pictureInfo") pictureInfo: PictureInfo): Observable<Response<ResponseBody>>
+    fun createNewIssue(@Body body: NewItemRequest): Observable<Response<ResponseBody>>
 
     companion object {
 

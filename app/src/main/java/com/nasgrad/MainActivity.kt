@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
@@ -35,13 +34,14 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     var disposable: Disposable? = null
 
-    override fun onItemClicked(itemId: String, itemTitle: String?, itemType: String?, itemDecs: String?) {
+    override fun onItemClicked(itemId: String, itemTitle: String?, itemType: String?, itemDecs: String?, imageItem:String?) {
         Toast.makeText(this, "Item clicked $itemId ", Toast.LENGTH_SHORT).show()
         val detailsActivityIntent: Intent = Intent(this, DetailActivity::class.java).apply {
             putExtra(ITEM_ID, itemId)
             putExtra(ITEM_TITLE, itemTitle)
             putExtra(ITEM_TYPE, itemType)
             putExtra(ITEM_DESCRIPTION, itemDecs)
+            putExtra(ITEM_IMAGE,imageItem)
         }
         startActivity(detailsActivityIntent)
     }
@@ -67,15 +67,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->
-                    if (result != null) {
+                    if (result != null)
                         setDataToAdapter(result)
-                    } else {
-                        mockedSetDataToAdapter()
-                    }
-                },
-                { error ->
-                    Log.e("sonja", error.message)
-                    mockedSetDataToAdapter()
                 }
             )
     }
@@ -93,41 +86,5 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     private fun createUserId() {
         val sharedPreferences = SharedPreferencesHelper(this)
         sharedPreferences.setStringValue(Helper.USER_ID_KEY, Helper.randomGUID())
-    }
-
-    private fun mockedSetDataToAdapter() {
-        rvIssueList.adapter = IssueAdapter(this, mockListOfIssues(), this)
-    }
-
-    private fun mockListOfIssues(): List<Issue> {
-        return listOf(
-            Issue(
-                "001",
-                "123",
-                "naslov",
-                "opis",
-                "tip",
-                mockListOfCategories(),
-                "kreiran",
-                resources.getString(R.string.imageBase64)
-            ),
-            Issue(
-                "002",
-                "123",
-                "naslov",
-                "opis",
-                "tip",
-                mockListOfCategories(),
-                "kreiran",
-                resources.getString(R.string.imageBase64)
-            )
-        )
-    }
-
-    private fun mockListOfCategories(): List<String> {
-        return listOf(
-            "Kategorija1",
-            "Kategorija2"
-        )
     }
 }

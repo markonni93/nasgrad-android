@@ -30,7 +30,3 @@ The [`nasgrad-android`](https://github.com/NasGradApp/nasgrad-android.git) repos
 1. `git push my-fork-name the-name-of-my-branch`
 1. Go to the [nasgrad-android repo](https://github.com/NasGradApp/nasgrad-android) and you should see recently pushed branches.
 1. Follow GitHub's instructions.
-
-## License
-
-Licensed under the [MIT](LICENSE) License.

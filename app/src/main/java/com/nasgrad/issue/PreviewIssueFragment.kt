@@ -13,6 +13,7 @@ import com.nasgrad.DetailActivity
 import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_preview_issue.*
+import timber.log.Timber
 
 
 class PreviewIssueFragment : Fragment(), View.OnClickListener {
@@ -37,11 +38,12 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         ibArrowLeft.visibility = View.VISIBLE
         tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 4)
+        
         val issue = (activity as CreateIssueActivity).issue
+        Timber.d("Issue: $issue")
+
         issue_title.text = issue.title
         typePreview.text = "Tip problema: ${issue.issueType}"
         categoryPreview.text = "Kategorije: ${issue.categories?.get(0).toString()}, ${issue.categories?.get(1).toString()}, ${issue.categories?.get(2).toString()}"

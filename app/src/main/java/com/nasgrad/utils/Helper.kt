@@ -35,6 +35,14 @@ class Helper {
             return categoriesToReturn
         }
 
+        fun getCategoryNameForCategoryId(catId: String) : IssueCategory? {
+            return if (issueCategories.containsKey(catId)) {
+                issueCategories[catId]
+            } else {
+                null
+            }
+        }
+
         const val USER_ID_KEY = "user_id"
 
         fun randomGUID(): String {

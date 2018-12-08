@@ -54,7 +54,7 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
 
                 issue.categories = listOf(
                     this.tvFirstCategory.text.toString(),
-                    this.tvSecondCategory.text.toString(),
+                    this.tvCategory2.text.toString(),
                     this.tvThirdCategory.text.toString()
                 )
 
@@ -85,33 +85,32 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
         val selectedType = parent?.getItemAtPosition(position) as IssueType
         Timber.d("onItemSelected $selectedType")
 
-//        val categories = selectedType.categories
         val categories = Helper.getCategoriesForType(selectedType)
         when {
             categories.size == 1 -> {
                 tvFirstCategory.visibility = View.VISIBLE
                 tvFirstCategory.text = categories[0].name
-                tvSecondCategory.visibility = View.GONE
+                tvCategory2.visibility = View.GONE
                 tvThirdCategory.visibility = View.GONE
             }
             categories.size == 2 -> {
                 tvFirstCategory.visibility = View.VISIBLE
                 tvFirstCategory.text = categories[0].name
-                tvSecondCategory.visibility = View.VISIBLE
-                tvSecondCategory.text = categories[1].name
+                tvCategory2.visibility = View.VISIBLE
+                tvCategory2.text = categories[1].name
                 tvThirdCategory.visibility = View.GONE
             }
             categories.size >= 3 -> {
                 tvFirstCategory.visibility = View.VISIBLE
                 tvFirstCategory.text = categories[0].name
-                tvSecondCategory.visibility = View.VISIBLE
-                tvSecondCategory.text = categories[1].name
+                tvCategory2.visibility = View.VISIBLE
+                tvCategory2.text = categories[1].name
                 tvThirdCategory.visibility = View.VISIBLE
                 tvThirdCategory.text = categories[2].name
             }
             else -> {
                 tvFirstCategory.visibility = View.GONE
-                tvSecondCategory.visibility = View.GONE
+                tvCategory2.visibility = View.GONE
                 tvThirdCategory.visibility = View.GONE
             }
         }

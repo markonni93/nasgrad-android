@@ -15,7 +15,7 @@ class CreateIssueActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_issue)
 
-        setFragment(R.id.mainContent, PreviewIssueFragment())
+        setFragment(R.id.mainContent, AddImageFragment())
 
         setSupportActionBar(toolbar)
 

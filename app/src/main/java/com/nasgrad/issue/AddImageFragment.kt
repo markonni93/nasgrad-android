@@ -77,7 +77,7 @@ class AddImageFragment : Fragment(), View.OnClickListener {
     }
 
     private fun openGalleryMode() {
-        ImagePicker.create(this).theme(R.style.AppTheme).start()
+        ImagePicker.create(this).theme(R.style.AppTheme).single().start()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

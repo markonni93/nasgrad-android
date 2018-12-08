@@ -9,17 +9,11 @@ import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
 import com.nasgrad.api.model.Issue
-import com.nasgrad.api.model.IssueResponse
 import com.nasgrad.nasGradApp.R
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
@@ -57,10 +51,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             startActivity(Intent(this@MainActivity, CreateIssueActivity::class.java))
         }
 
-        showIssues()
         setupAdapter()
-
-//        mockedSetDataToAdapter()
+        showIssues()
     }
 
     private fun showIssues() {
@@ -68,9 +60,17 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-//                {result -> Log.e("sonja", " ${result}")},
-                {result -> setDataToAdapter(result)},
-                {error -> Log.e("sonja", error.message)}
+                { result ->
+                    if (result != null) {
+                        setDataToAdapter(result)
+                    } else {
+                        mockedSetDataToAdapter()
+                    }
+                },
+                { error ->
+                    Log.e("sonja", error.message)
+                    mockedSetDataToAdapter()
+                }
             )
     }
 
@@ -82,20 +82,15 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun setDataToAdapter(issues: List<Issue>) {
-        val issueAdapter = if (issues != null) {
-            IssueAdapter(this, issues, this)
-        } else {
-            IssueAdapter(this, mockListOfIssues(), this)
-        }
-        rvIssueList.adapter = issueAdapter
+        rvIssueList.adapter = IssueAdapter(this, issues, this)
     }
 
     private fun mockedSetDataToAdapter() {
         rvIssueList.adapter = IssueAdapter(this, mockListOfIssues(), this)
     }
 
-    private fun mockListOfIssues(): ArrayList<Issue> {
-        return arrayListOf(
+    private fun mockListOfIssues(): List<Issue> {
+        return listOf(
             Issue(
                 "001", "123", "naslov", "opis",
                 "tip", mockListOfCategories(), "kreiran"
@@ -107,8 +102,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         )
     }
 
-    private fun mockListOfCategories(): ArrayList<String> {
-        return arrayListOf(
+    private fun mockListOfCategories(): List<String> {
+        return listOf(
             "Kategorija1",
             "Kategorija2"
         )

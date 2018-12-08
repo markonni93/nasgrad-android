@@ -19,5 +19,9 @@
     <style name="HeaderBar">
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
+    
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
 
 </resources>

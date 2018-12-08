@@ -2,6 +2,7 @@ package com.nasgrad
 
 import com.nasgrad.api.model.Issue
 import com.nasgrad.api.model.IssueResponse
+import com.nasgrad.api.model.IssueType
 import retrofit2.http.GET
 import io.reactivex.Observable
 import retrofit2.Response
@@ -17,6 +18,9 @@ interface ApiClient {
 
     @GET("getIssueDetails?id={id}")
     fun getIssueItemById(@Path("id") id: String): Observable<Issue>
+
+    @GET("configuration")
+    fun getIssueTypes(): Observable<List<IssueType>>
 
     companion object {
         fun create(): ApiClient {

@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.nasgrad.ApiClient
 import com.nasgrad.api.model.Issue
 import com.nasgrad.api.model.IssueRequestBody
+import com.nasgrad.api.model.NewItemRequest
 import com.nasgrad.api.model.PictureInfo
 import com.nasgrad.nasGradApp.R
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -84,9 +85,11 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
     private fun saveIssue() {
         val client = ApiClient.create()
 
-        val body = IssueRequestBody(issue.categories, issue.description, issue.id, issue.issueType, issue.location, issue.ownerId, 1, issue.title)
+        val issue = IssueRequestBody(issue.categories, issue.description, issue.id, issue.issueType, issue.location, issue.ownerId, 1, issue.title)
+        val pictureInfo = PictureInfo("", "")
+        val newItemRequest = NewItemRequest(issue, pictureInfo)
 
-        disposable = client.createNewIssue(body, PictureInfo(null,null))
+        disposable = client.createNewIssue(newItemRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { t ->

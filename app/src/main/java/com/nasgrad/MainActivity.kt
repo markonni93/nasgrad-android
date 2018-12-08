@@ -1,7 +1,6 @@
 package com.nasgrad
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -10,20 +9,14 @@ import android.widget.Toast
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
 import com.nasgrad.api.model.Issue
-import com.nasgrad.nasGradApp.R
-import com.nasgrad.utils.SharedPreferencesHelper
-import com.nasgrad.api.model.IssueResponse
 import com.nasgrad.issue.CreateIssueActivity
+import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
-import io.reactivex.Observable
+import com.nasgrad.utils.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
@@ -44,7 +37,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     override fun onItemClicked(itemId: String, itemTitle: String?, itemType: String?, itemDecs: String?) {
         Toast.makeText(this, "Item clicked $itemId ", Toast.LENGTH_SHORT).show()
-
         val detailsActivityIntent: Intent = Intent(this, DetailActivity::class.java).apply {
             putExtra(ITEM_ID, itemId)
             putExtra(ITEM_TITLE, itemTitle)
@@ -65,7 +57,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         }
         // create unique user id which is used as issue owner
         createUserId()
-
         setupAdapter()
         showIssues()
     }
@@ -112,11 +103,11 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         return listOf(
             Issue(
                 "001", "123", "naslov", "opis",
-                "tip", mockListOfCategories(), "kreiran"
+                "tip", mockListOfCategories(), "kreiran", this.resources.getResourceName(R.string.imageBase64).toString()
             ),
             Issue(
                 "002", "123", "naslov", "opis",
-                "tip", mockListOfCategories(), "kreiran"
+                "tip", mockListOfCategories(), "kreiran",this.resources.getResourceName(R.string.imageBase64).toString()
             )
         )
     }

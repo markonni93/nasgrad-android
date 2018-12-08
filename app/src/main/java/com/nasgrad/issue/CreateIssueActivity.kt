@@ -30,7 +30,7 @@ class CreateIssueActivity : AppCompatActivity() {
         val sharedPreferences = SharedPreferencesHelper(this)
         val issueId = Helper.randomGUID()
         val ownerId = sharedPreferences.getStringValue(Helper.USER_ID_KEY,"")
-        issue = Issue(issueId, ownerId, null, null, null, null, null)
+        issue = Issue(issueId, ownerId, null, null, null, null, null,null)
     }
 
     override fun onSupportNavigateUp(): Boolean {

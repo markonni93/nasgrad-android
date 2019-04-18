@@ -39,4 +39,5 @@
         \n\nhttp://68.183.223.223:8080/issuedetails/%2$s.\n\nHvala Vam unapred
     </string>
     <string name="email_template">mailto:%1$s?cc=%2$s&amp;subject=%3$s&amp;body=%4$s</string>
+    <string name="API_KEY">saiagsaigag</string>
 </resources>

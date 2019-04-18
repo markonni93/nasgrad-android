@@ -62,10 +62,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         disposable = client.getAllIssues()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
+            .subscribe ({ result ->
                 if (result != null)
                     setDataToAdapter(result)
-            }
+            }, {error -> Timber.e(error)})
     }
 
     private fun setupAdapter() {

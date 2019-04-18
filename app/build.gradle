@@ -30,10 +30,12 @@ android {
             minifyEnabled false
             //signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_DOMAIN_URL",'"https://nasgrad.app:8081/api/"'
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_DOMAIN_URL",'"https://nasgrad.app:8081/api/"'
         }
     }
 }

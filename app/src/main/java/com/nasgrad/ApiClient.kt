@@ -1,6 +1,7 @@
 package com.nasgrad
 
 import com.nasgrad.api.model.*
+import com.nasgrad.nasGradApp.BuildConfig
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -41,7 +42,7 @@ interface ApiClient {
                     .client(client)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("http://68.183.223.223:8080/api/")
+                    .baseUrl(BuildConfig.BASE_DOMAIN_URL)
                     .build()
 
             return retrofit.create(ApiClient::class.java)

@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.nasgrad.MainActivity
 import com.nasgrad.adapter.TypesSpinnerAdapter
 import com.nasgrad.api.model.IssueType
 import com.nasgrad.api.model.Location
@@ -52,6 +53,7 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ibArrowRight.setOnClickListener(this)
+        ibArrowLeft.setOnClickListener(this)
         ibArrowLeft.visibility = View.GONE
 
         initTypesSpinner()
@@ -72,6 +74,11 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
     override fun onClick(view: View) {
         val viewId = view.id
         when (viewId) {
+            ibArrowLeft.id -> {
+                val intent = Intent(context, IssueDetailsFragment::class.java)
+                startActivity(intent)
+            }
+
             ibArrowRight.id -> {
                 // update issue
 //                var issue = (activity as CreateIssueActivity).issue
@@ -161,35 +168,35 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         val selectedType = parent?.getItemAtPosition(position) as IssueType
         Timber.d("onItemSelected $selectedType")
 
-        val categories = Helper.getCategoriesForType(selectedType)
-        when {
-            categories.size == 1 -> {
-                tvFirstCategory.visibility = View.VISIBLE
-                tvFirstCategory.text = categories[0].name
-                tvCategory2.visibility = View.GONE
-                tvThirdCategory.visibility = View.GONE
-            }
-            categories.size == 2 -> {
-                tvFirstCategory.visibility = View.VISIBLE
-                tvFirstCategory.text = categories[0].name
-                tvCategory2.visibility = View.VISIBLE
-                tvCategory2.text = categories[1].name
-                tvThirdCategory.visibility = View.GONE
-            }
-            categories.size >= 3 -> {
-                tvFirstCategory.visibility = View.VISIBLE
-                tvFirstCategory.text = categories[0].name
-                tvCategory2.visibility = View.VISIBLE
-                tvCategory2.text = categories[1].name
-                tvThirdCategory.visibility = View.VISIBLE
-                tvThirdCategory.text = categories[2].name
-            }
-            else -> {
-                tvFirstCategory.visibility = View.GONE
-                tvCategory2.visibility = View.GONE
-                tvThirdCategory.visibility = View.GONE
-            }
-        }
+//        val categories = Helper.getCategoriesForType(selectedType)
+//        when {
+//            categories.size == 1 -> {
+//                tvFirstCategory.visibility = View.VISIBLE
+//                tvFirstCategory.text = categories[0].name
+//                tvCategory2.visibility = View.GONE
+//                tvThirdCategory.visibility = View.GONE
+//            }
+//            categories.size == 2 -> {
+//                tvFirstCategory.visibility = View.VISIBLE
+//                tvFirstCategory.text = categories[0].name
+//                tvCategory2.visibility = View.VISIBLE
+//                tvCategory2.text = categories[1].name
+//                tvThirdCategory.visibility = View.GONE
+//            }
+//            categories.size >= 3 -> {
+//                tvFirstCategory.visibility = View.VISIBLE
+//                tvFirstCategory.text = categories[0].name
+//                tvCategory2.visibility = View.VISIBLE
+//                tvCategory2.text = categories[1].name
+//                tvThirdCategory.visibility = View.VISIBLE
+//                tvThirdCategory.text = categories[2].name
+//            }
+//            else -> {
+//                tvFirstCategory.visibility = View.GONE
+//                tvCategory2.visibility = View.GONE
+//                tvThirdCategory.visibility = View.GONE
+//            }
+//        }
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {

@@ -23,7 +23,7 @@
     <string name="issue_type_default_text">Tip problema</string>
     <string name="lorem_ipsum_paragraph">Sed egestas nunc nec urna rhoncus lobortis. Donec nec aliquet neque. Aliquam et accumsan dolor. Fusce mollis justo eget dapibus ultrices. Cras ut orci tortor. Sed eu odio molestie ante eleifend sollicitudin id ut eros. Cras eget quam nisi.</string>
     <string name="report_issue_btn">Prijavi Problem</string>
-    <string name="base_api_url" translatable="false">http://68.183.223.223:8080/api/</string>
+    <string name="base_api_url" translatable="false">https://nasgrad.app:8081/api/</string>
     <string name="issue_description_hint">Opis</string>
     <string name="tip">Tip: %1$s</string>
     <string name="adresa">Adresa: </string>
@@ -39,5 +39,8 @@
         \n\nhttp://68.183.223.223:8080/issuedetails/%2$s.\n\nHvala Vam unapred
     </string>
     <string name="email_template">mailto:%1$s?cc=%2$s&amp;subject=%3$s&amp;body=%4$s</string>
-    <string name="API_KEY">saiagsaigag</string>
+    <string name="API_KEY">AIzaSyCc8eUyKVRYDY5NISTF8-lavfCdp-y86u0</string>
+    <string name="location_message_info">Da li je ovo lokacija na kojoj se nalazi problem? Ukoliko nije, pomerite mapu
+        tako da pin prikazuje tačnu lokaciju problema.
+    </string>
 </resources>

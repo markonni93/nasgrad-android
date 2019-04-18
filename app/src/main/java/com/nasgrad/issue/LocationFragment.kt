@@ -42,7 +42,7 @@ class LocationFragment : Fragment(), OnMapReadyCallback, View.OnClickListener, G
 
         (activity as CreateIssueActivity).setActionBarTitle(getString(R.string.issue_address_title))
         ibArrowLeft.visibility = View.VISIBLE
-        tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 3)
+        //tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 3)
 
         ibArrowLeft.setOnClickListener(this)
         ibArrowRight.setOnClickListener(this)

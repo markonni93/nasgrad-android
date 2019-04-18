@@ -1,6 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nested_scroll_view_fragment_create_issue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <ImageView
+                android:id="@+id/imagePreview"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@color/ef_grey"
+                android:scaleType="fitXY"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_image"
+                tools:ignore="ContentDescription"/>
+
+        <ImageButton
+                android:id="@+id/openCameraButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/img_shape"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@+id/openGalleryButton"
+                app:layout_constraintTop_toBottomOf="@+id/imagePreview"
+                app:srcCompat="@drawable/ic_add_a_photo"
+                tools:ignore="ContentDescription"/>
+
+        <ImageButton
+                android:id="@+id/openGalleryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/img_shape"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toStartOf="@+id/openCameraButton"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagePreview"
+                app:srcCompat="@drawable/ic_collections"
+                tools:ignore="ContentDescription"/>
+
+        <ImageButton
+                android:id="@+id/deletePicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/imagePreview"
+                app:layout_constraintTop_toTopOf="@+id/imagePreview"
+                app:srcCompat="@drawable/ic_recycler_bin"/>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilIssueTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/openGalleryButton">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tvIssueTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLength="50"
+                    android:hint="@string/issue_details_title_input_hint"
+                    android:textSize="16sp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <Spinner
+                android:id="@+id/spinnerTypes"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="14dp"
+                android:visibility="visible"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilIssueTitle"/>
+
+
+        <TextView
+                android:id="@+id/tvFirstCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/category_label_shape"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerTypes"/>
+
+        <TextView
+                android:id="@+id/tvCategory2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/category_label_shape"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvFirstCategory"
+                app:layout_constraintStart_toEndOf="@+id/tvFirstCategory"/>
+
+        <TextView
+                android:id="@+id/tvThirdCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/category_label_shape"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvCategory2"
+                app:layout_constraintStart_toEndOf="@+id/tvCategory2"
+                tools:text="Title"/>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/tilIssueDescription"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirstCategory">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/etIssueDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/issue_details_description_input_hint"
+                    android:inputType="textMultiLine"
+                    android:maxLines="4"
+                    android:gravity="top"
+                    android:lines="4"
+                    android:textSize="16sp"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/location_message_info"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/map"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilIssueDescription"/>
+
+        <fragment
+                android:id="@+id/map"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toTopOf="@+id/tvAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+        <ImageView
+                android:id="@+id/ivStaticMarker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/map"
+                app:layout_constraintEnd_toEndOf="@+id/map"
+                app:layout_constraintStart_toStartOf="@+id/map"
+                app:layout_constraintTop_toTopOf="@+id/map"
+                app:srcCompat="@drawable/ic_location_on_black_24dp"/>
+
+        <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Adresa..."
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/include"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <include
+                android:id="@+id/include"
+                layout="@layout/create_issue_bottom_navigation_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>

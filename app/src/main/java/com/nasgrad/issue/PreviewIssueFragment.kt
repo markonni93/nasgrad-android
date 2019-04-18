@@ -41,7 +41,7 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ibArrowLeft.visibility = View.VISIBLE
-        tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 4)
+        //tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 4)
 
         issue = (activity as CreateIssueActivity).issue
         Timber.d("Issue: $issue")

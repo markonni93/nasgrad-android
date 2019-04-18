@@ -38,16 +38,4 @@
         app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
         tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/tvPageIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_issue_page_indicator"
-        android:textSize="20sp"
-        app:layout_goneMarginLeft="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ibArrowRight"
-        app:layout_constraintStart_toEndOf="@+id/ibArrowLeft"
-        app:layout_constraintTop_toTopOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

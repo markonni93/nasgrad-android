@@ -5,6 +5,7 @@
 
     <string name="create_issue_page_indicator">%1$d/4</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_issue_fragment_title">Kreiranje problema</string>
     <string name="issue_picture_title">Slika</string>
     <string name="issue_details_title">Detalji</string>
     <string name="issue_address_title">Adresa</string>

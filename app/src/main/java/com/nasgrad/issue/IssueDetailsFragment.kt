@@ -31,7 +31,7 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
         initTypesSpinner()
 
         ibArrowLeft.visibility = View.VISIBLE
-        tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 2)
+        //tvPageIndicator.text = String.format(getString(R.string.create_issue_page_indicator), 2)
         val issue = (activity as CreateIssueActivity).issue
         tvIssueTitle.setText(issue.title)
         etIssueDescription.setText(issue.description)

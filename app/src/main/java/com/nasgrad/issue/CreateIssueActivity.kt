@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
 import com.nasgrad.api.model.Issue
 import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
@@ -34,7 +33,7 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
         supportActionBar?.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_arrow_back))
 
-        setFragment(R.id.mainContent, AddImageFragment())
+        setFragment(R.id.mainContent, CreateIssueFragment())
 
         // create initial issue
         val sharedPreferences = SharedPreferencesHelper(this)

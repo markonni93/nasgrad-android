@@ -187,6 +187,7 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         val categories = Helper.getCategories()
         Timber.d("Categories size %s", categories.size)
 
+
 //        val categories = Helper.getCategoriesForType(selectedType)
 //        when {
 //            categories.size == 1 -> {

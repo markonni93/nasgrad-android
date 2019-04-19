@@ -29,7 +29,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <Spinner
-        android:id="@+id/spinnerTypes"
+        android:id="@+id/spinnerCategory"
         style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         android:visibility="visible"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerTypes" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
 
     <TextView
         android:id="@+id/tvCategory2"

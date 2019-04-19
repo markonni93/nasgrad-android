@@ -58,7 +58,7 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                     this.tvThirdCategory.text.toString()
                 )
 
-                val type = spinnerTypes.selectedItem as IssueType
+                val type = spinnerCategory.selectedItem as IssueType
                 issue.issueType = type.name
 
                 val typeCategories = Helper.getCategoriesForType(type)

@@ -46,7 +46,8 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        //onBackPressed()
+        finish()
         return true
     }
 

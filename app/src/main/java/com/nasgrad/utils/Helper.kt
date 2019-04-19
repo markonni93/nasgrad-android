@@ -17,9 +17,9 @@ import android.R.attr.bitmap
 class Helper {
     companion object {
 
-        var issueTypes: HashMap<String, IssueType> = HashMap()
+        var issueTypes: MutableMap<String, IssueType> = HashMap()
 
-        var issueCategories: HashMap<String, IssueCategory> = HashMap()
+        var issueCategories: MutableMap<String, IssueCategory> = HashMap()
 
         fun getTypeName(typeId: String?) : String? {
             val issueType = issueTypes[typeId]

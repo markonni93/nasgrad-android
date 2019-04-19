@@ -30,7 +30,8 @@ class SplashScreenActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { result -> saveTypesToSharedPreferences(result)
+                { result ->
+                    saveTypesToSharedPreferences(result)
                     finish()
                 },
                 { error -> finish() }
@@ -40,7 +41,8 @@ class SplashScreenActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { result -> saveCategoriesToSharedPreferences(result)
+                { result ->
+                    saveCategoriesToSharedPreferences(result)
                     finish()
                 },
                 { error -> Log.e("sonja categories", error.message) }
@@ -51,7 +53,8 @@ class SplashScreenActivity : AppCompatActivity() {
         val map = Helper.issueTypes
         for (type in issueTypes) {
             Log.e("sonja types", "${type.name}")
-            map[type.id] = type
+            map.put(type.id, type)
+            //map[type.id] = type
         }
     }
 
@@ -59,7 +62,8 @@ class SplashScreenActivity : AppCompatActivity() {
         val map = Helper.issueCategories
         for (category in issueCategories) {
             Log.e("sonja categories", "${category.name}")
-            map[category.id] = category
+            map.put(category.id, category)
+            //map[category.id] = category
         }
     }
 

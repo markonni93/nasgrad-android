@@ -2,6 +2,7 @@ package com.nasgrad.issue
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.location.Geocoder
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,16 +17,13 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.nasgrad.MainActivity
 import com.nasgrad.adapter.TypesSpinnerAdapter
 import com.nasgrad.api.model.IssueType
 import com.nasgrad.api.model.Location
 import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
-import kotlinx.android.synthetic.main.fragment_add_image.*
-import kotlinx.android.synthetic.main.fragment_issue_details.*
-import kotlinx.android.synthetic.main.fragment_location.*
+import kotlinx.android.synthetic.main.fragment_create_issue.*
 import timber.log.Timber
 import java.io.IOException
 
@@ -54,7 +52,6 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         super.onViewCreated(view, savedInstanceState)
         ibArrowRight.setOnClickListener(this)
         ibArrowLeft.setOnClickListener(this)
-        ibArrowLeft.visibility = View.GONE
 
         initTypesSpinner()
 
@@ -75,43 +72,36 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         val viewId = view.id
         when (viewId) {
             ibArrowLeft.id -> {
-                val intent = Intent(context, IssueDetailsFragment::class.java)
-                startActivity(intent)
             }
 
             ibArrowRight.id -> {
-                // update issue
-//                var issue = (activity as CreateIssueActivity).issue
-//                val bitmap = (imagePreview.drawable as BitmapDrawable).bitmap
-//                Timber.d(Helper.encodePicturePreview(bitmap))
-//                issue.picturePreview = Helper.encodePicturePreview(bitmap)
-//                val fragment = PreviewIssueFragment()
-//                (activity as CreateIssueActivity).setFragment(R.id.mainContent, fragment)
 
-                // update issue
-//                val issue = (activity as CreateIssueActivity).issue
-//                issue.title = tvIssueTitle.text.toString()
-//                issue.description = etIssueDescription.text.toString()
-//
-//                val categoryNames=  listOf(
-//                    this.tvFirstCategory.text.toString(),
-//                    this.tvCategory2.text.toString(),
-//                    this.tvThirdCategory.text.toString()
-//                )
-//
-//                val type = spinnerTypes.selectedItem as IssueType
-//                issue.issueType = type.name
-//
-//                val typeCategories = Helper.getCategoriesForType(type)
-//                val categoryIds = mutableListOf<String>()
-//                typeCategories.forEach { t: IssueCategory? ->
-//                    categoryIds.add(t?.id!!)
-//                }
-//
-//                issue.categories = categoryIds
-//
-//                Timber.d("Issue: $issue")
-//                (activity as CreateIssueActivity).setFragment(R.id.mainContent, LocationFragment())
+                var issue = (activity as CreateIssueActivity).issue
+                val bitmap = (imagePreview.drawable as BitmapDrawable).bitmap
+
+                issue.picturePreview = Helper.encodePicturePreview(bitmap)
+                issue.title = tvIssueTitle.text.toString()
+                issue.description = etIssueDescription.text.toString()
+
+                val categoryNames = listOf(
+                    this.tvFirstCategory.text.toString(),
+                    this.tvCategory2.text.toString(),
+                    this.tvThirdCategory.text.toString()
+                )
+
+                //val type = spinnerTypes.selectedItem as IssueType
+                //issue.issueType = type.name
+
+                issue.location = location
+                issue.address = tvAddress.text.toString()
+
+                Timber.d("Issue details %s", issue.address)
+                Timber.d("Issue details %s", issue.location)
+                Timber.d("Issue details %s", issue.description)
+                Timber.d("Issue details %s", issue.title)
+
+                (activity as CreateIssueActivity).setFragment(R.id.mainContent, PreviewIssueFragment())
+
             }
             openCameraButton.id -> openCameraMode()
             openGalleryButton.id -> openGalleryMode()

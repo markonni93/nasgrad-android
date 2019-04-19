@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import com.nasgrad.adapter.TypesSpinnerAdapter
 import com.nasgrad.api.model.IssueCategory
 import com.nasgrad.api.model.IssueType
 import com.nasgrad.nasGradApp.R
@@ -77,13 +76,13 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
     }
 
     private fun initTypesSpinner() {
-        val issueTypes = ArrayList(Helper.issueTypes.values)
-
-        val adapter = TypesSpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, issueTypes)
-        adapter.setDropDownViewResource(R.layout.types_spinner_item)
-
-        spinnerTypes.adapter = adapter
-        spinnerTypes.onItemSelectedListener = this
+//        val issueTypes = ArrayList(Helper.issueTypes.values)
+//
+//        val adapter = CategorySpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, issueTypes)
+//        adapter.setDropDownViewResource(R.layout.types_spinner_item)
+//
+//        spinnerTypes.adapter = adapter
+//        spinnerTypes.onItemSelectedListener = this
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

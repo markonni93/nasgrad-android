@@ -3,8 +3,7 @@ package com.nasgrad.utils
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
-import com.nasgrad.api.model.IssueCategory
-import com.nasgrad.api.model.IssueType
+import com.nasgrad.api.model.*
 import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.collections.HashMap
@@ -16,6 +15,12 @@ class Helper {
         var issueTypes: MutableMap<String, IssueType> = HashMap()
 
         var issueCategories: MutableMap<String, IssueCategory> = HashMap()
+
+        var cityCategories: MutableMap<String, CityCervice> = HashMap()
+
+        var allTypes: MutableMap<String, Type> = HashMap()
+
+        var cityCervicesTypes: MutableMap<String, CityCerviceType> = HashMap()
 
         fun getTypeName(typeId: String?): String? {
             val issueType = issueTypes[typeId]

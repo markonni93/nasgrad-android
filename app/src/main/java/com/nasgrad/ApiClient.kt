@@ -1,9 +1,6 @@
 package com.nasgrad
 
-import com.nasgrad.api.model.Issue
-import com.nasgrad.api.model.IssueCategory
-import com.nasgrad.api.model.IssueType
-import com.nasgrad.api.model.NewItemRequest
+import com.nasgrad.api.model.*
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -32,6 +29,15 @@ interface ApiClient {
     @POST("/api/newIssue")
     @Headers("Content-Type: application/json")
     fun createNewIssue(@Body body: NewItemRequest): Observable<Response<ResponseBody>>
+
+    @GET("CRUD/GetAllCityServices")
+    fun getAllCityCervices(): Observable<List<CityCervice>>
+
+    @GET("CRUD/GetAllTypes")
+    fun getAllTypes(): Observable<List<Type>>
+
+    @GET("CRUD/GetAllCityServiceTypes")
+    fun getAllCityCerviceTypes(): Observable<List<CityCerviceType>>
 
     companion object {
 

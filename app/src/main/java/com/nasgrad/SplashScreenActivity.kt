@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.nasgrad.api.model.IssueCategory
-import com.nasgrad.api.model.IssueType
+import com.nasgrad.api.model.*
 import com.nasgrad.utils.Helper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -18,6 +17,9 @@ class SplashScreenActivity : AppCompatActivity() {
     }
     var disposable1: Disposable? = null
     var disposable2: Disposable? = null
+    var disposable3: Disposable? = null
+    var disposable4: Disposable? = null
+    var disposable5: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,60 @@ class SplashScreenActivity : AppCompatActivity() {
                 },
                 { error -> Log.e("sonja categories", error.message) }
             )
+
+        disposable3 = client.getAllCityCervices()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result ->
+                    saveCityCervices(result)
+                    finish()
+                },
+                { error -> finish() }
+            )
+
+        disposable4 = client.getAllTypes()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result ->
+                    saveAllTypes(result)
+                    finish()
+                },
+                { error -> finish() }
+            )
+
+        disposable5 = client.getAllCityCerviceTypes()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result ->
+                    saveCityCerviceTypes(result)
+                    finish()
+                },
+                { error -> finish() }
+            )
+    }
+
+    private fun saveCityCerviceTypes(cityCerviceTypes: List<CityCerviceType>) {
+        val map = Helper.cityCervicesTypes
+        for (cityCerviceType in cityCerviceTypes) {
+            map.put(cityCerviceType.id, cityCerviceType)
+        }
+    }
+
+    private fun saveAllTypes(types: List<Type>) {
+        val map = Helper.allTypes
+        for (type in types) {
+            map.put(type.id, type)
+        }
+    }
+
+    private fun saveCityCervices(cityCervices: List<CityCervice>) {
+        val map = Helper.cityCategories
+        for (cityCervice in cityCervices) {
+            map.put(cityCervice.id, cityCervice)
+        }
     }
 
     private fun saveTypesToSharedPreferences(issueTypes: List<IssueType>) {

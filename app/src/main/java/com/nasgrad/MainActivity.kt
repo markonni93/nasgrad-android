@@ -9,7 +9,7 @@ import com.nasgrad.adapter.OnItemClickListener
 import com.nasgrad.api.model.Issue
 import com.nasgrad.api.model.Location
 import com.nasgrad.issue.CreateIssueActivity
-import com.nasgrad.nasGradApp.R
+import com.nasgrad.R
 import com.nasgrad.utils.Helper
 import com.nasgrad.utils.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.nasgrad.api.model.IssueType
-import com.nasgrad.nasGradApp.R
+import com.nasgrad.R
 import kotlinx.android.synthetic.main.types_spinner_item.view.*
 
 class IssueTypeSpinnerAdapter(context: Context, resource: Int, objects: ArrayList<IssueType>) :

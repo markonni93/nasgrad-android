@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.nasgrad.api.model.Issue
-import com.nasgrad.nasGradApp.R
+import com.nasgrad.R
 import com.nasgrad.utils.Helper
 import com.nasgrad.utils.SharedPreferencesHelper
 import kotlinx.android.synthetic.main.activity_create_issue.*
@@ -46,8 +46,8 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        //onBackPressed()
-        finish()
+        onBackPressed()
+        //finish()
         return true
     }
 
@@ -73,7 +73,7 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nasgrad.api.model.Issue
-import com.nasgrad.nasGradApp.R
+import com.nasgrad.R
 import com.nasgrad.utils.Helper
 import com.nasgrad.utils.Helper.Companion.USER_ID_KEY
 import com.nasgrad.utils.SharedPreferencesHelper

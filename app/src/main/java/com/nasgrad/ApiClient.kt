@@ -1,7 +1,9 @@
 package com.nasgrad
 
-import com.nasgrad.api.model.*
-import com.nasgrad.nasGradApp.BuildConfig
+import com.nasgrad.api.model.Issue
+import com.nasgrad.api.model.IssueCategory
+import com.nasgrad.api.model.IssueType
+import com.nasgrad.api.model.NewItemRequest
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -34,16 +36,16 @@ interface ApiClient {
     companion object {
 
         val client = OkHttpClient.Builder()
-                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build()!!
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .build()!!
 
         fun create(): ApiClient {
             val retrofit = Retrofit.Builder()
-                    .client(client)
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(BuildConfig.BASE_DOMAIN_URL)
-                    .build()
+                .client(client)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BuildConfig.BASE_DOMAIN_URL)
+                .build()
 
             return retrofit.create(ApiClient::class.java)
         }

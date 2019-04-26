@@ -1,7 +1,6 @@
 package com.nasgrad
 
 import android.content.Intent
-
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -13,8 +12,6 @@ import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.nasgrad.MainActivity.Companion.ITEM_ID
 import com.nasgrad.api.model.Issue
-import com.nasgrad.issue.CreateIssueActivity
-import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -50,7 +47,13 @@ class DetailActivity : AppCompatActivity(), OnClickListener {
         val viewId = view.id
         when (viewId) {
             reportIssue.id -> openEmailClint()
-            share_btn.id -> shareTwitter(resources.getString(R.string.tweetText, displayedIssue.title, displayedIssue.id))
+            share_btn.id -> shareTwitter(
+                resources.getString(
+                    R.string.tweetText,
+                    displayedIssue.title,
+                    displayedIssue.id
+                )
+            )
         }
     }
 

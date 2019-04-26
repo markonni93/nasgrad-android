@@ -19,10 +19,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.nasgrad.R
 import com.nasgrad.adapter.CategorySpinnerAdapter
-import com.nasgrad.api.model.IssueCategory
+import com.nasgrad.adapter.IssueTypeSpinnerAdapter
+import com.nasgrad.api.model.IssueType
 import com.nasgrad.api.model.Location
-import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_create_issue.*
@@ -55,7 +56,8 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         ibArrowRight.setOnClickListener(this)
         ibArrowLeft.setOnClickListener(this)
 
-        initCategorySpinner()
+        ibArrowLeft.visibility = View.VISIBLE
+        //initCategorySpinner()
         initTypesSpinner()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -75,13 +77,20 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         val viewId = view.id
         when (viewId) {
             ibArrowLeft.id -> {
+                (activity as CreateIssueActivity).finish()
+                //(activity as CreateIssueActivity).openPreviousFragment()
             }
 
             ibArrowRight.id -> {
 
                 val issue = (activity as CreateIssueActivity).issue
-                val bitmap = (imagePreview.drawable as BitmapDrawable).bitmap
-                issue.picturePreview = Helper.encodePicturePreview(bitmap)
+
+                if (imagePreview.drawable.constantState == resources.getDrawable(R.drawable.ic_image).constantState) {
+                    Timber.e("No image loaded")
+                } else {
+                    val bitmap = (imagePreview.drawable as BitmapDrawable).bitmap
+                    issue.picturePreview = Helper.encodePicturePreview(bitmap)
+                }
 
                 issue.title = tvIssueTitle.text.toString()
                 issue.description = etIssueDescription.text.toString()
@@ -92,9 +101,9 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
                     this.tvThirdCategory.text.toString()
                 )
 
-                val category = spinnerTypes.selectedItem as IssueCategory
-                issue.issueType = category.name
-                //issue.issueType = type.name
+                val type = spinnerTypes.selectedItem as IssueType
+                //issue.issueType = category.name
+                issue.issueType = type.name
 
                 issue.location = location
                 issue.address = tvAddress.text.toString()
@@ -112,7 +121,6 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
             openCameraButton.id -> openCameraMode()
             openGalleryButton.id -> openGalleryMode()
             deletePicture.id -> deletePicture()
-
         }
     }
 
@@ -160,7 +168,8 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
     private fun initCategorySpinner() {
         val categoryTypes = ArrayList(Helper.issueCategories.values)
 
-        val adapter = CategorySpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, categoryTypes)
+        val adapter =
+            CategorySpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, categoryTypes)
         adapter.setDropDownViewResource(R.layout.types_spinner_item)
 
         spinnerTypes.adapter = adapter
@@ -168,13 +177,14 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
     }
 
     private fun initTypesSpinner() {
-//        val issueTypes = ArrayList(Helper.issueTypes.values)
-//
-//        val adapter = CategorySpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, issueTypes)
-//        adapter.setDropDownViewResource(R.layout.types_spinner_item)
-//
-//        spinnerTypes.adapter = adapter
-//        spinnerTypes.onItemSelectedListener = this
+        val issueTypes = ArrayList(Helper.issueTypes.values)
+
+        val adapter =
+            IssueTypeSpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, issueTypes)
+        adapter.setDropDownViewResource(R.layout.types_spinner_item)
+
+        spinnerTypes.adapter = adapter
+        spinnerTypes.onItemSelectedListener = this
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -182,10 +192,14 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val selectedType = parent?.getItemAtPosition(position) as IssueCategory
+        val selectedType = parent?.getItemAtPosition(position) as IssueType
         Timber.d("onItemSelected $selectedType")
-        val categories = Helper.getCategories()
-        Timber.d("Categories size %s", categories.size)
+
+        val types = Helper.getIssueType()
+
+        for (type in types) {
+            Timber.e("%s", type.name)
+        }
 
 
 //        val categories = Helper.getCategoriesForType(selectedType)

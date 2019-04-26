@@ -13,7 +13,7 @@ import com.nasgrad.api.model.Issue
 import com.nasgrad.api.model.IssueRequestBody
 import com.nasgrad.api.model.NewItemRequest
 import com.nasgrad.api.model.PictureInfo
-import com.nasgrad.nasGradApp.R
+import com.nasgrad.R
 import com.nasgrad.utils.Helper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -65,10 +65,17 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
 
         categoryPreview.text = "Kategorije: ${names}"
         addressPreview.text = "Adresa: ${issue.address}"
-        descriptionPreview.text = issue.description
+
+        if (!issue.description.isNullOrBlank()) {
+            descriptionPreview.text = "Opis: ${issue.description}"
+        }
 
         Timber.d("${issue.picturePreview}")
-        if (issue.picturePreview != null) imagePreview.setImageBitmap(com.nasgrad.utils.Helper.decodePicturePreview(issue.picturePreview!!))
+        if (issue.picturePreview != null) imagePreview.setImageBitmap(
+            com.nasgrad.utils.Helper.decodePicturePreview(
+                issue.picturePreview!!
+            )
+        )
 
         ibArrowLeft.setOnClickListener(this)
         ibArrowRight.setOnClickListener(this)
@@ -101,21 +108,30 @@ class PreviewIssueFragment : Fragment(), View.OnClickListener {
     private fun saveIssue() {
         val client = ApiClient.create()
 
-        val request = IssueRequestBody(issue.categories, issue.description, issue.id, issue.issueType, issue.location, issue.ownerId, 1, issue.title)
+        val request = IssueRequestBody(
+            issue.categories,
+            issue.description,
+            issue.id,
+            issue.issueType,
+            issue.location,
+            issue.ownerId,
+            1,
+            issue.title
+        )
         val pictureInfo = PictureInfo(issue.picturePreview, UUID.randomUUID().toString())
         val newItemRequest = NewItemRequest(request, pictureInfo)
 
         disposable = client.createNewIssue(newItemRequest)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { t ->
-                    if (t.isSuccessful()) {
-                        val response = t.body()
-                        Timber.d("Response: $response")
-                    } else {
-                        Timber.e("Error occured")
-                    }
-                }.subscribe()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { t ->
+                if (t.isSuccessful()) {
+                    val response = t.body()
+                    Timber.d("Response: $response")
+                } else {
+                    Timber.e("Error occured")
+                }
+            }.subscribe()
     }
 
     override fun onStop() {

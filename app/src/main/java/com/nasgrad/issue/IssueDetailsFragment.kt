@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import com.nasgrad.R
 import com.nasgrad.api.model.IssueCategory
 import com.nasgrad.api.model.IssueType
-import com.nasgrad.nasGradApp.R
 import com.nasgrad.utils.Helper
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_issue_details.*
@@ -52,7 +52,7 @@ class IssueDetailsFragment : Fragment(), AdapterView.OnItemSelectedListener, Vie
                 issue.title = tvIssueTitle.text.toString()
                 issue.description = etIssueDescription.text.toString()
 
-                val categoryNames=  listOf(
+                val categoryNames = listOf(
                     this.tvFirstCategory.text.toString(),
                     this.tvCategory2.text.toString(),
                     this.tvThirdCategory.text.toString()

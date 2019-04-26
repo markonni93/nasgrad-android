@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.nasgrad.R
 import com.nasgrad.api.model.IssueCategory
-import com.nasgrad.nasGradApp.R
 import kotlinx.android.synthetic.main.types_spinner_item.view.*
 
 class CategorySpinnerAdapter(context: Context, resource: Int, objects: ArrayList<IssueCategory>) :

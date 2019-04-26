@@ -81,5 +81,15 @@ class Helper {
             }
             return categories
         }
+
+        fun getIssueType(): MutableList<IssueType> {
+            val types = mutableListOf<IssueType>()
+
+            for (type in issueTypes) {
+                val temp = type.value
+                types.add(temp)
+            }
+            return types
+        }
     }
 }

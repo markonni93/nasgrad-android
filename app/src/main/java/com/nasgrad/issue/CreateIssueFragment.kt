@@ -21,9 +21,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.nasgrad.R
 import com.nasgrad.adapter.CategorySpinnerAdapter
+import com.nasgrad.adapter.CityServiceSpinnerAdapter
 import com.nasgrad.adapter.IssueTypeSpinnerAdapter
+import com.nasgrad.api.model.CityService
 import com.nasgrad.api.model.IssueType
 import com.nasgrad.api.model.Location
+import com.nasgrad.api.model.Type
 import com.nasgrad.utils.Helper
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_create_issue.*
@@ -44,6 +47,8 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
 
     private lateinit var location: Location
 
+    private var typesList: MutableMap<String, Type> = HashMap()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_create_issue, container, false)
@@ -55,10 +60,12 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         super.onViewCreated(view, savedInstanceState)
         ibArrowRight.setOnClickListener(this)
         ibArrowLeft.setOnClickListener(this)
+        button_select_type.setOnClickListener(this)
 
         ibArrowLeft.visibility = View.VISIBLE
         //initCategorySpinner()
         initTypesSpinner()
+        initCityCerviceSpinner()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -78,7 +85,16 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         when (viewId) {
             ibArrowLeft.id -> {
                 (activity as CreateIssueActivity).finish()
-                //(activity as CreateIssueActivity).openPreviousFragment()
+            }
+
+            button_select_type.id -> {
+                if (!typesList.isEmpty()) {
+                    for (tip in typesList) {
+                        Timber.d("%s", tip.value.name)
+                    }
+                } else {
+                    displaySnackbar(view, "Izaberite službu da biste mogli da izaberete tip problema")
+                }
             }
 
             ibArrowRight.id -> {
@@ -101,7 +117,7 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
                     this.tvThirdCategory.text.toString()
                 )
 
-                val type = spinnerTypes.selectedItem as IssueType
+                val type = spinnerCityService.selectedItem as IssueType
                 //issue.issueType = category.name
                 issue.issueType = type.name
 
@@ -115,7 +131,7 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
                 ) {
                     (activity as CreateIssueActivity).setFragment(R.id.mainContent, PreviewIssueFragment())
                 } else {
-                    displaySnackbar(view)
+                    displaySnackbar(view, "Molimo Vas popunite sva polja pre prijavljivanja problema!")
                 }
             }
             openCameraButton.id -> openCameraMode()
@@ -124,9 +140,9 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         }
     }
 
-    private fun displaySnackbar(view: View) {
+    private fun displaySnackbar(view: View, text: String) {
         val snackbar = Snackbar.make(
-            view, "Molimo Vas popunite sva polja pre prijavljivanja problema!",
+            view, text,
             Snackbar.LENGTH_LONG
         ).setAction("Action", null)
         snackbar.setActionTextColor(Color.BLACK)
@@ -172,8 +188,8 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
             CategorySpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, categoryTypes)
         adapter.setDropDownViewResource(R.layout.types_spinner_item)
 
-        spinnerTypes.adapter = adapter
-        spinnerTypes.onItemSelectedListener = this
+        spinnerCityService.adapter = adapter
+        spinnerCityService.onItemSelectedListener = this
     }
 
     private fun initTypesSpinner() {
@@ -183,8 +199,18 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
             IssueTypeSpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, issueTypes)
         adapter.setDropDownViewResource(R.layout.types_spinner_item)
 
-        spinnerTypes.adapter = adapter
-        spinnerTypes.onItemSelectedListener = this
+        spinnerCityService.adapter = adapter
+        spinnerCityService.onItemSelectedListener = this
+    }
+
+    private fun initCityCerviceSpinner() {
+        val cityServices = ArrayList(Helper.cityServices.values)
+
+        val adapter =
+            CityServiceSpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, cityServices)
+        adapter.setDropDownViewResource(R.layout.types_spinner_item)
+        spinnerCityService.adapter = adapter
+        spinnerCityService.onItemSelectedListener = this
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -192,15 +218,24 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val selectedType = parent?.getItemAtPosition(position) as IssueType
-        Timber.d("onItemSelected $selectedType")
+        if (position > 0) {
+            val selectedCityService = parent?.getItemAtPosition(position) as CityService
+            Timber.d("onItemSelected $selectedCityService")
 
-        val types = Helper.getIssueType()
+            val cityServiceTypes = Helper.getCityServiceType()
+            val issueTypes = Helper.getTypes()
 
-        for (type in types) {
-            Timber.e("%s", type.name)
-        }
-
+            for (type in cityServiceTypes) {
+                if (type.cityService.equals(selectedCityService.id)) {
+                    Timber.d("Found city type service with same id as City Service %s", type.id)
+                    for (tip in issueTypes) {
+                        if (type.type.equals(tip.id)) {
+                            typesList.put(tip.id, tip)
+                            Timber.e("Matched types for selected city service are %s", tip.name)
+                        }
+                    }
+                }
+            }
 
 //        val categories = Helper.getCategoriesForType(selectedType)
 //        when {
@@ -231,6 +266,7 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
 //                tvThirdCategory.visibility = View.GONE
 //            }
 //        }
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -265,6 +301,11 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+    }
+
     private fun getCurrentLocation() {
         try {
             if ((activity as CreateIssueActivity).permissionGranted) {
@@ -286,6 +327,14 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         } catch (e: SecurityException) {
             Timber.e(e, "Exception")
         }
+    }
+
+    override fun onPause() {
+        stopLocationUpdates()
+        super.onPause()
+    }
+
+    private fun stopLocationUpdates() {
     }
 
     private fun updateUI() {

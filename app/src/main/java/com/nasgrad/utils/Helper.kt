@@ -16,11 +16,11 @@ class Helper {
 
         var issueCategories: MutableMap<String, IssueCategory> = HashMap()
 
-        var cityCategories: MutableMap<String, CityCervice> = HashMap()
+        var cityServices: MutableMap<String, CityService> = HashMap()
 
         var allTypes: MutableMap<String, Type> = HashMap()
 
-        var cityCervicesTypes: MutableMap<String, CityCerviceType> = HashMap()
+        var cityServicesTypes: MutableMap<String, CityCerviceType> = HashMap()
 
         fun getTypeName(typeId: String?): String? {
             val issueType = issueTypes[typeId]
@@ -94,6 +94,27 @@ class Helper {
                 val temp = type.value
                 types.add(temp)
             }
+            return types
+        }
+
+        fun getCityServiceType(): MutableList<CityCerviceType> {
+            val cityServiceTypes = mutableListOf<CityCerviceType>()
+
+            for (type in cityServicesTypes) {
+                val temp = type.value
+                cityServiceTypes.add(temp)
+            }
+            return cityServiceTypes
+        }
+
+        fun getTypes(): MutableList<Type> {
+            val types = mutableListOf<Type>()
+
+            for (type in allTypes) {
+                val temp = type.value
+                types.add(temp)
+            }
+
             return types
         }
     }

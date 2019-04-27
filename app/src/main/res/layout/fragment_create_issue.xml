@@ -95,7 +95,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Spinner
-                android:id="@+id/spinnerTypes"
+                android:id="@+id/spinnerCityService"
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +107,23 @@
                 android:focusableInTouchMode="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/button_select_type"
                 app:layout_constraintTop_toBottomOf="@+id/tilIssueTitle"/>
+
+
+        <Button
+                android:id="@+id/button_select_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:background="@drawable/img_shape"
+                android:textColor="@color/white"
+                android:layout_marginTop="14dp"
+                android:text="@string/select_problem_type"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spinnerCityService"
+                app:layout_constraintBottom_toTopOf="@id/tvFirstCategory"
+        />
 
 
         <TextView
@@ -115,13 +131,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/category_label_shape"
                 android:textSize="16sp"
                 android:visibility="visible"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerTypes"/>
+                app:layout_constraintTop_toBottomOf="@+id/button_select_type"/>
 
         <TextView
                 android:id="@+id/tvCategory2"

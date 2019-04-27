@@ -85,7 +85,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun saveCityCerviceTypes(cityCerviceTypes: List<CityCerviceType>) {
-        val map = Helper.cityCervicesTypes
+        val map = Helper.cityServicesTypes
         for (cityCerviceType in cityCerviceTypes) {
             map.put(cityCerviceType.id, cityCerviceType)
         }
@@ -98,8 +98,8 @@ class SplashScreenActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveCityCervices(cityCervices: List<CityCervice>) {
-        val map = Helper.cityCategories
+    private fun saveCityCervices(cityCervices: List<CityService>) {
+        val map = Helper.cityServices
         for (cityCervice in cityCervices) {
             map.put(cityCervice.id, cityCervice)
         }

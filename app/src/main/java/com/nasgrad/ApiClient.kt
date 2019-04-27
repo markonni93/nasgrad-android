@@ -31,7 +31,7 @@ interface ApiClient {
     fun createNewIssue(@Body body: NewItemRequest): Observable<Response<ResponseBody>>
 
     @GET("CRUD/GetAllCityServices")
-    fun getAllCityCervices(): Observable<List<CityCervice>>
+    fun getAllCityCervices(): Observable<List<CityService>>
 
     @GET("CRUD/GetAllTypes")
     fun getAllTypes(): Observable<List<Type>>

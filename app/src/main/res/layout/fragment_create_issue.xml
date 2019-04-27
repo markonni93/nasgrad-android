@@ -122,8 +122,35 @@
                 android:text="@string/select_problem_type"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/spinnerCityService"
-                app:layout_constraintBottom_toTopOf="@id/tvFirstCategory"
-        />
+                app:layout_constraintBottom_toTopOf="@id/selectedTypesTitle"/>
+
+        <TextView
+                android:id="@+id/selectedTypesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/izabrane_tipovi"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_select_type"
+                app:layout_constraintBottom_toTopOf="@id/selectedTypesTextView"/>
+
+        <TextView
+                android:id="@+id/selectedTypesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/selectedTypesTitle"
+                app:layout_constraintBottom_toTopOf="@id/tvFirstCategory"/>
 
 
         <TextView
@@ -137,7 +164,7 @@
                 android:visibility="visible"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_select_type"/>
+                app:layout_constraintTop_toBottomOf="@+id/selectedTypesTextView"/>
 
         <TextView
                 android:id="@+id/tvCategory2"

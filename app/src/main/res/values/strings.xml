@@ -44,5 +44,6 @@
     <string name="location_message_info">Da li je ovo lokacija na kojoj se nalazi problem? Ukoliko nije, pomerite mapu
         tako da pin prikazuje tačnu lokaciju problema.
     </string>
-    <string name="select_problem_type">Izaberite tip/tipove problema</string>
+    <string name="select_problem_type">Izaberite tip problema</string>
+    <string name="izabrane_tipovi">Izabrani tipovi problema:</string>
 </resources>

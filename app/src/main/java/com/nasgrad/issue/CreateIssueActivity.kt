@@ -46,7 +46,11 @@ class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        if (fragmentManager.backStackEntryCount.equals(1)) {
+            finish()
+        } else {
+            onBackPressed()
+        }
         //finish()
         return true
     }

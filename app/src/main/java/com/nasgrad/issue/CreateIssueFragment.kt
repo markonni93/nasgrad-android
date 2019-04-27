@@ -1,5 +1,6 @@
 package com.nasgrad.issue
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -26,12 +27,12 @@ import com.nasgrad.adapter.IssueTypeSpinnerAdapter
 import com.nasgrad.api.model.CityService
 import com.nasgrad.api.model.IssueType
 import com.nasgrad.api.model.Location
-import com.nasgrad.api.model.Type
 import com.nasgrad.utils.Helper
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_create_issue.*
 import timber.log.Timber
 import java.io.IOException
+import java.util.*
 
 
 class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItemSelectedListener, OnMapReadyCallback,
@@ -47,7 +48,9 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
 
     private lateinit var location: Location
 
-    private var typesList: MutableMap<String, Type> = HashMap()
+    private val typesNameList: MutableList<String> = mutableListOf()
+
+    private val mUserItems: MutableList<Int> = mutableListOf()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,12 +62,10 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ibArrowRight.setOnClickListener(this)
-        ibArrowLeft.setOnClickListener(this)
+        //ibArrowLeft.setOnClickListener(this)
         button_select_type.setOnClickListener(this)
 
-        ibArrowLeft.visibility = View.VISIBLE
-        //initCategorySpinner()
-        initTypesSpinner()
+        //ibArrowLeft.visibility = View.VISIBLE
         initCityCerviceSpinner()
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -88,10 +89,8 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
             }
 
             button_select_type.id -> {
-                if (!typesList.isEmpty()) {
-                    for (tip in typesList) {
-                        Timber.d("%s", tip.value.name)
-                    }
+                if (!typesNameList.isEmpty()) {
+                    displayTypeListDialog(typesNameList)
                 } else {
                     displaySnackbar(view, "Izaberite službu da biste mogli da izaberete tip problema")
                 }
@@ -140,6 +139,45 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         }
     }
 
+    private fun displayTypeListDialog(typesList: MutableList<String>) {
+
+        val checkedItems = BooleanArray(typesList.size)
+
+        AlertDialog.Builder(activity)
+            .setTitle("Izaberite jedan ili više tipova problema koje želite da prijavite")
+            .setMultiChoiceItems(typesList.toTypedArray(), checkedItems) { dialog, position, isChecked ->
+                if (isChecked) {
+                    if (!mUserItems.contains(position)) {
+                        mUserItems.add(position)
+                    } else {
+                        mUserItems.remove(position)
+                    }
+                }
+            }
+            .setPositiveButton("Ok") { dialog, which ->
+                Timber.d("Add items to the list")
+                var textToDisplay = ""
+                mUserItems.sort()
+                for (mUserItem in mUserItems) {
+                    textToDisplay += typesList[mUserItem]
+                    if (mUserItem != mUserItems.size - 1 &&
+                        mUserItems.size > 1
+                    ) {
+                        textToDisplay += ", "
+                    }
+                }
+                selectedTypesTitle.visibility = View.VISIBLE
+                selectedTypesTextView.visibility = View.VISIBLE
+                selectedTypesTextView.setText(textToDisplay)
+                mUserItems.clear()
+            }
+            .setNegativeButton("Cancel") { dialog, which ->
+                dialog.dismiss()
+                mUserItems.clear()
+            }
+            .show()
+    }
+
     private fun displaySnackbar(view: View, text: String) {
         val snackbar = Snackbar.make(
             view, text,
@@ -181,28 +219,6 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         openCameraButton.visibility = View.GONE
     }
 
-    private fun initCategorySpinner() {
-        val categoryTypes = ArrayList(Helper.issueCategories.values)
-
-        val adapter =
-            CategorySpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, categoryTypes)
-        adapter.setDropDownViewResource(R.layout.types_spinner_item)
-
-        spinnerCityService.adapter = adapter
-        spinnerCityService.onItemSelectedListener = this
-    }
-
-    private fun initTypesSpinner() {
-        val issueTypes = ArrayList(Helper.issueTypes.values)
-
-        val adapter =
-            IssueTypeSpinnerAdapter((activity as CreateIssueActivity), R.layout.types_spinner_item, issueTypes)
-        adapter.setDropDownViewResource(R.layout.types_spinner_item)
-
-        spinnerCityService.adapter = adapter
-        spinnerCityService.onItemSelectedListener = this
-    }
-
     private fun initCityCerviceSpinner() {
         val cityServices = ArrayList(Helper.cityServices.values)
 
@@ -221,7 +237,7 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         if (position > 0) {
             val selectedCityService = parent?.getItemAtPosition(position) as CityService
             Timber.d("onItemSelected $selectedCityService")
-
+            typesNameList.clear()
             val cityServiceTypes = Helper.getCityServiceType()
             val issueTypes = Helper.getTypes()
 
@@ -230,42 +246,16 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
                     Timber.d("Found city type service with same id as City Service %s", type.id)
                     for (tip in issueTypes) {
                         if (type.type.equals(tip.id)) {
-                            typesList.put(tip.id, tip)
+                            typesNameList.add(tip.name)
                             Timber.e("Matched types for selected city service are %s", tip.name)
                         }
                     }
                 }
             }
-
-//        val categories = Helper.getCategoriesForType(selectedType)
-//        when {
-//            categories.size == 1 -> {
-//                tvFirstCategory.visibility = View.VISIBLE
-//                tvFirstCategory.text = categories[0].name
-//                tvCategory2.visibility = View.GONE
-//                tvThirdCategory.visibility = View.GONE
-//            }
-//            categories.size == 2 -> {
-//                tvFirstCategory.visibility = View.VISIBLE
-//                tvFirstCategory.text = categories[0].name
-//                tvCategory2.visibility = View.VISIBLE
-//                tvCategory2.text = categories[1].name
-//                tvThirdCategory.visibility = View.GONE
-//            }
-//            categories.size >= 3 -> {
-//                tvFirstCategory.visibility = View.VISIBLE
-//                tvFirstCategory.text = categories[0].name
-//                tvCategory2.visibility = View.VISIBLE
-//                tvCategory2.text = categories[1].name
-//                tvThirdCategory.visibility = View.VISIBLE
-//                tvThirdCategory.text = categories[2].name
-//            }
-//            else -> {
-//                tvFirstCategory.visibility = View.GONE
-//                tvCategory2.visibility = View.GONE
-//                tvThirdCategory.visibility = View.GONE
-//            }
-//        }
+        } else {
+            if (!typesNameList.isEmpty()) {
+                typesNameList.clear()
+            }
         }
     }
 
@@ -301,11 +291,6 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-    }
-
     private fun getCurrentLocation() {
         try {
             if ((activity as CreateIssueActivity).permissionGranted) {
@@ -327,14 +312,6 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         } catch (e: SecurityException) {
             Timber.e(e, "Exception")
         }
-    }
-
-    override fun onPause() {
-        stopLocationUpdates()
-        super.onPause()
-    }
-
-    private fun stopLocationUpdates() {
     }
 
     private fun updateUI() {

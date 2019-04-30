@@ -6,11 +6,16 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.nasgrad.api.model.*
 import com.nasgrad.utils.Helper
+import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class SplashScreenActivity : AppCompatActivity() {
+
+    @Inject
+    internal lateinit var apiClient: ApiClient
 
     val client by lazy {
         ApiClient.create()
@@ -22,13 +27,14 @@ class SplashScreenActivity : AppCompatActivity() {
     var disposable5: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
 
 
-        disposable1 = client.getTypes()
+        disposable1 = apiClient.getTypes()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -39,7 +45,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 { error -> finish() }
             )
 
-        disposable2 = client.getCategories()
+        disposable2 = apiClient.getCategories()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -50,7 +56,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 { error -> Log.e("sonja categories", error.message) }
             )
 
-        disposable3 = client.getAllCityCervices()
+        disposable3 = apiClient.getAllCityCervices()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -61,7 +67,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 { error -> finish() }
             )
 
-        disposable4 = client.getAllTypes()
+        disposable4 = apiClient.getAllTypes()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -72,7 +78,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 { error -> finish() }
             )
 
-        disposable5 = client.getAllCityCerviceTypes()
+        disposable5 = apiClient.getAllCityCerviceTypes()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

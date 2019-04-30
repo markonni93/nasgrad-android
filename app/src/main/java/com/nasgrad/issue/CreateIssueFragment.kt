@@ -21,12 +21,10 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.nasgrad.R
-import com.nasgrad.adapter.CategorySpinnerAdapter
 import com.nasgrad.adapter.CityServiceSpinnerAdapter
-import com.nasgrad.adapter.IssueTypeSpinnerAdapter
 import com.nasgrad.api.model.CityService
-import com.nasgrad.api.model.IssueType
 import com.nasgrad.api.model.Location
+import com.nasgrad.api.model.Type
 import com.nasgrad.utils.Helper
 import kotlinx.android.synthetic.main.create_issue_bottom_navigation_layout.*
 import kotlinx.android.synthetic.main.fragment_create_issue.*
@@ -48,7 +46,7 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
 
     private lateinit var location: Location
 
-    private val typesNameList: MutableList<String> = mutableListOf()
+    private val typesList: MutableList<Type> = mutableListOf()
 
     private val mUserItems: MutableList<Int> = mutableListOf()
 
@@ -89,8 +87,8 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
             }
 
             button_select_type.id -> {
-                if (!typesNameList.isEmpty()) {
-                    displayTypeListDialog(typesNameList)
+                if (!typesList.isEmpty()) {
+                    displayTypeListDialog(typesList)
                 } else {
                     displaySnackbar(view, "Izaberite službu da biste mogli da izaberete tip problema")
                 }
@@ -116,12 +114,14 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
                     this.tvThirdCategory.text.toString()
                 )
 
-                val type = spinnerCityService.selectedItem as IssueType
+                val type = spinnerCityService.selectedItem as CityService
                 //issue.issueType = category.name
                 issue.issueType = type.name
 
                 issue.location = location
                 issue.address = tvAddress.text.toString()
+
+                issue.categories = getSelectedIssueTypes(this.selectedTypesTextView.text.toString())
 
                 if (!issue.address.equals("nepoznata lokacija", true) &&
                     issue.location != null &&
@@ -139,19 +139,47 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         }
     }
 
-    private fun displayTypeListDialog(typesList: MutableList<String>) {
+    private fun getSelectedIssueTypes(types: String): MutableList<String> {
+        val listOfIssues: MutableList<String> = mutableListOf()
+        if (!types.isNullOrBlank()) {
+            var oneItem = ""
+            Timber.e("Last index %s", types.lastIndex)
+            for (char in types.toCharArray().iterator()) {
+                if (!char.equals('\n', false)) {
+                    oneItem += char
+                } else if (char.equals('\n')) {
+                    listOfIssues.add(oneItem)
+                    oneItem = ""
+                }
+
+                if (!types.iterator().hasNext()) {
+                    listOfIssues.add(oneItem)
+                }
+            }
+        }
+        return listOfIssues
+    }
+
+    private fun displayTypeListDialog(typesList: MutableList<Type>) {
 
         val checkedItems = BooleanArray(typesList.size)
+        val array: MutableList<String> = mutableListOf()
+
+        for (type in typesList) {
+            array.add(type.name)
+        }
 
         AlertDialog.Builder(activity)
             .setTitle("Izaberite jedan ili više tipova problema koje želite da prijavite")
-            .setMultiChoiceItems(typesList.toTypedArray(), checkedItems) { dialog, position, isChecked ->
+            .setMultiChoiceItems(array.toTypedArray(), checkedItems) { dialog, position, isChecked ->
                 if (isChecked) {
                     if (!mUserItems.contains(position)) {
                         mUserItems.add(position)
                     } else {
                         mUserItems.remove(position)
                     }
+                } else {
+                    mUserItems.remove(position)
                 }
             }
             .setPositiveButton("Ok") { dialog, which ->
@@ -159,21 +187,23 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
                 var textToDisplay = ""
                 mUserItems.sort()
                 for (mUserItem in mUserItems) {
-                    textToDisplay += typesList[mUserItem]
+                    textToDisplay += array[mUserItem]
                     if (mUserItem != mUserItems.size - 1 &&
                         mUserItems.size > 1
                     ) {
-                        textToDisplay += ", "
+                        textToDisplay += "\n"
                     }
                 }
                 selectedTypesTitle.visibility = View.VISIBLE
                 selectedTypesTextView.visibility = View.VISIBLE
                 selectedTypesTextView.setText(textToDisplay)
                 mUserItems.clear()
+                array.clear()
             }
             .setNegativeButton("Cancel") { dialog, which ->
                 dialog.dismiss()
                 mUserItems.clear()
+                array.clear()
             }
             .show()
     }
@@ -237,7 +267,7 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         if (position > 0) {
             val selectedCityService = parent?.getItemAtPosition(position) as CityService
             Timber.d("onItemSelected $selectedCityService")
-            typesNameList.clear()
+            typesList.clear()
             val cityServiceTypes = Helper.getCityServiceType()
             val issueTypes = Helper.getTypes()
 
@@ -246,15 +276,15 @@ class CreateIssueFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
                     Timber.d("Found city type service with same id as City Service %s", type.id)
                     for (tip in issueTypes) {
                         if (type.type.equals(tip.id)) {
-                            typesNameList.add(tip.name)
+                            typesList.add(tip)
                             Timber.e("Matched types for selected city service are %s", tip.name)
                         }
                     }
                 }
             }
         } else {
-            if (!typesNameList.isEmpty()) {
-                typesNameList.clear()
+            if (!typesList.isEmpty()) {
+                typesList.clear()
             }
         }
     }

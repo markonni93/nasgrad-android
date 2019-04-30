@@ -126,5 +126,9 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         disposable1?.dispose()
+        disposable2?.dispose()
+        disposable3?.dispose()
+        disposable4?.dispose()
+        disposable5?.dispose()
     }
 }

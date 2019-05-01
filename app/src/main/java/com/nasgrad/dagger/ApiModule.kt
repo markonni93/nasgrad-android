@@ -2,6 +2,7 @@ package com.nasgrad.dagger
 
 import com.nasgrad.ApiClient
 import com.nasgrad.BuildConfig
+import com.nasgrad.repository.ApiRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -40,5 +41,11 @@ class ApiModule {
     @Singleton
     internal fun provideApiService(retrofit: Retrofit): ApiClient {
         return retrofit.create(ApiClient::class.java)
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideApiRepository(apiClient: ApiClient): ApiRepository {
+        return ApiRepository(apiClient)
     }
 }

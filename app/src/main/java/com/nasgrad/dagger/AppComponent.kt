@@ -1,6 +1,5 @@
 package com.nasgrad.dagger
 
-import android.app.Application
 import com.nasgrad.NasGradApplication
 import dagger.BindsInstance
 import dagger.Component

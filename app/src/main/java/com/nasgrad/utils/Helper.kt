@@ -77,26 +77,6 @@ class Helper {
             return Base64.encodeToString(imageBytes, Base64.DEFAULT)
         }
 
-        fun getCategories(): MutableList<IssueCategory> {
-            val categories = mutableListOf<IssueCategory>()
-
-            for (category in issueCategories) {
-                val temp = category.value
-                categories.add(temp)
-            }
-            return categories
-        }
-
-        fun getIssueType(): MutableList<IssueType> {
-            val types = mutableListOf<IssueType>()
-
-            for (type in issueTypes) {
-                val temp = type.value
-                types.add(temp)
-            }
-            return types
-        }
-
         fun getCityServiceType(): MutableList<CityCerviceType> {
             val cityServiceTypes = mutableListOf<CityCerviceType>()
 

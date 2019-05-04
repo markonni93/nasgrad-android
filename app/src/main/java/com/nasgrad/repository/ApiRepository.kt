@@ -1,66 +1,31 @@
 package com.nasgrad.repository
 
 import com.nasgrad.ApiClient
-import com.nasgrad.utils.Helper
+import com.nasgrad.api.model.CityCerviceType
+import com.nasgrad.api.model.CityService
+import com.nasgrad.api.model.Type
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 class ApiRepository @Inject constructor(var apiClient: ApiClient) {
 
-    fun getTypes(): Disposable {
-        val disposable: Disposable
-
-        disposable = apiClient.getAllTypes()
+    fun getTypes(): Observable<List<Type>> {
+        return apiClient.getAllTypes()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result ->
-                    val map = Helper.allTypes
-                    for (type in result) {
-                        map.put(type.id, type)
-                    }
-                },
-                { error -> Timber.e(error) }
-            )
-        return disposable
     }
 
-    fun getCityServices(): Disposable {
-        val disposable: Disposable
-
-        disposable = apiClient.getAllCityCervices()
+    fun getCityServices(): Observable<List<CityService>> {
+        return apiClient.getAllCityCervices()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result ->
-                    val map = Helper.cityServices
-                    for (cityService in result) {
-                        map.put(cityService.id, cityService)
-                    }
-                },
-                { error -> Timber.e(error) }
-            )
-        return disposable
     }
 
-    fun getCityServiceTypes(): Disposable {
-        val disposable: Disposable
-
-        disposable = apiClient.getAllCityCerviceTypes()
+    fun getCityServiceTypes(): Observable<List<CityCerviceType>> {
+        return apiClient.getAllCityCerviceTypes()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result ->
-                    val map = Helper.cityServicesTypes
-                    for (cityCerviceType in result) {
-                        map.put(cityCerviceType.id, cityCerviceType)
-                    }
-                },
-                { error -> Timber.e(error) }
-            )
-        return disposable
     }
 }

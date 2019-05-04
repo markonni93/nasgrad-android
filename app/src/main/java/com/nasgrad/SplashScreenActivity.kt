@@ -3,12 +3,13 @@ package com.nasgrad
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.nasgrad.base.BaseActivity
 import com.nasgrad.repository.ApiRepository
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : BaseActivity() {
 
     @Inject
     internal lateinit var apiClient: ApiClient
@@ -21,7 +22,6 @@ class SplashScreenActivity : AppCompatActivity() {
     var disposable3: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         intent = Intent(this, MainActivity::class.java)

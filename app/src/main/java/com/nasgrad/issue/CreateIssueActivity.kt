@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.nasgrad.api.model.Issue
 import com.nasgrad.R
+import com.nasgrad.base.BaseActivity
 import com.nasgrad.utils.Helper
 import com.nasgrad.utils.SharedPreferencesHelper
 import kotlinx.android.synthetic.main.activity_create_issue.*
@@ -15,7 +16,7 @@ import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
 import timber.log.Timber
 
-class CreateIssueActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
+class CreateIssueActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
 
     private val fragmentManager = supportFragmentManager
 

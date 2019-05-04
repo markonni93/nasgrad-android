@@ -10,6 +10,7 @@ import com.nasgrad.api.model.Issue
 import com.nasgrad.api.model.Location
 import com.nasgrad.issue.CreateIssueActivity
 import com.nasgrad.R
+import com.nasgrad.base.BaseActivity
 import com.nasgrad.utils.Helper
 import com.nasgrad.utils.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,7 +19,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), OnItemClickListener {
+class MainActivity : BaseActivity(), OnItemClickListener {
 
     companion object {
         const val ITEM_ID = "ITEM_ID"

@@ -105,5 +105,8 @@ dependencies {
         transitive = true;
     }
 
+    //ViewModel
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
     implementation 'pub.devrel:easypermissions:2.0.0'
 }

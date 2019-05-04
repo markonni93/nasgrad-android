@@ -17,5 +17,5 @@ internal abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SplashScreenViewModel::class)
-    protected abstract fun movieListViewModel(moviesListViewModel: SplashScreenViewModel): ViewModel
+    protected abstract fun splashActivityViewModel(splashActivityViewModel: SplashScreenViewModel): ViewModel
 }

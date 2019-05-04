@@ -5,10 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import com.nasgrad.api.model.Issue
 import com.nasgrad.R
-import com.nasgrad.base.BaseActivity
+import com.nasgrad.ui.base.BaseActivity
 import com.nasgrad.utils.Helper
 import com.nasgrad.utils.SharedPreferencesHelper
 import kotlinx.android.synthetic.main.activity_create_issue.*

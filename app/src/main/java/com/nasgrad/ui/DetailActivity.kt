@@ -1,4 +1,4 @@
-package com.nasgrad
+package com.nasgrad.ui
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,7 +10,9 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
-import com.nasgrad.MainActivity.Companion.ITEM_ID
+import com.nasgrad.ApiClient
+import com.nasgrad.R
+import com.nasgrad.ui.MainActivity.Companion.ITEM_ID
 import com.nasgrad.api.model.Issue
 import com.nasgrad.utils.Helper
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -1,11 +1,11 @@
-package com.nasgrad.base
+package com.nasgrad.ui.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.CompositeDisposable
 
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     protected val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

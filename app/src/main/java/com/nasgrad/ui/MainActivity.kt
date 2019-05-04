@@ -1,16 +1,16 @@
-package com.nasgrad
+package com.nasgrad.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.nasgrad.ApiClient
 import com.nasgrad.adapter.IssueAdapter
 import com.nasgrad.adapter.OnItemClickListener
 import com.nasgrad.api.model.Issue
 import com.nasgrad.api.model.Location
 import com.nasgrad.issue.CreateIssueActivity
 import com.nasgrad.R
-import com.nasgrad.base.BaseActivity
+import com.nasgrad.ui.base.BaseActivity
 import com.nasgrad.utils.Helper
 import com.nasgrad.utils.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -1,11 +1,11 @@
-package com.nasgrad
+package com.nasgrad.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.nasgrad.base.BaseActivity
+import com.nasgrad.ApiClient
+import com.nasgrad.ui.base.BaseActivity
 import com.nasgrad.repository.ApiRepository
-import dagger.android.AndroidInjection
+import com.nasgrad.ui.MainActivity
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 

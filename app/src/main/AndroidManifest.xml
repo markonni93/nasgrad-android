@@ -21,7 +21,7 @@
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
         <activity
-                android:name="com.nasgrad.SplashScreenActivity"
+                android:name="com.nasgrad.ui.splash.SplashScreenActivity"
                 android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -30,13 +30,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nasgrad.MainActivity"/>
+        <activity android:name="com.nasgrad.ui.MainActivity"/>
 
         <activity
                 android:name="com.nasgrad.issue.CreateIssueActivity"
                 android:label="@string/title_activity_create_issue"
                 android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.nasgrad.DetailActivity"/>
+        <activity android:name="com.nasgrad.ui.DetailActivity"/>
 
         <meta-data
                 android:name="com.google.android.geo.API_KEY"

@@ -1,7 +1,7 @@
 package com.nasgrad.dagger
 
-import com.nasgrad.MainActivity
-import com.nasgrad.SplashScreenActivity
+import com.nasgrad.ui.MainActivity
+import com.nasgrad.ui.splash.SplashScreenActivity
 import com.nasgrad.issue.CreateIssueActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

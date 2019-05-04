@@ -1,9 +1,9 @@
-package com.nasgrad.base
+package com.nasgrad.ui.base
 
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
-class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
     protected val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

@@ -47,8 +47,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Timber.plant(Timber.DebugTree())
-
         fab.setOnClickListener {
             startActivity(Intent(this@MainActivity, CreateIssueActivity::class.java))
         }

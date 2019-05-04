@@ -10,6 +10,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import io.fabric.sdk.android.Fabric
+import timber.log.Timber
 import javax.inject.Inject
 
 class NasGradApplication : Application(), HasActivityInjector {
@@ -24,6 +25,7 @@ class NasGradApplication : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
         Fabric.with(this, Crashlytics())
+        Timber.plant(Timber.DebugTree())
         DaggerAppComponent.builder()
             .application(this)
             .build()

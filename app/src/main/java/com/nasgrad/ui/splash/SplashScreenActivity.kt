@@ -1,25 +1,13 @@
 package com.nasgrad.ui.splash
 
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import com.nasgrad.ApiClient
-import com.nasgrad.repository.ApiRepository
-import com.nasgrad.ui.MainActivity
+import android.os.Handler
 import com.nasgrad.ui.base.BaseActivity
-import javax.inject.Inject
+import com.nasgrad.ui.main.MainActivity
 
 class SplashScreenActivity : BaseActivity() {
-
-    @Inject
-    internal lateinit var apiClient: ApiClient
-
-    @Inject
-    internal lateinit var apiRepository: ApiRepository
-
-    @Inject
-    internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
     lateinit var splashActivityViewModel: SplashScreenViewModel
 
@@ -27,10 +15,11 @@ class SplashScreenActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         splashActivityViewModel = ViewModelProviders.of(this, viewModelFactory).get(SplashScreenViewModel::class.java)
 
-        intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-
         getDataFromRest()
+        //Todo this needs to be changed by ziping multiple calls in rxjava
+        Handler().postDelayed({
+            intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)}, 5000)
     }
 
     private fun getDataFromRest() {

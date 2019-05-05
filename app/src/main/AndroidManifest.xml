@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nasgrad.ui.MainActivity"/>
+        <activity android:name="com.nasgrad.ui.main.MainActivity"/>
 
         <activity
                 android:name="com.nasgrad.issue.CreateIssueActivity"

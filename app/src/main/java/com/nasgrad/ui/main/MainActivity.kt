@@ -1,4 +1,4 @@
-package com.nasgrad.ui
+package com.nasgrad.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import com.nasgrad.api.model.Issue
 import com.nasgrad.api.model.Location
 import com.nasgrad.issue.CreateIssueActivity
 import com.nasgrad.R
+import com.nasgrad.ui.DetailActivity
 import com.nasgrad.ui.base.BaseActivity
 import com.nasgrad.utils.Helper
 import com.nasgrad.utils.SharedPreferencesHelper

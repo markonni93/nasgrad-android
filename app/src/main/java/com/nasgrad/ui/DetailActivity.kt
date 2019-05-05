@@ -12,7 +12,7 @@ import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.nasgrad.ApiClient
 import com.nasgrad.R
-import com.nasgrad.ui.MainActivity.Companion.ITEM_ID
+import com.nasgrad.ui.main.MainActivity.Companion.ITEM_ID
 import com.nasgrad.api.model.Issue
 import com.nasgrad.utils.Helper
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -1,6 +1,6 @@
 package com.nasgrad.dagger
 
-import com.nasgrad.ui.MainActivity
+import com.nasgrad.ui.main.MainActivity
 import com.nasgrad.ui.splash.SplashScreenActivity
 import com.nasgrad.issue.CreateIssueActivity
 import dagger.Module
